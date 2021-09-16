@@ -10,7 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- v4.0.0 -->
-{{ Html::style('/admin/bootstrap/css/bootstrap.min.css') }}
+<?php echo e(Html::style('/admin/bootstrap/css/bootstrap.min.css')); ?>
+
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="16x16" href="admin/img/favicon-16x16.png">
 
@@ -18,17 +19,25 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
 <!-- Theme style -->
-{{ Html::style('/admin/css/style.css') }}
-{{ Html::style('/admin/css/font-awesome/css/font-awesome.min.css') }}
-{{ Html::style('/admin/css/et-line-font/et-line-font.css') }}
-{{ Html::style('/admin/css/themify-icons/themify-icons.css') }}
-{{ Html::style('/admin/css/simple-lineicon/simple-line-icons.css') }}
+<?php echo e(Html::style('/admin/css/style.css')); ?>
 
-{{ Html::style('/bootstrap/bootstrap/css/bootstrap.css') }}
-{{ Html::style('/bootstrap/bootstrap/css/bootstrap-theme.css') }}
+<?php echo e(Html::style('/admin/css/font-awesome/css/font-awesome.min.css')); ?>
+
+<?php echo e(Html::style('/admin/css/et-line-font/et-line-font.css')); ?>
+
+<?php echo e(Html::style('/admin/css/themify-icons/themify-icons.css')); ?>
+
+<?php echo e(Html::style('/admin/css/simple-lineicon/simple-line-icons.css')); ?>
+
+
+<?php echo e(Html::style('/bootstrap/bootstrap/css/bootstrap.css')); ?>
+
+<?php echo e(Html::style('/bootstrap/bootstrap/css/bootstrap-theme.css')); ?>
+
 <!-- hmenu -->
 <link rel="stylesheet" href="dist/">
-{{ Html::style('/admin/plugins/hmenu/ace-responsive-menu.css') }}
+<?php echo e(Html::style('/admin/plugins/hmenu/ace-responsive-menu.css')); ?>
+
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -39,9 +48,9 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="admin/plugins/datatables/css/dataTables.bootstrap.min.css">
 <!-- Bootstrap dataTables -->
-  {{-- Html::style('/bootstrap/datatable/media/css/dataTables.bootstrap4.css') --}}
-    {{-- Html::style('/bootstrap/datatable/extensions/Responsive/css/responsive.bootstrap4.css') --}}
-    {{-- Html::style('/bootstrap/datatable/extensions/FixedHeader/css/fixedHeader.bootstrap4.css') --}}
+  <?php /* Html::style('/bootstrap/datatable/media/css/dataTables.bootstrap4.css') */ ?>
+    <?php /* Html::style('/bootstrap/datatable/extensions/Responsive/css/responsive.bootstrap4.css') */ ?>
+    <?php /* Html::style('/bootstrap/datatable/extensions/FixedHeader/css/fixedHeader.bootstrap4.css') */ ?>
     <style type="text/css">
     /* .container{
       padding-top:20px !important;
@@ -60,7 +69,8 @@
         
     </style>
     <!-- BootStrap DatePicker -->
-    {{Html::style('/bootstrap/datepicker/dist/css/bootstrap-datepicker.css')}}
+    <?php echo e(Html::style('/bootstrap/datepicker/dist/css/bootstrap-datepicker.css')); ?>
+
 
 </head>
 <body class="skin-blue sidebar-mini">
@@ -81,14 +91,14 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- User Account  -->
-          @if (Auth::guest())
-          <li><a href="{{ url('/login') }}">Login</a></li>
-          @else
-          <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="admin/img/img1.jpg" class="user-image" alt="User Image"> <span class="hidden-xs">{{ Auth::user()->name }}</span> </a>
+          <?php if(Auth::guest()): ?>
+          <li><a href="<?php echo e(url('/login')); ?>">Login</a></li>
+          <?php else: ?>
+          <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="admin/img/img1.jpg" class="user-image" alt="User Image"> <span class="hidden-xs"><?php echo e(Auth::user()->name); ?></span> </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <div class="pull-left user-img"><img src="admin/img/img1.jpg" class="img-responsive img-circle" alt="User"></div>
-                <p class="text-left">{{ Auth::user()->name }} <small>(2021)</small> </p>
+                <p class="text-left"><?php echo e(Auth::user()->name); ?> <small>(2021)</small> </p>
               </li>
               <li><a href="#"><i class="icon-profile-male"></i>Profile</a></li>
               <li><a href="#"><i class="icon-wallet"></i> Ubah Password</a></li>
@@ -96,10 +106,10 @@
               <li role="separator" class="divider"></li>
               <li><a href="#"><i class="icon-gears"></i> Account Setting</a></li>
               <li role="separator" class="divider"></li> -->
-              <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
+              <li><a href="<?php echo e(url('/logout')); ?>"><i class="fa fa-power-off"></i> Logout</a></li>
             </ul>
           </li>
-          @endif
+          <?php endif; ?>
         </ul>
       </div>
     </nav>
@@ -116,27 +126,27 @@
       <!-- Responsive Menu Structure--> 
       <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
       <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
-      @if (Auth::guest())
-      <li><a href="{{ url('/') }}"><i class="fa fa-list"></i> <span>Pengumuman</span></a></li>
+      <?php if(Auth::guest()): ?>
+      <li><a href="<?php echo e(url('/')); ?>"><i class="fa fa-list"></i> <span>Pengumuman</span></a></li>
         
-      @else
-        <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+      <?php else: ?>
+        <li><a href="<?php echo e(url('/')); ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       
-        <li><a href="{{ route('karyawan.index') }}"> <i class="fa fa-user"></i> <span> Siswa </span></a></li>
-        <li><a href="{{ route('aspek.index') }}"> <i class="fa fa-object-group"></i> <span> Kriteria </span></a></li>
-        <li><a href="{{ route('faktor.index') }}"> <i class="fa fa-object-ungroup"></i> <span> Sub Kriteria </span></a></li>                       
-        <li><a href="{{ route('nilai.index') }}"> <i class="fa fa-star"></i> <span> Nilai Siswa </span></a></li>
-        <li><a href="{{ route('gap.index') }}"> <i class="fa fa-sliders"></i> <span> GAP </span></a></li>
-        <li><a href="{{ route('hasil.index') }}"> <i class="fa fa-list-alt"></i> <span> Result </span></a></li>
-        <li><a href="{{ route('manager.index') }}"> <i class="fa fa-user-circle-o"></i> <span> Kepala Bidang </span></a></li>
-      @endif
+        <li><a href="<?php echo e(route('karyawan.index')); ?>"> <i class="fa fa-user"></i> <span> Siswa </span></a></li>
+        <li><a href="<?php echo e(route('aspek.index')); ?>"> <i class="fa fa-object-group"></i> <span> Kriteria </span></a></li>
+        <li><a href="<?php echo e(route('faktor.index')); ?>"> <i class="fa fa-object-ungroup"></i> <span> Sub Kriteria </span></a></li>                       
+        <li><a href="<?php echo e(route('nilai.index')); ?>"> <i class="fa fa-star"></i> <span> Nilai Siswa </span></a></li>
+        <li><a href="<?php echo e(route('gap.index')); ?>"> <i class="fa fa-sliders"></i> <span> GAP </span></a></li>
+        <li><a href="<?php echo e(route('hasil.index')); ?>"> <i class="fa fa-list-alt"></i> <span> Result </span></a></li>
+        <li><a href="<?php echo e(route('manager.index')); ?>"> <i class="fa fa-user-circle-o"></i> <span> Kepala Bidang </span></a></li>
+      <?php endif; ?>
       </ul>
     </nav>
   </div>
   <!-- Main Nav -->
   
   <!-- Content Wrapper. Contains page content -->
-  {{--<div class="content-wrapper"> 
+  <?php /*<div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
     <div class="content-header sty-one">
       <h1>Modern Dashboard</h1>
@@ -147,9 +157,9 @@
     </div>
     
     <!-- Main content -->
-    <div class="content">--}}
+    <div class="content">*/ ?>
     
-      @yield('content')
+      <?php echo $__env->yieldContent('content'); ?>
      
      
     <!-- </div> -->
@@ -163,21 +173,30 @@
 <!-- ./wrapper --> 
 
 <!-- jQuery 3 --> 
-{{Html::script('/admin/js/jquery.min.js')}}
+<?php echo e(Html::script('/admin/js/jquery.min.js')); ?>
+
 <!-- v4.0.0-alpha.6 -->  
-{{Html::script('/admin/bootstrap/js/bootstrap.min.js')}}
+<?php echo e(Html::script('/admin/bootstrap/js/bootstrap.min.js')); ?>
+
 <!-- template --> 
-{{Html::script('/admin/js/adminkit.js')}}
+<?php echo e(Html::script('/admin/js/adminkit.js')); ?>
+
 <!-- Morris JavaScript --> 
-{{Html::script('/admin/plugins/raphael/raphael-min.js')}}
-{{Html::script('/admin/plugins/morris/morris.js')}}
-{{Html::script('/admin/plugins/functions/dashboard1.js')}}
+<?php echo e(Html::script('/admin/plugins/raphael/raphael-min.js')); ?>
+
+<?php echo e(Html::script('/admin/plugins/morris/morris.js')); ?>
+
+<?php echo e(Html::script('/admin/plugins/functions/dashboard1.js')); ?>
+
 
 
 <!-- Chart Peity JavaScript --> 
-{{Html::script('/admin/plugins/peity/jquery.peity.min.js')}}
-{{Html::script('/admin/plugins/functions/jquery.peity.init.js')}}
-{{Html::script('/admin/plugins/hmenu/ace-responsive-menu.js')}}
+<?php echo e(Html::script('/admin/plugins/peity/jquery.peity.min.js')); ?>
+
+<?php echo e(Html::script('/admin/plugins/functions/jquery.peity.init.js')); ?>
+
+<?php echo e(Html::script('/admin/plugins/hmenu/ace-responsive-menu.js')); ?>
+
 
 <!--Plugin Initialization--> 
 <script >
@@ -194,11 +213,11 @@
 <script src="admin/plugins/datatables/jquery.dataTables.min.js"></script> 
 <script src="admin/plugins/datatables/dataTables.bootstrap.min.js"></script> 
 <!-- Scripts Bootstrap dataTables -->
-    {{-- Html::script('/bootstrap/datatable/media/js/jquery.dataTables.js')--}}
-    {{-- Html::script('/bootstrap/datatable/media/js/dataTables.bootstrap4.js')  --}}
-    {{-- Html::script('/bootstrap/datatable/extensions/Responsive/js/dataTables.responsive.js') --}}
-    {{-- Html::script('/bootstrap/datatable/extensions/Responsive/js/responsive.bootstrap4.js') --}}
-    {{-- Html::script('/bootstrap/datatable/extensions/FixedHeader/js/dataTables.fixedHeader.js') --}}
+    <?php /* Html::script('/bootstrap/datatable/media/js/jquery.dataTables.js')*/ ?>
+    <?php /* Html::script('/bootstrap/datatable/media/js/dataTables.bootstrap4.js')  */ ?>
+    <?php /* Html::script('/bootstrap/datatable/extensions/Responsive/js/dataTables.responsive.js') */ ?>
+    <?php /* Html::script('/bootstrap/datatable/extensions/Responsive/js/responsive.bootstrap4.js') */ ?>
+    <?php /* Html::script('/bootstrap/datatable/extensions/FixedHeader/js/dataTables.fixedHeader.js') */ ?>
     <script type="text/javascript">
         $(function() {
             $('table.table').dataTable( {
@@ -212,7 +231,8 @@
     </script>
 
     <!-- Scripts BootStap DatePicker -->
-    {{Html::script('/bootstrap/datepicker/dist/js/bootstrap-datepicker.js') }}
+    <?php echo e(Html::script('/bootstrap/datepicker/dist/js/bootstrap-datepicker.js')); ?>
+
     <script type="text/javascript">
         $(".input-group.date").datepicker({
             format: "dd-mm-yyyy",

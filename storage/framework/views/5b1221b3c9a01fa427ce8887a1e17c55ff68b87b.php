@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container" >
     <div class="row">
         <div class="col-md-12" style="margin-top:10px">
@@ -8,22 +6,26 @@
                 <div class="panel-heading">Penilaian Siswa</div>
 
                 <div class="panel-body table-responsive">
-                    @if(Session::has('alert-success'))
+                    <?php if(Session::has('alert-success')): ?>
                         <div class="alert alert-success alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h4>    <i class="icon fa fa-check"></i> Berhasil!</h4>
-                            {{ Session::get('alert-success') }}
-                        </div>
-                    @endif
+                            <?php echo e(Session::get('alert-success')); ?>
 
-                    {{ Form::open(array('route' => 'nilai.destroy')) }}
-                    {{ Form::hidden('_method', 'delete') }}
+                        </div>
+                    <?php endif; ?>
+
+                    <?php echo e(Form::open(array('route' => 'nilai.destroy'))); ?>
+
+                    <?php echo e(Form::hidden('_method', 'delete')); ?>
+
 
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th width="1%" class="nosort">
-                                    {{ Form::checkbox('checkAll') }}
+                                    <?php echo e(Form::checkbox('checkAll')); ?>
+
                                 </th>
                                 <td width="1%">No</td>
                                 <td>Nama Siswa</td>
@@ -35,38 +37,44 @@
                         </thead>
                         <tbody>
                             <?php $no=1; ?>
-                            @foreach($nilais as $nilai)
+                            <?php foreach($nilais as $nilai): ?>
                             <tr>
                                 <td>
-                                    <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="{{ $nilai->id }}" />
+                                    <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="<?php echo e($nilai->id); ?>" />
                                 </td>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $nilai->nama }}</td>
-                                <td>{{ $nilai->aspek}}</td>
-                                <td>{{ $nilai->faktor }}</td>
-                                <td>{{ $nilai->nilai }}</td>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($nilai->nama); ?></td>
+                                <td><?php echo e($nilai->aspek); ?></td>
+                                <td><?php echo e($nilai->faktor); ?></td>
+                                <td><?php echo e($nilai->nilai); ?></td>
                                 <td class="center" align="center">
-                                    {{ Html::linkRoute('nilai.edit', '', array($nilai->id), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
+                                    <?php echo e(Html::linkRoute('nilai.edit', '', array($nilai->id), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit'))); ?>
+
                                 </td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; ?>
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td align="center">
-                                    {{ Form::button('<i class="glyphicon glyphicon-remove"></i>', array('class'=>'btn btn-danger btn-xs btn-del', 'type'=>'submit')) }}
+                                    <?php echo e(Form::button('<i class="glyphicon glyphicon-remove"></i>', array('class'=>'btn btn-danger btn-xs btn-del', 'type'=>'submit'))); ?>
+
                                 </td>
                                 <td colspan="5"></td>
                                 <td align="center">
-                                    {{ Html::linkRoute('nilai.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus')) }}
+                                    <?php echo e(Html::linkRoute('nilai.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus'))); ?>
+
                                 </td>
                             </tr>
                          </tfoot>
                     </table>
-                    {{ Form::close() }}
+                    <?php echo e(Form::close()); ?>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
