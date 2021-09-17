@@ -6,7 +6,8 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Result</div>
-                <div class="panel-body"><center><h4><b><br>Skala<br><br></b></h1></center>
+                <!-- <div class="panel-body">
+                    <center><h4><b><br>Skala<br><br></b></h1></center>
                     <table class="table table-responsive table-bordered table-striped">
                         <thead>
                             <tr>
@@ -29,7 +30,8 @@
                             </tr>
                             @endforeach
                         </tbody>
-                    </table><center><h4><b><br>Hasil<br><br></b></h1></center>
+                    </table> -->
+                    <center><h4><b><br>Hasil<br><br></b></h1></center>
                     <table class="table table-responsive table-bordered table-striped">
                         <thead>
                             <tr>

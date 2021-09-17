@@ -95,9 +95,9 @@
         <ul class="nav navbar-nav">
           <!-- User Account  -->
           @if (Auth::guest())
-          <li><a href="{{ url('/login') }}">Login</a></li>
+          <li><a href="{{ url('/login') }}"><i class="fa fa-sign-in"></i> SIGN IN</a></li>
           @else
-          <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="{{asset('logo.jpg')}}" class="user-image" alt="User Image"> <span class="hidden-xs">{{ Auth::user()->name }}</span> </a>
+          <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="{{asset('logo.jpg')}}" class="user-image" alt="User Image" style="margin-bottom:10px;"> <span class="hidden-xs">{{ Auth::user()->name }}</span> </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <div class="pull-left user-img"><img src="{{asset('logo.jpg')}}" class="img-responsive img-circle" alt="User"></div>
@@ -109,7 +109,7 @@
               <li role="separator" class="divider"></li>
               <li><a href="#"><i class="icon-gears"></i> Account Setting</a></li>
               <li role="separator" class="divider"></li> -->
-              <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
+              <li><a href="{{ url('/logout') }}"><i class="fa fa-power-off"></i> Sign Out</a></li>
             </ul>
           </li>
           @endif
@@ -141,7 +141,7 @@
         <li><a href="{{ route('nilai.index') }}"> <i class="fa fa-star"></i> <span> Nilai Siswa </span></a></li>
         <li><a href="{{ route('gap.index') }}"> <i class="fa fa-sliders"></i> <span> GAP </span></a></li>
         <li><a href="{{ route('hasil.index') }}"> <i class="fa fa-list-alt"></i> <span> Result </span></a></li>
-        <li style="float:right"><a href="{{ url('/logout') }}"> <i class="fa fa-power-off"></i> <span> Logout </span></a></li>
+        <li style="float:right"><a href="{{ url('/logout') }}"> <i class="fa fa-power-off"></i> <span> Sign Out </span></a></li>
         <!-- <li><a href="{{ route('manager.index') }}"> <i class="fa fa-user-circle-o"></i> <span> Kepala Bidang </span></a></li> -->
       @endif
       </ul>

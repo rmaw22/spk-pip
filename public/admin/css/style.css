@@ -1576,7 +1576,7 @@ ul.list-inline li {
 	height: 25px;
 	border-radius: 50%;
 	margin-right: 10px;
-	margin-top: -2px
+	margin-top: -5px
 }
 @media (max-width:767px) {
 .navbar-nav>.user-menu .user-image {
