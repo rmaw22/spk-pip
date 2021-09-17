@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Sep 2021 pada 02.15
+-- Waktu pembuatan: 17 Sep 2021 pada 11.09
 -- Versi server: 10.4.20-MariaDB
 -- Versi PHP: 7.4.22
 
@@ -41,7 +41,9 @@ CREATE TABLE `aspeks` (
 --
 
 INSERT INTO `aspeks` (`id_aspek`, `aspek`, `prosentase`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'kedisiplinan', 90, '2021-09-14 11:01:13', '2021-09-14 21:42:12', NULL);
+(1, 'kedisiplinan', 30, '2021-09-14 11:01:13', '2021-09-16 22:18:34', NULL),
+(2, 'Kecerdasan', 20, '2021-09-16 22:18:28', '2021-09-16 22:18:28', NULL),
+(3, 'Perilaku', 50, '2021-09-16 22:18:46', '2021-09-16 22:18:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -60,6 +62,19 @@ CREATE TABLE `faktors` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `faktors`
+--
+
+INSERT INTO `faktors` (`id_faktor`, `id_aspek`, `faktor`, `nilai_sub`, `kelompok`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'tepat waktu dat', 3, 'Core', '2021-09-16 20:36:23', '2021-09-16 20:36:23', NULL),
+(2, 1, 'Common Sense', 3, 'Core', '2021-09-16 22:19:46', '2021-09-16 22:19:46', NULL),
+(3, 2, 'Potensi Kecerdasan', 4, 'Secondary', '2021-09-16 22:21:26', '2021-09-16 22:21:26', NULL),
+(4, 2, 'Konsentrasi', 3, 'Core', '2021-09-16 22:21:45', '2021-09-16 22:21:45', NULL),
+(5, 3, 'Kekuasaan', 3, 'Core', '2021-09-16 22:22:10', '2021-09-16 22:22:10', NULL),
+(6, 3, 'Pengaruh', 3, 'Core', '2021-09-16 22:22:29', '2021-09-16 22:22:29', NULL),
+(7, 3, 'keteguhan Hati', 4, 'Secondary', '2021-09-16 22:22:43', '2021-09-16 22:22:43', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +90,18 @@ CREATE TABLE `gaps` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `gaps`
+--
+
+INSERT INTO `gaps` (`id_gap`, `selisih`, `bobot`, `keterangan`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, '0.00', '5.00', 'Tidak Ada Selisih (Kompetensi sesuai dengan yang dibutuhkan)', '2021-09-16 22:25:16', '2021-09-16 22:25:16', NULL),
+(3, '1.00', '4.50', 'Kompetensi Individu kelebihan 1 tingkat', '2021-09-16 22:25:51', '2021-09-16 22:25:51', NULL),
+(4, '-1.00', '4.00', 'Kompetensi Individu kekurangan 1 tingkat', '2021-09-16 22:26:22', '2021-09-16 22:26:22', NULL),
+(5, '4.00', '1.50', 'Kompetensi Individu kelebihan 4 tingkat', '2021-09-16 22:26:42', '2021-09-16 22:26:42', NULL),
+(6, '-4.00', '1.00', 'Kompetensi Individu kekurangan 4 tingkat', '2021-09-16 22:26:56', '2021-09-16 22:26:56', NULL),
+(7, '14.00', '3.00', 'Tidak Ada Selisih (Kompetensi sesuai dengan yang dibutuhkan)', '2021-09-16 22:27:13', '2021-09-16 22:27:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -170,8 +197,27 @@ CREATE TABLE `nilais` (
   `nis` int(11) NOT NULL,
   `id_aspeks` int(11) NOT NULL,
   `id_faktor` int(11) NOT NULL,
-  `nilai` int(11) NOT NULL
+  `nilai` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `nilais`
+--
+
+INSERT INTO `nilais` (`id`, `nis`, `id_aspeks`, `id_faktor`, `nilai`, `created_at`, `updated_at`) VALUES
+(2, 12345567, 1, 1, 4, '2021-09-16 21:25:21', '2021-09-16 21:25:21'),
+(3, 77783782, 1, 1, 5, '2021-09-16 21:22:24', '2021-09-16 21:22:24'),
+(4, 10119479, 1, 1, 3, '2021-09-16 21:26:05', '2021-09-16 21:26:05'),
+(5, 10119479, 2, 4, 3, '2021-09-16 22:27:51', '2021-09-16 22:27:51'),
+(6, 77783782, 2, 3, 2, '2021-09-16 22:27:59', '2021-09-16 22:27:59'),
+(7, 12345567, 1, 2, 2, '2021-09-16 22:28:23', '2021-09-16 22:28:23'),
+(8, 10119479, 3, 6, 2, '2021-09-16 22:28:32', '2021-09-16 22:28:32'),
+(9, 10119479, 3, 7, 4, '2021-09-16 22:28:40', '2021-09-16 22:28:40'),
+(10, 77783782, 3, 6, 3, '2021-09-16 22:28:53', '2021-09-16 22:28:53'),
+(11, 12345567, 2, 3, 1, '2021-09-16 22:29:06', '2021-09-16 22:29:06'),
+(12, 12345567, 3, 7, 5, '2021-09-16 22:29:18', '2021-09-16 22:29:18');
 
 -- --------------------------------------------------------
 
@@ -257,7 +303,6 @@ CREATE TABLE `skalas` (
 
 CREATE TABLE `students` (
   `id` int(11) NOT NULL,
-  `id_karyawan` varchar(20) NOT NULL,
   `nis` varchar(50) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `tempat_lahir` varchar(30) NOT NULL,
@@ -274,10 +319,11 @@ CREATE TABLE `students` (
 -- Dumping data untuk tabel `students`
 --
 
-INSERT INTO `students` (`id`, `id_karyawan`, `nis`, `nama`, `tempat_lahir`, `tgl_lahir`, `kelamin`, `agama`, `phone`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'K0998298', 'K0998298', 'Milan', 'Bandung', '', 'Pria', 'Islam', '085798970901', '2021-09-14 11:00:43', '2021-09-14 11:00:43', NULL),
-(2, '12345567', '12345567', 'asdasd', 'Bandung', '1999-12-12', 'Pria', 'Islam', '085721874884', '2021-09-14 21:41:14', '2021-09-14 21:41:14', NULL),
-(3, '77783782', '77783782', 'Tina', 'Jakarta', '2000-12-12', 'Pria', 'Kristen', '085721874884', '2021-09-14 21:41:51', '2021-09-14 21:41:51', NULL);
+INSERT INTO `students` (`id`, `nis`, `nama`, `tempat_lahir`, `tgl_lahir`, `kelamin`, `agama`, `phone`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, '12345567', 'Imong', 'Bandung', '1999-12-12', 'Pria', 'Islam', '085721874884', '2021-09-14 21:41:14', '2021-09-16 21:13:48', NULL),
+(3, '77783782', 'Tina', 'Jakarta', '2000-12-12', 'Pria', 'Kristen', '085721874884', '2021-09-14 21:41:51', '2021-09-14 21:41:51', NULL),
+(4, '10119479', 'Imam', 'Sukabumi', '1999-12-12', 'Wanita', 'Islam', '085721874884', '2021-09-16 21:11:54', '2021-09-16 21:11:54', NULL),
+(5, '34349999', 'sdsfd', 'fdfs', '1999-12-12', 'Pria', 'Islam', '085798970901', '2021-09-17 02:02:32', '2021-09-17 02:02:32', NULL);
 
 -- --------------------------------------------------------
 
@@ -326,7 +372,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', '$2y$10$8dfPtWV1TPyUyf5IiHfIaeob9CdnMzhrKsZo05f8NIWcPktF6qLQ2', 'R9gEvYjMVzgP0MFuGGi2sw975ijcYVKokZ4IPnpPLUbiIaFsGkJK4bEc6HDk', '2021-08-14 03:29:30', '2021-09-15 17:09:58');
+(1, 'Admin', 'admin@gmail.com', '$2y$10$8dfPtWV1TPyUyf5IiHfIaeob9CdnMzhrKsZo05f8NIWcPktF6qLQ2', 's5VxPl8sfEXSlVVvRG5YHoquZ3JTJMhnzu3CUsQM6YtelIfKJQ1WEh8MduuY', '2021-08-14 03:29:30', '2021-09-16 22:55:14');
 
 --
 -- Indexes for dumped tables
@@ -441,19 +487,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `aspeks`
 --
 ALTER TABLE `aspeks`
-  MODIFY `id_aspek` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_aspek` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `faktors`
 --
 ALTER TABLE `faktors`
-  MODIFY `id_faktor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_faktor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `gaps`
 --
 ALTER TABLE `gaps`
-  MODIFY `id_gap` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_gap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `hasils`
@@ -477,7 +523,7 @@ ALTER TABLE `kepseks`
 -- AUTO_INCREMENT untuk tabel `nilais`
 --
 ALTER TABLE `nilais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `pendaftars`
@@ -507,7 +553,7 @@ ALTER TABLE `skalas`
 -- AUTO_INCREMENT untuk tabel `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `test`
