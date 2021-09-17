@@ -126,9 +126,9 @@ class HasilController extends Controller
         return view('importExport');
     }
 
-    public function downloadExcel($type)
+    public function downloadExcel($type = null)
     {
-
+      $type='xlsx';
         $data   = Nilai::get()->toArray();
         $data1  = Siswa::get()->toArray();
         return Excel::create('DataPenilaian', function($excel) use ($data, $data1) {

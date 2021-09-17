@@ -4,7 +4,8 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Result</div>
-                <div class="panel-body table-responsive"><center><h4><b><br>Skala<br><br></b></h1></center>
+                <div class="panel-body table-responsive">
+                    <!-- <center><h4><b><br>Skala<br><br></b></h1></center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -27,15 +28,16 @@
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
-                    </table><center><h4><b><br>Hasil<br><br></b></h1></center>
+                    </table> -->
+                    <center><h4><b><br>Hasil<br><br></b></h1></center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <td>No</td>
                                 <td>Nama Siswa</td>
-                                <td>Jenis Aspek</td>
-                                <td>Nama Faktor</td>
-                                <td>Nilai Target</td>
+                                <td>Jenis Kriteria</td>
+                                <td>Sub Kriteria</td>
+                                <td>Nilai Selisih</td>
                                 <td>Nilai Siswa</td>
                                 <td>Hasil</td>
                             </tr>
@@ -133,10 +135,11 @@
                         <h4><?php echo e($managers->nip); ?></h4>
                     </div><br> -->
                     <div class="text-center">
-                        <a href="<?php echo e(URL::to('downloadExcel/xls')); ?>">
+                        <a href="<?php echo e(route('export.excel')); ?>">
+                        
                         <button class="btn btn-primary btn-xs">Download Excel</button>
                         </a>
-                        <a href="<?php echo e(URL::to('downloadExcel/xls')); ?>">
+                        <a href="#">
                         <button class="btn btn-default btn-xs">Download PDF</button>
                         </a>
                     </div>

@@ -26,8 +26,8 @@
                                     {{ Form::checkbox('checkAll') }}
                                 </th>
                                 <td width="1%">No</td>
-                                <td>Jenis Aspek</td>
-                                <td>Nama Faktor</td>
+                                <td>Sub Kriteria</td>
+                                <td>Jenis Kriteria</td>                                
                                 <td>Nilai</td>
                                 <td>Kelompok</td>
                                 <th class="nosort" width="1%">Action</th>
@@ -41,8 +41,8 @@
                                     <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="{{ $faktor->id_faktor }}" />
                                 </td>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $faktor->aspek }}</td>
                                 <td>{{ $faktor->faktor }}</td>
+                                <td>{{ $faktor->aspek }}</td>                                
                                 <td>{{ $faktor->nilai_sub }}</td>
                                 <td>{{ $faktor->kelompok }}</td>
                                 <td class="center" align="center">

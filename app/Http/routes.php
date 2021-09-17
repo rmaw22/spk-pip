@@ -38,5 +38,5 @@ Route::delete('nilai', ['as'=>'nilai.destroy', 'uses'=>'NilaiController@destroy'
 Route::resource('manager', 'ManagerController');
 Route::resource('hasil', 'HasilController');
 Route::get('importExport', 'HasilController@importExport');
-Route::get('downloadExcel/{type}', 'HasilController@downloadExcel');
+Route::get('downloadExcel',  ['as'=>'export.excel', 'uses'=>'HasilController@downloadExcel']);
 Route::post('siswa/import', 'SiswaController@postImport');

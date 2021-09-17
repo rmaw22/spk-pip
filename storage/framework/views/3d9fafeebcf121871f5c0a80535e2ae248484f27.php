@@ -28,8 +28,8 @@
 
                                 </th>
                                 <td width="1%">No</td>
-                                <td>Jenis Aspek</td>
-                                <td>Nama Faktor</td>
+                                <td>Sub Kriteria</td>
+                                <td>Jenis Kriteria</td>                                
                                 <td>Nilai</td>
                                 <td>Kelompok</td>
                                 <th class="nosort" width="1%">Action</th>
@@ -43,8 +43,8 @@
                                     <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="<?php echo e($faktor->id_faktor); ?>" />
                                 </td>
                                 <td><?php echo e($no++); ?></td>
-                                <td><?php echo e($faktor->aspek); ?></td>
                                 <td><?php echo e($faktor->faktor); ?></td>
+                                <td><?php echo e($faktor->aspek); ?></td>                                
                                 <td><?php echo e($faktor->nilai_sub); ?></td>
                                 <td><?php echo e($faktor->kelompok); ?></td>
                                 <td class="center" align="center">

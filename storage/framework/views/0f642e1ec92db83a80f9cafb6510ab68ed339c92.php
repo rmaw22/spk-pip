@@ -13,7 +13,7 @@
 <?php echo e(Html::style('/admin/bootstrap/css/bootstrap.min.css')); ?>
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="16x16" href="admin/img/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="16x16" href="<?php echo e(asset('logo.jpg')); ?>">
 
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
