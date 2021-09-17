@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\AppModel\Nilai;
 use App\AppModel\Aspek;
 use App\AppModel\Faktor;
-use App\AppModel\Karyawan;
+use App\AppModel\Siswa;
 use DB;
 use App\Http\Requests;
 use App\Http\Requests\Nilai\StoreRequest;
@@ -51,8 +51,8 @@ class NilaiController extends Controller
     public function create()
     {
       $aspeks = DB::table('aspeks')->pluck('aspek', 'id_aspek');
-      $karyawans = Karyawan::all();
-        return view('adminpanel.nilai.create', compact('aspeks', 'karyawans'));
+      $siswas = Siswa::all();
+        return view('adminpanel.nilai.create', compact('aspeks', 'siswas'));
     }
 
     /**
@@ -70,7 +70,7 @@ class NilaiController extends Controller
     public function store(StoreRequest $request)
     {
         $nilai = new Nilai();
-        $nilai->nis = $request->id_karyawan;
+        $nilai->nis = $request->nis;
         $nilai->id_aspeks = $request->aspek;
         $nilai->id_faktor = $request->id_faktor;
         $nilai->nilai = $request->nilai;
@@ -105,8 +105,8 @@ class NilaiController extends Controller
                 -> first();
         $aspeks = Aspek::all();
         $faktors = Faktor::all();
-        $karyawans = Karyawan::all();
-        return view('adminpanel.nilai.edit', compact('nilais', 'aspeks', 'faktors', 'karyawans'));
+        $siswas = Siswa::all();
+        return view('adminpanel.nilai.edit', compact('nilais', 'aspeks', 'faktors', 'siswas'));
     }
 
     /**
@@ -119,7 +119,7 @@ class NilaiController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         $nilai = Nilai::findOrFail($id);
-        $nilai->nis = $request->id_karyawan;
+        $nilai->nis = $request->nis;
         $nilai->id_aspeks = $request->aspek;
         $nilai->id_faktor = $request->id_faktor;
         $nilai->nilai = $request->nilai;

@@ -11,7 +11,7 @@
                         <thead>
                             <tr>
                                 <td width="5%">No</td>
-                                <td width="15%">Nama Karyawan</td>
+                                <td width="15%">Nama Siswa</td>
                                 <td width="15%">Jenis Aspek</td>
                                 <td>Nama Faktor</td>
                                 <td>Skala</td>
@@ -34,11 +34,11 @@
                         <thead>
                             <tr>
                                 <td width="5%">No</td>
-                                <td width="15%">Nama Karyawan</td>
+                                <td width="15%">Nama Siswa</td>
                                 <td width="15%">Jenis Aspek</td>
                                 <td>Nama Faktor</td>
                                 <td>Nilai Target</td>
-                                <td>Nilai Karyawan</td>
+                                <td>Nilai Siswa</td>
                                 <td>Hasil</td>
                             </tr>
                         </thead>
@@ -61,7 +61,7 @@
                         <thead>
                             <tr>
                                 <td width="5%">No</td>
-                                <td width="15%">Nama Karyawan</td>
+                                <td width="15%">Nama Siswa</td>
                                 <td width="15%">Jenis Aspek</td>
                                 <td>Nama Faktor</td>
                                 <td>Nilai Bobot</td>
@@ -86,7 +86,7 @@
                         <thead>
                             <tr>
                                 <td width="5%">No</td>
-                                <td width="15%">Nama Karyawan</td>
+                                <td width="15%">Nama Siswa</td>
                                 <td>Nilai Core</td>
                                 <td>Nilai Secondary</td>
                             </tr>
@@ -107,7 +107,7 @@
                         <thead>
                             <tr>
                                 <td width="5%">No</td>
-                                <td width="15%">Nama Karyawan</td>
+                                <td width="15%">Nama Siswa</td>
                                 <td>Nilai I</td>
                                 <td>Nilai S</td>
                                 <td>Nilai P</td>

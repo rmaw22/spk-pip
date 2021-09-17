@@ -37,7 +37,7 @@
 <![endif]-->
 
 <!-- DataTables -->
-<link rel="stylesheet" href="admin/plugins/datatables/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="{{url('admin')}}/plugins/datatables/css/dataTables.bootstrap.min.css">
 <!-- Bootstrap dataTables -->
   {{-- Html::style('/bootstrap/datatable/media/css/dataTables.bootstrap4.css') --}}
     {{-- Html::style('/bootstrap/datatable/extensions/Responsive/css/responsive.bootstrap4.css') --}}
@@ -62,6 +62,11 @@
     <!-- BootStrap DatePicker -->
     {{Html::style('/bootstrap/datepicker/dist/css/bootstrap-datepicker.css')}}
 
+    
+<!-- jQuery 3 --> 
+{{Html::script('/admin/js/jquery.min.js')}}
+<!-- v4.0.0-alpha.6 -->  
+{{Html::script('/admin/bootstrap/js/bootstrap.min.js')}}
 </head>
 <body class="skin-blue sidebar-mini">
 <div class="wrapper boxed-wrapper">
@@ -130,7 +135,7 @@
       @else
         <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       
-        <li><a href="{{ route('karyawan.index') }}"> <i class="fa fa-user"></i> <span> Siswa </span></a></li>
+        <li><a href="{{ route('siswa.index') }}"> <i class="fa fa-user"></i> <span> Siswa </span></a></li>
         <li><a href="{{ route('aspek.index') }}"> <i class="fa fa-object-group"></i> <span> Kriteria </span></a></li>
         <li><a href="{{ route('faktor.index') }}"> <i class="fa fa-object-ungroup"></i> <span> Sub Kriteria </span></a></li>                       
         <li><a href="{{ route('nilai.index') }}"> <i class="fa fa-star"></i> <span> Nilai Siswa </span></a></li>
@@ -171,10 +176,6 @@
 </div>
 <!-- ./wrapper --> 
 
-<!-- jQuery 3 --> 
-{{Html::script('/admin/js/jquery.min.js')}}
-<!-- v4.0.0-alpha.6 -->  
-{{Html::script('/admin/bootstrap/js/bootstrap.min.js')}}
 <!-- template --> 
 {{Html::script('/admin/js/adminkit.js')}}
 <!-- Morris JavaScript --> 
@@ -200,8 +201,8 @@
 </script>
 
 <!-- DataTable --> 
-<script src="admin/plugins/datatables/jquery.dataTables.min.js"></script> 
-<script src="admin/plugins/datatables/dataTables.bootstrap.min.js"></script> 
+<script src="{{url('admin')}}/plugins/datatables/jquery.dataTables.min.js"></script> 
+<script src="{{url('admin')}}/plugins/datatables/dataTables.bootstrap.min.js"></script> 
 <!-- Scripts Bootstrap dataTables -->
     {{-- Html::script('/bootstrap/datatable/media/js/jquery.dataTables.js')--}}
     {{-- Html::script('/bootstrap/datatable/media/js/dataTables.bootstrap4.js')  --}}

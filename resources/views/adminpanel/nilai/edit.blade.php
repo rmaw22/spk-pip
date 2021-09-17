@@ -30,17 +30,17 @@
                 <div class="panel-heading">Ubah Data Nilai Siswa</div>
                 <div class="panel-body table-responsive">
                     {{ Form::model($nilais, ['route'=>['nilai.update', $nilais->id], 'method'=>'PATCH']) }}
-                    <div class="form-group{!! $errors->has('id_karyawan') ? ' has-error' : '' !!}">
-                        {{ Form::label('id_karyawan','Nama Siswa' , ['class' => 'control-label']) }}
-                        <select id="id_karyawan" class="form-control" name="id_karyawan" required="required">
+                    <div class="form-group{!! $errors->has('nis') ? ' has-error' : '' !!}">
+                        {{ Form::label('nis','Nama Siswa' , ['class' => 'control-label']) }}
+                        <select id="nis" class="form-control" name="nis" required="required">
                             <option selected="selected" value="{{ $nilais->karyawan_id }}">{{ $nilais->karyawan_name }}</option>
-                            @foreach($karyawans as $karyawan)
-                                @unless($karyawan->id_karyawan === $nilais->karyawan_id)
-                                    <option value={{ $karyawan->id_karyawan }}>{{ $karyawan->nama }}</option>
+                            @foreach($siswas as $siswa)
+                                @unless($siswa->nis === $nilais->karyawan_id)
+                                    <option value={{ $siswa->nis }}>{{ $siswa->nama }}</option>
                                 @endunless
                             @endforeach
                         </select>
-                    {!! $errors->first('id_karyawan', '<p class="help-block">:message</p>') !!}
+                    {!! $errors->first('nis', '<p class="help-block">:message</p>') !!}
                     </div>
                     <div class="form-group{!! $errors->has('aspek') ? ' has-error' : '' !!}">
                         {{ Form::label('aspek','Jenis Kriteria' , ['class' => 'control-label']) }}

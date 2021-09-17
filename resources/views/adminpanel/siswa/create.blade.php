@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Tambah Data Karyawan</div>
+                <div class="panel-heading">Tambah Data Siswa</div>
 
                 <div class="panel-body">
-                    {{ Form::open(['route' => 'karyawan.store']) }}
-                        <div class="form-group{!! $errors->has('id_karyawan') ? ' has-error' : '' !!}">
-                            {{ Form::label('id_karyawan', 'NIS*') }}
-                            {{ Form::text('id_karyawan', null, ['class'=>'form-control', 'placeholder'=>'e.g 10119479', 'required', 'oninvalid' => 'this.setCustomValidity("NIS Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '8']) }}
-                            {!! $errors->first('id_karyawan', '<p class="help-block">:message</p>') !!}
+                    {{ Form::open(['route' => 'siswa.store']) }}
+                        <div class="form-group{!! $errors->has('nis') ? ' has-error' : '' !!}">
+                            {{ Form::label('nis', 'NIS*') }}
+                            {{ Form::text('nis', null, ['class'=>'form-control', 'placeholder'=>'e.g 10119479', 'required', 'oninvalid' => 'this.setCustomValidity("NIS Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '8']) }}
+                            {!! $errors->first('nis', '<p class="help-block">:message</p>') !!}
                         </div>
                         <div class="form-group{!! $errors->has('nama') ? ' has-error' : '' !!}">
                             {{ Form::label('nama', 'Nama Siswa') }}

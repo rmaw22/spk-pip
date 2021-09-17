@@ -26,7 +26,7 @@ class UpdateRequest extends Request
     public function rules()
     {
         return [
-            'id_faktor'      => 'required|unique:nilais,id_faktor,'.$this->getSegmentFromEnd().',id,id_karyawan,'.$this->get('id_karyawan'),
+            'id_faktor'      => 'required|unique:nilais,id_faktor,'.$this->getSegmentFromEnd().',id,nis,'.$this->get('nis'),
         ];
     }
 
@@ -40,7 +40,7 @@ class UpdateRequest extends Request
     {
         return [
             'id_faktor.unique' => 'Faktor Sudah Digunakan',
-            'id_karyawan.required' => 'Nama Harus Dipilih',
+            'nis.required' => 'Nama Harus Dipilih',
         ];
     }
 }

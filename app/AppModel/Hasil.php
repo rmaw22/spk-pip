@@ -10,7 +10,7 @@ class Hasil extends Model
 
     public function karyawan()
     {
-    	return $this->belongsTo('App\AppModel\Karyawan');
+    	return $this->belongsTo('App\AppModel\Siswa');
     }
 
     public function faktor()

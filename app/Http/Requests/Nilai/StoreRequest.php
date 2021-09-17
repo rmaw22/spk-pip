@@ -24,8 +24,8 @@ class StoreRequest extends Request
     public function rules()
     {
         return [
-            'id_faktor' => 'required|unique_with:nilais,id_karyawan',  
-            'id_karyawan' => 'required',
+            'id_faktor' => 'required|unique_with:nilais,nis',  
+            'nis' => 'required',
         ];
     }
 
@@ -33,7 +33,7 @@ class StoreRequest extends Request
     {
         return [
             'id_faktor.unique_with' => 'Faktor Ini Sudah Digunakan',
-            'id_karyawan.required' => 'Nama Harus Dipilih',
+            'nis.required' => 'Nama Harus Dipilih',
         ];
     }
 }

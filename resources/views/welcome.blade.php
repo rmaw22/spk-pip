@@ -12,9 +12,9 @@
                         </h3><br>
                         </p>
                         <p class="text-center">
-                            Metode
+                            <!-- Metode -->
                         </p><br>
-                            <h3 class="text-center">Profile Matching </h3><br><br>
+                            <h3 class="text-center">Profile Matching jadi Program Indonesia Pintar</h3><br><br>
                         <p class="text-center"><br>
                             <a href="{{ url('/pengumuman') }}" class="btn btn-success">Pengumuman</a>
                         </p>

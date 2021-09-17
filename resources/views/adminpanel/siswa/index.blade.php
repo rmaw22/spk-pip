@@ -17,7 +17,7 @@
                         </div>
                     @endif
 
-                    {{ Form::open(array('route' => 'karyawan.destroy')) }}
+                    {{ Form::open(array('route' => 'siswa.destroy')) }}
                     {{ Form::hidden('_method', 'delete') }}
 
                         <table id="example1" class="table table-responsive table-bordered table-striped">
@@ -40,21 +40,21 @@
 
                             <tbody>
                             <?php $no=1; ?>
-                                @foreach($karyawans as $karyawan)
+                                @foreach($siswas as $siswa)
                                 <tr>
                                     <td>
-                                        <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="{{ $karyawan->id_karyawan }}" />
+                                        <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="{{ $siswa->nis }}" />
                                     </td>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $karyawan->nis }}</td>
-                                    <td>{{ $karyawan->nama }}</td>
-                                    <td>{{ $karyawan->tempat_lahir }}</td>
-                                    <td>{{ $karyawan->tgl_lahir }}</td>
-                                    <td>{{ $karyawan->kelamin }}</td>
-                                    <td>{{ $karyawan->agama }}</td>
-                                    <td>{{ $karyawan->phone }}</td>
+                                    <td>{{ $siswa->nis }}</td>
+                                    <td>{{ $siswa->nama }}</td>
+                                    <td>{{ $siswa->tempat_lahir }}</td>
+                                    <td>{{ $siswa->tgl_lahir }}</td>
+                                    <td>{{ $siswa->kelamin }}</td>
+                                    <td>{{ $siswa->agama }}</td>
+                                    <td>{{ $siswa->phone }}</td>
                                     <td class="center" align="center">
-                                        {{ Html::linkRoute('karyawan.edit', '', array($karyawan->id_karyawan), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
+                                        {{ Html::linkRoute('siswa.edit', '', array($siswa->nis), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
                                     </td>
                                 </tr>
                                 @endforeach
@@ -67,7 +67,7 @@
                                     </td>
                                     <td colspan="8"></td>
                                     <td align="center">
-                                        {{ Html::linkRoute('karyawan.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus')) }}
+                                        {{ Html::linkRoute('siswa.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus')) }}
                                     </td>
                                 </tr>
                             </tfoot>
@@ -82,7 +82,7 @@
         $(document).on('click', 'btn-del', function (e) {
             // body...
             var id = $(this).val();
-            if ($('.id_karyawan'+id).find('.checkItem').is(':checked')==false) {
+            if ($('.nis'+id).find('.checkItem').is(':checked')==false) {
                 alert('Please')
                 return false;
             }
@@ -90,11 +90,11 @@
             if (confirm('Sure')) {
                 $.ajax({
                     type : 'post',
-                    url  : '{{ url('karyawan/deleteRecord') }}',
-                    data : {'id_karyawan':id},
+                    url  : '{{ url('siswa/deleteRecord') }}',
+                    data : {'nis':id},
                     success:function (data) {
                         // body...
-                        $('.id_karyawan'+id).remove();
+                        $('.nis'+id).remove();
                     }
                 })
             }else{

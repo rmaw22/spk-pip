@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\AppModel\Karyawan;
+use App\AppModel\Siswa;
 use App\Http\Requests;
-use App\Http\Requests\Karyawan\StoreRequest;
-use App\Http\Requests\Karyawan\UpdateRequest;
+use App\Http\Requests\Siswa\StoreRequest;
+use App\Http\Requests\Siswa\UpdateRequest;
 use App\AppModel\Aspek;
 use Excel;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 
-class KaryawanController extends Controller
+class SiswaController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -30,8 +30,8 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karyawans = Karyawan::all();
-        return view('adminpanel.karyawan.index', compact('karyawans'));
+        $siswas = Siswa::all();
+        return view('adminpanel.siswa.index', compact('siswas'));
     }
 
     /**
@@ -41,7 +41,7 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        return view('adminpanel.karyawan.create');
+        return view('adminpanel.siswa.create');
     }
 
     /**
@@ -52,17 +52,17 @@ class KaryawanController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $karyawans = new Karyawan();
-        $karyawans->nis =  $request->id_karyawan;
-        $karyawans->id_karyawan =  $request->id_karyawan;
-        $karyawans->nama =  $request->nama;
-        $karyawans->tempat_lahir = $request->tempat_lahir;
-        $karyawans->tgl_lahir = $request->tgl_lahir;
-        $karyawans->kelamin = $request->kelamin;
-        $karyawans->agama = $request->agama;
-        $karyawans->phone = $request->phone;
-        $karyawans->save();
-        return redirect()->route('karyawan.index')->with('alert-success', 'Berhasil Menambah Data');
+        $siswas = new Siswa();
+        $siswas->nis =  $request->nis;
+        $siswas->id_karyawan =  $request->nis;
+        $siswas->nama =  $request->nama;
+        $siswas->tempat_lahir = $request->tempat_lahir;
+        $siswas->tgl_lahir = $request->tgl_lahir;
+        $siswas->kelamin = $request->kelamin;
+        $siswas->agama = $request->agama;
+        $siswas->phone = $request->phone;
+        $siswas->save();
+        return redirect()->route('siswa.index')->with('alert-success', 'Berhasil Menambah Data');
     }
 
     /**
@@ -84,8 +84,8 @@ class KaryawanController extends Controller
      */
     public function edit($id)
     {
-        $karyawans = Karyawan::findOrFail($id);
-        return view('adminpanel.karyawan.edit', compact('karyawans'));
+        $siswas = Siswa::findOrFail($id);
+        return view('adminpanel.siswa.edit', compact('siswas'));
     }
 
     /**
@@ -97,17 +97,17 @@ class KaryawanController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        $karyawans = Karyawan::findOrFail($id);
-        $karyawans->nis =  $request->id_karyawan;
-        $karyawans->id_karyawan =  $request->id_karyawan;
-        $karyawans->nama =  $request->nama;
-        $karyawans->tempat_lahir = $request->tempat_lahir;
-        $karyawans->tgl_lahir = $request->tgl_lahir;
-        $karyawans->kelamin = $request->kelamin;
-        $karyawans->agama = $request->agama;
-        $karyawans->phone = $request->phone;
-        $karyawans->save();
-        return redirect()->route('karyawan.index')->with('alert-success', 'Berhasil Mengubah Data');
+        $siswas = Siswa::findOrFail($id);
+        $siswas->nis =  $request->nis;
+        $siswas->id_karyawan =  $request->nis;
+        $siswas->nama =  $request->nama;
+        $siswas->tempat_lahir = $request->tempat_lahir;
+        $siswas->tgl_lahir = $request->tgl_lahir;
+        $siswas->kelamin = $request->kelamin;
+        $siswas->agama = $request->agama;
+        $siswas->phone = $request->phone;
+        $siswas->save();
+        return redirect()->route('siswa.index')->with('alert-success', 'Berhasil Mengubah Data');
     }
 
     /**
@@ -118,7 +118,7 @@ class KaryawanController extends Controller
      */
     public function destroy(Request $request)
     {
-        Karyawan::destroy($request->checkItem); 
+        Siswa::destroy($request->checkItem); 
     return back();
     }
 

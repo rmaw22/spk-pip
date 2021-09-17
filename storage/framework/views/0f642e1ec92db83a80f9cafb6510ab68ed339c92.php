@@ -46,7 +46,7 @@
 <![endif]-->
 
 <!-- DataTables -->
-<link rel="stylesheet" href="admin/plugins/datatables/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo e(url('admin')); ?>/plugins/datatables/css/dataTables.bootstrap.min.css">
 <!-- Bootstrap dataTables -->
   <?php /* Html::style('/bootstrap/datatable/media/css/dataTables.bootstrap4.css') */ ?>
     <?php /* Html::style('/bootstrap/datatable/extensions/Responsive/css/responsive.bootstrap4.css') */ ?>
@@ -71,6 +71,13 @@
     <!-- BootStrap DatePicker -->
     <?php echo e(Html::style('/bootstrap/datepicker/dist/css/bootstrap-datepicker.css')); ?>
 
+
+    
+<!-- jQuery 3 --> 
+<?php echo e(Html::script('/admin/js/jquery.min.js')); ?>
+
+<!-- v4.0.0-alpha.6 -->  
+<?php echo e(Html::script('/admin/bootstrap/js/bootstrap.min.js')); ?>
 
 </head>
 <body class="skin-blue sidebar-mini">
@@ -140,7 +147,7 @@
       <?php else: ?>
         <li><a href="<?php echo e(url('/')); ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       
-        <li><a href="<?php echo e(route('karyawan.index')); ?>"> <i class="fa fa-user"></i> <span> Siswa </span></a></li>
+        <li><a href="<?php echo e(route('siswa.index')); ?>"> <i class="fa fa-user"></i> <span> Siswa </span></a></li>
         <li><a href="<?php echo e(route('aspek.index')); ?>"> <i class="fa fa-object-group"></i> <span> Kriteria </span></a></li>
         <li><a href="<?php echo e(route('faktor.index')); ?>"> <i class="fa fa-object-ungroup"></i> <span> Sub Kriteria </span></a></li>                       
         <li><a href="<?php echo e(route('nilai.index')); ?>"> <i class="fa fa-star"></i> <span> Nilai Siswa </span></a></li>
@@ -181,12 +188,6 @@
 </div>
 <!-- ./wrapper --> 
 
-<!-- jQuery 3 --> 
-<?php echo e(Html::script('/admin/js/jquery.min.js')); ?>
-
-<!-- v4.0.0-alpha.6 -->  
-<?php echo e(Html::script('/admin/bootstrap/js/bootstrap.min.js')); ?>
-
 <!-- template --> 
 <?php echo e(Html::script('/admin/js/adminkit.js')); ?>
 
@@ -219,8 +220,8 @@
 </script>
 
 <!-- DataTable --> 
-<script src="admin/plugins/datatables/jquery.dataTables.min.js"></script> 
-<script src="admin/plugins/datatables/dataTables.bootstrap.min.js"></script> 
+<script src="<?php echo e(url('admin')); ?>/plugins/datatables/jquery.dataTables.min.js"></script> 
+<script src="<?php echo e(url('admin')); ?>/plugins/datatables/dataTables.bootstrap.min.js"></script> 
 <!-- Scripts Bootstrap dataTables -->
     <?php /* Html::script('/bootstrap/datatable/media/js/jquery.dataTables.js')*/ ?>
     <?php /* Html::script('/bootstrap/datatable/media/js/dataTables.bootstrap4.js')  */ ?>

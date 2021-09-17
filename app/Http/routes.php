@@ -25,8 +25,8 @@ Route::auth();
 
 Route::get('/pengumuman', 'HomeController@index');
 Route::get('/nilai/edit/{id}', 'NilaiController@FaktorAjax');
-Route::resource('karyawan', 'KaryawanController');
-Route::delete('categories', ['as'=>'karyawan.destroy', 'uses'=>'KaryawanController@destroy']);
+Route::resource('siswa', 'SiswaController');
+Route::delete('categories', ['as'=>'siswa.destroy', 'uses'=>'SiswaController@destroy']);
 Route::resource('aspek', 'AspekController');
 Route::delete('aspek', ['as'=>'aspek.destroy', 'uses'=>'AspekController@destroy']);
 Route::resource('faktor', 'FaktorController');
@@ -39,4 +39,4 @@ Route::resource('manager', 'ManagerController');
 Route::resource('hasil', 'HasilController');
 Route::get('importExport', 'HasilController@importExport');
 Route::get('downloadExcel/{type}', 'HasilController@downloadExcel');
-Route::post('karyawan/import', 'KaryawanController@postImport');
+Route::post('siswa/import', 'SiswaController@postImport');

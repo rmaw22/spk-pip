@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\AppModel\Hasil;
-use App\AppModel\Karyawan;
+use App\AppModel\Siswa;
 use App\AppModel\Aspek;
 use App\AppModel\Faktor;
 use App\AppModel\Nilai;
@@ -130,7 +130,7 @@ class HasilController extends Controller
     {
 
         $data   = Nilai::get()->toArray();
-        $data1  = Karyawan::get()->toArray();
+        $data1  = Siswa::get()->toArray();
         return Excel::create('DataPenilaian', function($excel) use ($data, $data1) {
             $excel->sheet('mySheet', function($sheet) use ($data, $data1)
                 {

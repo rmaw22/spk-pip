@@ -4,6 +4,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('select[name="aspek"]').on('change', function() {
+            console.log('cek');
             var aspekID = $(this).val();
             if(aspekID) {
                 $.ajax({
@@ -11,10 +12,13 @@
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
+                        console.log('cek');
                         $('select[name="id_faktor"]').empty();
                         $.each(data, function(aspek, value) {
                             $('select[name="id_faktor"]').append('<option value="'+ aspek +'">'+ value +'</option>');
                         });
+                    },error: function(data){
+                        console.log(data);
                     }
                 });
             }else{
@@ -30,14 +34,14 @@
                 <div class="panel-heading">Tambah Data Nilai Siswa</div>
                 <div class="panel-body">
                     {{ Form::open(['route' => 'nilai.store']) }}
-                    <div class="form-group{!! $errors->has('id_karyawan') ? ' has-error' : '' !!}">
+                    <div class="form-group{!! $errors->has('nis') ? ' has-error' : '' !!}">
                         {{ Form::label('karyawa', 'Nama Siswa') }}
-                        <select name="id_karyawan" class="form-control" required="required">
-                            @foreach ($karyawans as $karyawan)
-                            <option value="{{ $karyawan->id_karyawan }}">{{ $karyawan->nama }}</option>
+                        <select name="nis" class="form-control" required="required">
+                            @foreach ($siswas as $siswa)
+                            <option value="{{ $siswa->nis }}">{{ $siswa->nama }}</option>
                             @endforeach
                         </select>
-                        {!! $errors->first('id_karyawan', '<p class="help-block">:message</p>') !!}
+                        {!! $errors->first('nis', '<p class="help-block">:message</p>') !!}
                     </div>
                     <div class="form-group{!! $errors->has('aspek') ? ' has-error' : '' !!}">
                         {{ Form::label('aspek', 'Jenis Kriteria') }}

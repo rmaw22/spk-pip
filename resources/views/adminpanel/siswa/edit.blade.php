@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Ubah Data Karyawan</div>
+                <div class="panel-heading">Ubah Data Siswa</div>
 
                 <div class="panel-body">
-                    {{ Form::model($karyawans, ['route'=>['karyawan.update', $karyawans->id_karyawan], 'method'=>'PATCH']) }}   
-                        <div class="form-group{!! $errors->has('id_karyawan') ? ' has-error' : '' !!}">
-                            {{ Form::label('id_karyawan', 'NIS*') }}
-                            {{ Form::text('id_karyawan', null, ['class'=>'form-control', 'placeholder'=>'Masukkan ID Karyawan', 'required', 'oninvalid' => 'this.setCustomValidity("ID Karyawan Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '8']) }}
-                            {!! $errors->first('id_karyawan', '<p class="help-block">:message</p>') !!}
+                    {{ Form::model($siswas, ['route'=>['siswa.update', $siswas->nis], 'method'=>'PATCH']) }}   
+                        <div class="form-group{!! $errors->has('nis') ? ' has-error' : '' !!}">
+                            {{ Form::label('nis', 'NIS*') }}
+                            {{ Form::text('nis', null, ['class'=>'form-control', 'placeholder'=>'Masukkan NIS', 'required', 'oninvalid' => 'this.setCustomValidity("NIS Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '8']) }}
+                            {!! $errors->first('nis', '<p class="help-block">:message</p>') !!}
                         </div>
                         <div class="form-group{!! $errors->has('nama') ? ' has-error' : '' !!}">
                             {{ Form::label('nama', 'Nama Siswa') }}
@@ -35,7 +35,7 @@
                         <div class="form-group{!! $errors->has('kelamin') ? ' has-error' : '' !!}">
                             {{ Form::label('kelamin', 'Jenis Kelamin') }}
                             <select name="kelamin" class="form-control" required="required">
-                                @if($karyawans->kelamin == 'Pria')
+                                @if($siswas->kelamin == 'Pria')
                                 <option value="Pria">Pria</option>
                                 <option value="Wanita">Wanita</option>
                                 @else
@@ -48,31 +48,31 @@
                         <div class="form-group{!! $errors->has('agama') ? ' has-error' : '' !!}">
                             {{ Form::label('agama', 'Agama') }}
                             <select name="agama" class="form-control" required="required">
-                                @if($karyawans->agama == 'Islam')
+                                @if($siswas->agama == 'Islam')
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen">Kristen</option>
                                 <option value="Katolik">Katolik</option>
                                 <option value="Hindu">Hindu</option>
                                 <option value="Budha">Budha</option>
-                                @elseif($karyawans->agama == 'Kristen')
+                                @elseif($siswas->agama == 'Kristen')
                                 <option value="Kristen">Kristen</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Katolik">Katolik</option>
                                 <option value="Hindu">Hindu</option>
                                 <option value="Budha">Budha</option>
-                                @elseif($karyawans->agama == 'Katolik')
+                                @elseif($siswas->agama == 'Katolik')
                                 <option value="Katolik">Katolik</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen">Kristen</option>
                                 <option value="Hindu">Hindu</option>
                                 <option value="Budha">Budha</option>
-                                @elseif($karyawans->agama == 'Hindu')
+                                @elseif($siswas->agama == 'Hindu')
                                 <option value="Hindu">Hindu</option>
                                 <option value="Katolik">Katolik</option>
                                 <option value="Islam">Islam</option>
                                 <option value="Kristen">Kristen</option>
                                 <option value="Budha">Budha</option>
-                                @elseif($karyawans->agama == 'Budha')
+                                @elseif($siswas->agama == 'Budha')
                                 <option value="Budha">Budha</option>
                                 <option value="Katolik">Katolik</option>
                                 <option value="Islam">Islam</option>

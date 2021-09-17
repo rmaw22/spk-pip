@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Karyawan;
+namespace App\Http\Requests\Siswa;
 
 use App\Http\Requests\Request;
 
@@ -24,7 +24,7 @@ class StoreRequest extends Request
     public function rules()
     {
         return [
-            'id_karyawan' => 'unique:students|regex:/^[K0-9]{8}+$/',
+            'nis' => 'unique:students|regex:/^[0-9]{8}+$/',
             'nama' => 'min:2|regex:/^[a-z A-Z]+$/',
             'tempat_lahir' => 'min:2|regex:/^[a-zA-Z]+$/',
             'phone' => 'min:6|regex:/^[0-9+]+$/',
@@ -35,8 +35,8 @@ class StoreRequest extends Request
     public function messages()
     {
         return [
-            'id_karyawan.unique' => 'NIS Sudah Digunakan',
-            'id_karyawan.regex' => 'Hanya Boleh Menggunakan Huruf K dan 7 Digit Angka Dibelakangnya',
+            'nis.unique' => 'NIS Sudah Digunakan',
+            'nis.regex' => 'Hanya Boleh 8 Digit Angka Dibelakangnya',
             'nama.min' => 'Minimal Menggunakan 2 Karakter',
             'nama.regex' => 'Hanya Boleh Menggunakan Huruf Besar/Kecil/Tombol Space',
             'tempat_lahir.min' => 'Minimal Menggunakan 2 Karakter',

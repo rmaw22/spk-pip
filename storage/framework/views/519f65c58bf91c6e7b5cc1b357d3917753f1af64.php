@@ -2,6 +2,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('select[name="aspek"]').on('change', function() {
+            console.log('cek');
             var aspekID = $(this).val();
             if(aspekID) {
                 $.ajax({
@@ -9,10 +10,13 @@
                     type: "GET",
                     dataType: "json",
                     success:function(data) {
+                        console.log('cek');
                         $('select[name="id_faktor"]').empty();
                         $.each(data, function(aspek, value) {
                             $('select[name="id_faktor"]').append('<option value="'+ aspek +'">'+ value +'</option>');
                         });
+                    },error: function(data){
+                        console.log(data);
                     }
                 });
             }else{
@@ -29,15 +33,15 @@
                 <div class="panel-body">
                     <?php echo e(Form::open(['route' => 'nilai.store'])); ?>
 
-                    <div class="form-group<?php echo $errors->has('id_karyawan') ? ' has-error' : ''; ?>">
+                    <div class="form-group<?php echo $errors->has('nis') ? ' has-error' : ''; ?>">
                         <?php echo e(Form::label('karyawa', 'Nama Siswa')); ?>
 
-                        <select name="id_karyawan" class="form-control" required="required">
-                            <?php foreach($karyawans as $karyawan): ?>
-                            <option value="<?php echo e($karyawan->id_karyawan); ?>"><?php echo e($karyawan->nama); ?></option>
+                        <select name="nis" class="form-control" required="required">
+                            <?php foreach($siswas as $siswa): ?>
+                            <option value="<?php echo e($siswa->nis); ?>"><?php echo e($siswa->nama); ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <?php echo $errors->first('id_karyawan', '<p class="help-block">:message</p>'); ?>
+                        <?php echo $errors->first('nis', '<p class="help-block">:message</p>'); ?>
 
                     </div>
                     <div class="form-group<?php echo $errors->has('aspek') ? ' has-error' : ''; ?>">
