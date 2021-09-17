@@ -54,7 +54,7 @@ class SiswaController extends Controller
     {
         $siswas = new Siswa();
         $siswas->nis =  $request->nis;
-        $siswas->id_karyawan =  $request->nis;
+    
         $siswas->nama =  $request->nama;
         $siswas->tempat_lahir = $request->tempat_lahir;
         $siswas->tgl_lahir = $request->tgl_lahir;
@@ -99,7 +99,7 @@ class SiswaController extends Controller
     {
         $siswas = Siswa::findOrFail($id);
         $siswas->nis =  $request->nis;
-        $siswas->id_karyawan =  $request->nis;
+        
         $siswas->nama =  $request->nama;
         $siswas->tempat_lahir = $request->tempat_lahir;
         $siswas->tgl_lahir = $request->tgl_lahir;

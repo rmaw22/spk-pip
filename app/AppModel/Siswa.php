@@ -8,7 +8,7 @@ class Siswa extends Model
 {   
    
     protected $table = 'students';
-    protected $guarded = ['id_karyawan', 'nis','created_at', 'updated_at'];
+    protected $guarded = ['nis','created_at', 'updated_at'];
     protected $primaryKey = 'nis';
     
     public $incrementing = false;
