@@ -115,8 +115,8 @@
                 <div class="pull-left user-img"><img src="<?php echo e(asset('logo.jpg')); ?>" class="img-responsive img-circle" alt="User"></div>
                 <p class="text-left"><?php echo e(Auth::user()->name); ?> <small>(2021)</small> </p>
               </li>
-              <li><a href="#"><i class="icon-profile-male"></i>Profile</a></li>
-              <li><a href="#"><i class="icon-wallet"></i> Ubah Password</a></li>
+              <li><a href="<?php echo e(url('/settings/profile')); ?>"><i class="icon-profile-male"></i>Account Setting</a></li>
+              <li><a href="<?php echo e(url('/settings/password')); ?>"><i class="icon-wallet"></i> Ubah Password</a></li>
               <!-- <li><a href="#"><i class="icon-envelope"></i> Inbox</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="#"><i class="icon-gears"></i> Account Setting</a></li>
