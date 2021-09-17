@@ -77,16 +77,23 @@
 <div class="wrapper boxed-wrapper">
   <header class="main-header"> 
     <!-- Logo --> 
-    <a href="index.html" class="logo blue-bg"> 
+    <a href="#" class="logo blue-bg"> 
     <!-- mini logo for sidebar mini 50x50 pixels --> 
-    <span class="logo-mini"><img src="admin/img/logo-n.png" alt=""></span> 
+    <span class="logo-mini"><img src="<?php echo e(asset('logo.jpg')); ?>" class="img-responsive img-circle"alt="" style="width: 25%;padding-top: 5px"> </span>
     <!-- logo for regular state and mobile devices --> 
-    <span class="logo-lg"><img src="admin/img/logo.png" alt=""></span> </a> 
+    <span class="logo-lg"><img src="<?php echo e(asset('logo.jpg')); ?>" class="img-responsive img-circle" alt=""  style="width: 25%;padding-top: 5px"> </span> 
+  <!-- <span class="logo"> SMK PEMBANGUNAN</span> -->
+</a> 
     <!-- Header Navbar -->
+    
     <nav class="navbar blue-bg navbar-static-top"> 
+      <span class="logo" style="color:white ; text-align:center" > SMK Pembangunan <!-- </h1> should be here -->
+   
+      </span>
       <!-- Sidebar toggle button-->
         <div class="pull-left search-box">
           <!-- search box left -->
+         
         </div>
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
@@ -94,10 +101,10 @@
           <?php if(Auth::guest()): ?>
           <li><a href="<?php echo e(url('/login')); ?>">Login</a></li>
           <?php else: ?>
-          <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="admin/img/img1.jpg" class="user-image" alt="User Image"> <span class="hidden-xs"><?php echo e(Auth::user()->name); ?></span> </a>
+          <li class="dropdown user user-menu p-ph-res"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="<?php echo e(asset('logo.jpg')); ?>" class="user-image" alt="User Image"> <span class="hidden-xs"><?php echo e(Auth::user()->name); ?></span> </a>
             <ul class="dropdown-menu">
               <li class="user-header">
-                <div class="pull-left user-img"><img src="admin/img/img1.jpg" class="img-responsive img-circle" alt="User"></div>
+                <div class="pull-left user-img"><img src="<?php echo e(asset('logo.jpg')); ?>" class="img-responsive img-circle" alt="User"></div>
                 <p class="text-left"><?php echo e(Auth::user()->name); ?> <small>(2021)</small> </p>
               </li>
               <li><a href="#"><i class="icon-profile-male"></i>Profile</a></li>
@@ -138,7 +145,8 @@
         <li><a href="<?php echo e(route('nilai.index')); ?>"> <i class="fa fa-star"></i> <span> Nilai Siswa </span></a></li>
         <li><a href="<?php echo e(route('gap.index')); ?>"> <i class="fa fa-sliders"></i> <span> GAP </span></a></li>
         <li><a href="<?php echo e(route('hasil.index')); ?>"> <i class="fa fa-list-alt"></i> <span> Result </span></a></li>
-        <li><a href="<?php echo e(route('manager.index')); ?>"> <i class="fa fa-user-circle-o"></i> <span> Kepala Bidang </span></a></li>
+        <li style="float:right"><a href="<?php echo e(url('/logout')); ?>"> <i class="fa fa-power-off"></i> <span> Logout </span></a></li>
+        <!-- <li><a href="<?php echo e(route('manager.index')); ?>"> <i class="fa fa-user-circle-o"></i> <span> Kepala Bidang </span></a></li> -->
       <?php endif; ?>
       </ul>
     </nav>
