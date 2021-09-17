@@ -128,15 +128,18 @@
                             @endforeach
                         </tbody>
                     </table><br><br><br>
-                    <div class="text-center">
+                    <!-- <div class="text-center">
                         <h4>Manager</h4>
                         <br><br><br>
                         <h4><u>{{ $managers->nama }}</u></h4>
                         <h4>{{ $managers->nip }}</h4>
-                    </div><br>
+                    </div><br> -->
                     <div class="text-center">
                         <a href="{{ URL::to('downloadExcel/xls') }}">
                         <button class="btn btn-primary btn-xs">Download Excel</button>
+                        </a>
+                        <a href="{{ URL::to('downloadExcel/xls') }}">
+                        <button class="btn btn-default btn-xs">Download PDF</button>
                         </a>
                     </div>
                 </div>

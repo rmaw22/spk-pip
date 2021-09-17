@@ -77,17 +77,18 @@
 <div class="wrapper boxed-wrapper">
   <header class="main-header"> 
     <!-- Logo --> 
-    <a href="#" class="logo blue-bg"> 
+    <!-- <a href="#" class="logo blue-bg">  -->
     <!-- mini logo for sidebar mini 50x50 pixels --> 
-    <span class="logo-mini"><img src="<?php echo e(asset('logo.jpg')); ?>" class="img-responsive img-circle"alt="" style="width: 25%;padding-top: 5px"> </span>
+    <!-- <span class="logo-mini"><img src="<?php echo e(asset('logo.jpg')); ?>" class="img-responsive img-circle"alt="" style="width: 25%;padding-top: 5px"> </span> -->
     <!-- logo for regular state and mobile devices --> 
-    <span class="logo-lg"><img src="<?php echo e(asset('logo.jpg')); ?>" class="img-responsive img-circle" alt=""  style="width: 25%;padding-top: 5px"> </span> 
+    <!-- <span class="logo-lg"><img src="<?php echo e(asset('logo.jpg')); ?>" class="img-responsive img-circle" alt=""  style="width: 25%;padding-top: 5px"> </span>  -->
   <!-- <span class="logo"> SMK PEMBANGUNAN</span> -->
-</a> 
+<!-- </a>  -->
     <!-- Header Navbar -->
     
     <nav class="navbar blue-bg navbar-static-top"> 
-      <span class="logo" style="color:white ; text-align:center" > SMK Pembangunan <!-- </h1> should be here -->
+    <img src="<?php echo e(asset('logo.jpg')); ?>" class="logo img-circle" alt=""  style="padding-top: 5px;padding-bottom: 5px">
+    <span class="logo" style="color:white ; text-align:left;font-size:25px" > SMK Pembangunan <!-- </h1> should be here -->
    
       </span>
       <!-- Sidebar toggle button-->

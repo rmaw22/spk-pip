@@ -201,7 +201,7 @@ b {
 	-o-transition: margin-left .3s ease-in-out;
 	transition: margin-left .3s ease-in-out;
 	margin-bottom: 0;
-	margin-left: 230px;
+	/* margin-left: 230px; */
 	border: none;
 	min-height: 60px;
 	border-radius: 0;
@@ -414,10 +414,10 @@ color:#ccc
 	display: block;
 	float: left;
 	height: 60px;
-	font-size: 20px;
+	/* font-size: 20px; */
 	line-height: 55px;
 	text-align: center;
-	width: 230px;
+	/* width: 230px; */
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	padding: 0 15px;
 	font-weight: 300;
@@ -825,10 +825,10 @@ ul.fa-ul {
 .main-header {
 	position: relative
 }
-.main-header .logo, .main-header .navbar {
+/* .main-header .logo, .main-header .navbar {
 	width: 100%;
 	float: none
-}
+} */
 .main-header .navbar {
 	margin: 0
 }
