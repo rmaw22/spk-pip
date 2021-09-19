@@ -44,7 +44,7 @@
                                 <td>{{ $gap->bobot }}</td>
                                 <td>{{ $gap->keterangan }}</td>
                                 <td class="center" align="center">
-                                    {{ Html::linkRoute('gap.edit', '', array($gap->selisih), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
+                                    {{ Html::linkRoute('gap.edit', '', array($gap->id_gap), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
                                 </td>
                             </tr>
                             @endforeach

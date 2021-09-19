@@ -67,6 +67,7 @@
                                 <td>Jenis Aspek</td>
                                 <td>Nama Faktor</td>
                                 <td>Nilai Bobot</td>
+                                <td>Nilai Gap</td>
                                 <td>Kelompok</td>
                             </tr>
                         </thead>
@@ -79,6 +80,7 @@
                                 <td>{{ $hsl1->aspek }}</td>
                                 <td>{{ $hsl1->faktor }}</td>
                                 <td>{{ $hsl1->bobot }}</td>
+                                <td>{{ $hsl1->hasil }}</td>
                                 <td>{{ $hsl1->kelompok}}</td>
                             </tr>
                             @endforeach
@@ -108,11 +110,11 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <td>No</td>
+                                <td>Rangking</td>
                                 <td>Nama Siswa</td>
-                                <td>Nilai I</td>
-                                <td>Nilai S</td>
-                                <td>Nilai P</td>
+                                <td>Nilai Kapasitas Intelektual </td>
+                                <td>Nilai Sikap</td>
+                                <!-- <td>Nilai Perilaku</td> -->
                                 <td>Hasil</td>
                             </tr>
                         </thead>
@@ -124,7 +126,7 @@
                                 <td>{{ $hsl3->nama }}</td>
                                 <td>{{ $hsl3->Ni }}</td>
                                 <td>{{ $hsl3->Ns }}</td>
-                                <td>{{ $hsl3->Np }}</td>
+                                <!-- <td>{{ $hsl3->Np }}</td> -->
                                 <td>{{ $hsl3->Hasil }}</td>
                             </tr>
                             @endforeach

@@ -48,7 +48,7 @@
                                 <td><?php echo e($faktor->nilai_sub); ?></td>
                                 <td><?php echo e($faktor->kelompok); ?></td>
                                 <td class="center" align="center">
-                                    <?php echo e(Html::linkRoute('faktor.edit', '', array($faktor->id_aspek), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit'))); ?>
+                                    <?php echo e(Html::linkRoute('faktor.edit', '', array($faktor->id_faktor), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit'))); ?>
 
                                 </td>
                             </tr>

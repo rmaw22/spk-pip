@@ -19,7 +19,7 @@
                     <div class="form-group<?php echo $errors->has('faktor') ? ' has-error' : ''; ?>">
                         <?php echo e(Form::label('faktor', 'Nama Faktor')); ?>
 
-                        <?php echo e(Form::text('faktor', null, ['class'=>'form-control', 'placeholder'=>'Masukkan Nama Faktor', 'required', 'oninvalid' => 'this.setCustomValidity("Nama Faktor Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '35'])); ?>
+                        <?php echo e(Form::text('faktor', null, ['class'=>'form-control', 'placeholder'=>'Masukkan Nama Faktor', 'required', 'oninvalid' => 'this.setCustomValidity("Nama Faktor Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '50'])); ?>
 
                         <?php echo $errors->first('faktor', '<p class="help-block">:message</p>'); ?>
 

@@ -1,26 +1,5 @@
 <?php $__env->startSection('content'); ?>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('select[name="aspek"]').on('change', function() {
-            var aspekID = $(this).val();
-            if(aspekID) {
-                $.ajax({
-                    url: '/nilai/edit/'+aspekID,
-                    type: "GET",
-                    dataType: "json",
-                    success:function(data) {
-                        $('select[name="id_faktor"]').empty();
-                        $.each(data, function(aspek, value) {
-                            $('select[name="id_faktor"]').append('<option value="'+ aspek +'">'+ value +'</option>');
-                        });
-                    }
-                });
-            }else{
-                $('select[name="id_faktor"]').empty();
-            }
-        });
-    });
-</script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -61,11 +40,14 @@
                     <?php echo e(Form::label('id_faktor','Sub Kriteria' , ['class' => 'control-label'])); ?>
 
                         <select id="id_faktor" class="form-control" name="id_faktor" required="required">
-                            <option selected="selected" value="<?php echo e($nilais->faktor_id); ?>"><?php echo e($nilais->faktor_name); ?></option>
+                            <!-- <option selected="selected" value="<?php echo e($nilais->faktor_id); ?>"><?php echo e($nilais->faktor_name); ?></option> -->
                             <?php foreach($faktors as $faktor): ?>
-                                <?php if ( ! ($faktor->id_faktor === $nilais->faktor_id)): ?>
+                                <?php if($nilais->faktor_id == $faktor->id_faktor): ?>
+                                    <option selected="selected" value="<?php echo e($nilais->faktor_id); ?>"><?php echo e($nilais->faktor_name); ?></option>
+                                <?php else: ?>
                                     <option value=<?php echo e($faktor->id_faktor); ?>><?php echo e($faktor->faktor); ?></option>
-                                <?php endif; ?>
+                                
+                              <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                       <?php echo $errors->first('id_faktor', '<p class="help-block">:message</p>'); ?>
@@ -75,7 +57,7 @@
                     <?php echo e(Form::label('nilai', 'Nilai')); ?>
 
                         <select name="nilai" class="form-control" required="required">
-                        <?php if($nilais->nilai == '1'): ?>
+                            <?php if($nilais->nilai == '1'): ?>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -124,7 +106,29 @@
     </div>
 </div>
 
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#aspek").click(function(){
+        // $('#aspek').on('change', function() {
+            var aspekID = $(this).val();
+            if(aspekID) {
+                $.ajax({
+                    url: '/nilai/edit/'+aspekID,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $('select[name="id_faktor"]').empty();
+                        $.each(data, function(aspek, value) {
+                            $('select[name="id_faktor"]').append('<option value="'+ aspek +'">'+ value +'</option>');
+                        });
+                    }
+                });
+            }else{
+                $('select[name="id_faktor"]').empty();
+            }
+        });
+    });
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

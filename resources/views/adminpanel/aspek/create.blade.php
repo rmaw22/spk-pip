@@ -16,7 +16,7 @@
                         </div>
                         <div class="form-group{!! $errors->has('prosentase') ? ' has-error' : '' !!}">
                             {{ Form::label('prosentase', 'Nilai Prosentase') }}
-                            {{ Form::text('prosentase', null, ['class'=>'form-control', 'placeholder'=>'Masukkan Nilai Prosentase', 'required', 'oninvalid' => 'this.setCustomValidity("Nilai Prosentase Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '40']) }}
+                            {{ Form::text('prosentase', null, ['class'=>'form-control', 'placeholder'=>'Masukkan Nilai Prosentase', 'required', 'oninvalid' => 'this.setCustomValidity("Nilai Prosentase Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '60']) }}
                             {!! $errors->first('prosentase', '<p class="help-block">:message</p>') !!}
                         </div>
 

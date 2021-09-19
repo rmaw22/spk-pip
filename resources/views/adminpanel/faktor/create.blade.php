@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group{!! $errors->has('faktor') ? ' has-error' : '' !!}">
                         {{ Form::label('faktor', 'Nama Faktor') }}
-                        {{ Form::text('faktor', null, ['class'=>'form-control', 'placeholder'=>'Masukkan Nama Faktor', 'required', 'oninvalid' => 'this.setCustomValidity("Nama Faktor Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '35']) }}
+                        {{ Form::text('faktor', null, ['class'=>'form-control', 'placeholder'=>'Masukkan Nama Faktor', 'required', 'oninvalid' => 'this.setCustomValidity("Nama Faktor Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '50']) }}
                         {!! $errors->first('faktor', '<p class="help-block">:message</p>') !!}
                     </div>
                     <div class="form-group{!! $errors->has('nilai') ? ' has-error' : '' !!}">

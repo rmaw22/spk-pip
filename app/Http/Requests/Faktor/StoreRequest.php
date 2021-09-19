@@ -25,7 +25,7 @@ class StoreRequest extends Request
     {
         return [
 
-            'faktor' => 'min:2|regex:/^[a-z A-Z]+$/',
+            'faktor' => 'min:2|regex:/^[a-z A-Z_\-]+$/',
         ];
     }
 

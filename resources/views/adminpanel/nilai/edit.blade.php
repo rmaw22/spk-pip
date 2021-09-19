@@ -1,28 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('select[name="aspek"]').on('change', function() {
-            var aspekID = $(this).val();
-            if(aspekID) {
-                $.ajax({
-                    url: '/nilai/edit/'+aspekID,
-                    type: "GET",
-                    dataType: "json",
-                    success:function(data) {
-                        $('select[name="id_faktor"]').empty();
-                        $.each(data, function(aspek, value) {
-                            $('select[name="id_faktor"]').append('<option value="'+ aspek +'">'+ value +'</option>');
-                        });
-                    }
-                });
-            }else{
-                $('select[name="id_faktor"]').empty();
-            }
-        });
-    });
-</script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -57,11 +36,14 @@
                     <div class="form-group{!! $errors->has('id_faktor') ? ' has-error' : '' !!}">
                     {{ Form::label('id_faktor','Sub Kriteria' , ['class' => 'control-label']) }}
                         <select id="id_faktor" class="form-control" name="id_faktor" required="required">
-                            <option selected="selected" value="{{ $nilais->faktor_id }}">{{ $nilais->faktor_name }}</option>
+                            <!-- <option selected="selected" value="{{ $nilais->faktor_id }}">{{ $nilais->faktor_name }}</option> -->
                             @foreach($faktors as $faktor)
-                                @unless($faktor->id_faktor === $nilais->faktor_id)
+                                @if($nilais->faktor_id == $faktor->id_faktor)
+                                    <option selected="selected" value="{{ $nilais->faktor_id }}">{{ $nilais->faktor_name }}</option>
+                                @else
                                     <option value={{ $faktor->id_faktor }}>{{ $faktor->faktor }}</option>
-                                @endunless
+                                
+                              @endif
                             @endforeach
                         </select>
                       {!! $errors->first('id_faktor', '<p class="help-block">:message</p>') !!}
@@ -69,7 +51,7 @@
                     <div class="form-group{!! $errors->has('nilai') ? ' has-error' : '' !!}">
                     {{ Form::label('nilai', 'Nilai') }}
                         <select name="nilai" class="form-control" required="required">
-                        @if($nilais->nilai == '1')
+                            @if($nilais->nilai == '1')
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -114,5 +96,27 @@
     </div>
 </div>
 
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#aspek").click(function(){
+        // $('#aspek').on('change', function() {
+            var aspekID = $(this).val();
+            if(aspekID) {
+                $.ajax({
+                    url: '/nilai/edit/'+aspekID,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        $('select[name="id_faktor"]').empty();
+                        $.each(data, function(aspek, value) {
+                            $('select[name="id_faktor"]').append('<option value="'+ aspek +'">'+ value +'</option>');
+                        });
+                    }
+                });
+            }else{
+                $('select[name="id_faktor"]').empty();
+            }
+        });
+    });
+</script>
 @endsection

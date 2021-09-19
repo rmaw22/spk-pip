@@ -43,7 +43,7 @@
                                     <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="<?php echo e($nilai->id); ?>" />
                                 </td>
                                 <td><?php echo e($no++); ?></td>
-                                <td><?php echo e($nilai->nama); ?></td>
+                                <td><?php echo e($nilai->nama_siswa); ?></td>
                                 <td><?php echo e($nilai->aspek); ?></td>
                                 <td><?php echo e($nilai->faktor); ?></td>
                                 <td><?php echo e($nilai->nilai); ?></td>

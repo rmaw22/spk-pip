@@ -41,7 +41,7 @@
                                     <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="{{ $nilai->id }}" />
                                 </td>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $nilai->nama }}</td>
+                                <td>{{ $nilai->nama_siswa }}</td>
                                 <td>{{ $nilai->aspek}}</td>
                                 <td>{{ $nilai->faktor }}</td>
                                 <td>{{ $nilai->nilai }}</td>

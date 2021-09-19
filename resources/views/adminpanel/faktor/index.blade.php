@@ -46,7 +46,7 @@
                                 <td>{{ $faktor->nilai_sub }}</td>
                                 <td>{{ $faktor->kelompok }}</td>
                                 <td class="center" align="center">
-                                    {{ Html::linkRoute('faktor.edit', '', array($faktor->id_aspek), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
+                                    {{ Html::linkRoute('faktor.edit', '', array($faktor->id_faktor), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
                                 </td>
                             </tr>
                             @endforeach

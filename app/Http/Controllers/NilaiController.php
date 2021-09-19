@@ -31,7 +31,7 @@ class NilaiController extends Controller
     public function index()
     {
       $query = 'SELECT
-      *
+      nilais.* , students.nama as nama_siswa, aspeks.aspek as aspek, faktors.faktor as faktor
       FROM
       nilais
       JOIN students USING (nis)
@@ -39,7 +39,7 @@ class NilaiController extends Controller
       JOIN faktors USING (id_faktor)';
 
       $nilais = DB::SELECT($query);
-
+        // dd($nilais);
         return view('adminpanel.nilai.index', compact('nilais'));
     }
 
@@ -103,8 +103,10 @@ class NilaiController extends Controller
                 -> where('nilais.id', '=', $id)
                 -> select('nilais.*', 'students.nis AS karyawan_id', 'students.nama AS karyawan_name', 'aspeks.id_aspek AS aspek_id', 'aspeks.aspek AS aspek_name', 'faktors.id_faktor AS faktor_id', 'faktors.faktor AS faktor_name')
                 -> first();
+        // dd($nilais->id_aspeks);
         $aspeks = Aspek::all();
-        $faktors = Faktor::all();
+        $faktors = Faktor::where('id_aspek',$nilais->id_aspeks)->get();
+        // dd($faktors);
         $siswas = Siswa::all();
         return view('adminpanel.nilai.edit', compact('nilais', 'aspeks', 'faktors', 'siswas'));
     }

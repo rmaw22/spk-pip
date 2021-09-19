@@ -26,7 +26,7 @@
                                     {{ Form::checkbox('checkAll') }}
                                 </th>
                                 <th width="1%">No.</th>
-                                <th>Jenis Aspek</th>
+                                <th>Jenis Kriteria</th>
                                 <th>Nilai Persentase</th>
                                 <th class="nosort" width="1%">Action</th>
                             </tr>
