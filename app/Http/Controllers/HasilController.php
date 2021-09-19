@@ -165,13 +165,14 @@ class HasilController extends Controller
                     f.nama,
                     f.NCF,
                     f.NSF,
-                    f.id_aspek,
+                    f.aspek,
                     (CASE WHEN f.id_aspek=1 THEN ((f.NCF+f.NSF)/2) END) as N_K,
                     (CASE WHEN f.id_aspek=2 THEN ((f.NCF+f.NSF)/2) END) as N_S                                              
                   FROM
                   (SELECT 
                         b.nama,
                         c.id_aspek,
+                        c.aspek,
                         c.prosentase/100 AS persen,
                         SUM(IF(d.kelompok="core",e.bobot,0))/SUM(IF(d.kelompok="core",1,0)) as NCF,
                         SUM(IF(d.kelompok="secondary",e.bobot,0))/SUM(IF(d.kelompok="secondary",1,0)) as NSF                      
@@ -183,7 +184,6 @@ class HasilController extends Controller
                         JOIN gaps e ON e.selisih=(a.nilai-d.nilai_sub)
                       GROUP BY b.nama,aspek
                       ORDER BY b.nama) as f
-                    
                     ');
 //  dd($Nilai_total);
         $result   = DB::SELECT(DB::raw($query));
@@ -194,7 +194,7 @@ class HasilController extends Controller
         // $tabel
         $managers = Manager::select('nip','nama')->first();
         
-        return view('adminpanel.hasil.index', compact ('managers', 'result', 'result1', 'result2' ,'result3'));
+        return view('adminpanel.hasil.index', compact ('managers', 'result', 'result1', 'result2' ,'result3','Nilai_total'));
     }
 
     public function importExport()

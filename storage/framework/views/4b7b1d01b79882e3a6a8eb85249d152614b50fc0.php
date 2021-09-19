@@ -1,3 +1,11 @@
+<?php $__env->startSection('css'); ?>
+<style>
+    #table-ranking td{
+        padding:10px;
+    }
+</style>
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row">
@@ -104,16 +112,45 @@
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
-                    </table><center><h4><b><br>Ranking<br><br></b></h1></center>
+                    </table>
+                    <center><h4><b><br>Nilai Total<br><br></b></h1></center>
                     <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Nama Siswa</td>
+                                <td>Kriteria </td>
+                                <td>NCF</td>
+                                <td>NSF</td>
+                                <td>NK</td>
+                                <td>NS</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $no=1; ?>
+                            <?php foreach($Nilai_total as $total): ?>
+                            <tr>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($total->nama); ?></td>
+                                <td><?php echo e($total->aspek); ?></td>
+                                <td><?php echo e($total->NCF); ?></td>
+                                <td><?php echo e($total->NSF); ?></td>
+                                <td><?php echo e(($total->N_K == NULL) ? '-' : $total->N_K); ?></td>
+                                <td><?php echo e(($total->N_S == NULL) ? '-' : $total->N_S); ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table><br>
+                    <center><h4><b><br>Ranking<br><br></b></h1></center>
+                    <table class="table-bordered table-striped" id="table-ranking" width="100%" >
                         <thead>
                             <tr>
                                 <td>Rangking</td>
                                 <td>Nama Siswa</td>
-                                <td>Nilai Kapasitas Intelektual </td>
-                                <td>Nilai Sikap</td>
+                                <td>Nilai Kapasitas (NK)</td>
+                                <td>Nilai Sikap (NS)</td>
                                 <!-- <td>Nilai Perilaku</td> -->
-                                <td>Hasil</td>
+                                <td>Nilai Total</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -138,7 +175,6 @@
                     </div><br> -->
                     <div class="text-center">
                         <a href="<?php echo e(route('export.excel')); ?>">
-                        
                         <button class="btn btn-primary btn-xs">Download Excel</button>
                         </a>
                         <a href="#">
@@ -150,6 +186,40 @@
         </div>
     </div>
 </div>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+<script type="text/javascript">
+        $(function() {
+        $('#table-ranking').dataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    text:'Download PDF Document',
+                    extend: 'pdfHtml5',
+                    title:'Ranking Siswa Berdasarkan Profile Matching',
+                    download: 'open',
+                    pageSize: 'A4',
+                    alignment: "center",
+                    customize: function (doc) {
+                        doc.defaultStyle.fontSize = 11; //2, 3, 4,etc
+                        doc.styles.tableHeader.alignment = 'center';
+                        doc.styles.tableBodyEven.padding = [10, 10, 10, 10];
+                        // doc.defaultStyle.alignment = 'center';
+                           doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                           doc.content[1].table.widths = [ '15%',  '25%', '20%', '20%', 
+                                                           '20%', '14%', '14%', '14%'];
+                        //    doc.styles.td.padding = 10;
+                          }
+                }
+            ],
+            "order": [],
+            "columnDefs": [ {
+                "targets"  : 'nosort',
+                "orderable": false,
+            }]
+        } );
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

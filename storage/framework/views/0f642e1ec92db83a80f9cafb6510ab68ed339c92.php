@@ -71,7 +71,7 @@
     <!-- BootStrap DatePicker -->
     <?php echo e(Html::style('/bootstrap/datepicker/dist/css/bootstrap-datepicker.css')); ?>
 
-
+    <?php echo $__env->yieldContent('css'); ?>
     
 <!-- jQuery 3 --> 
 <?php echo e(Html::script('/admin/js/jquery.min.js')); ?>
@@ -222,6 +222,11 @@
 <!-- DataTable --> 
 <script src="<?php echo e(url('admin')); ?>/plugins/datatables/jquery.dataTables.min.js"></script> 
 <script src="<?php echo e(url('admin')); ?>/plugins/datatables/dataTables.bootstrap.min.js"></script> 
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
+
 <!-- Scripts Bootstrap dataTables -->
     <?php /* Html::script('/bootstrap/datatable/media/js/jquery.dataTables.js')*/ ?>
     <?php /* Html::script('/bootstrap/datatable/media/js/dataTables.bootstrap4.js')  */ ?>
@@ -237,6 +242,7 @@
               "orderable": false,
             }]
         } );
+        
         });
     </script>
 
@@ -271,6 +277,7 @@
             }
         });
     </script>
+    <?php echo $__env->yieldContent('js'); ?>
 </body>
 
 <!-- Mirrored from uxliner.com/adminkit/demo/horizontal/ltr/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 14 May 2021 19:35:54 GMT -->
