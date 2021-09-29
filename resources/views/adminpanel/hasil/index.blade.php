@@ -46,9 +46,9 @@
                                 <td>Nama Siswa</td>
                                 <td>Jenis Kriteria</td>
                                 <td>Sub Kriteria</td>
-                                <td>Nilai Selisih</td>
+                                <td>Nilai Ideal</td>
                                 <td>Nilai Siswa</td>
-                                <td>Hasil</td>
+                                <td>Nilai Gap</td>
                             </tr>
                         </thead>
                         <tbody>
