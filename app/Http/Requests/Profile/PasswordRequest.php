@@ -25,7 +25,7 @@ class PasswordRequest extends Request
     public function rules()
     {
         return [
-            'password' => 'required|passcheck:' . Auth::user()->password,
+            'password' => 'required:' . Auth::user()->password,
             'new_password' => 'required|confirmed|min:6',
         ];
     }

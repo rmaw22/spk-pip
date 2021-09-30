@@ -134,13 +134,16 @@
         
       @else
         <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-      
-        <li><a href="{{ route('siswa.index') }}"> <i class="fa fa-user"></i> <span> Siswa </span></a></li>
-        <li><a href="{{ route('aspek.index') }}"> <i class="fa fa-object-group"></i> <span> Kriteria </span></a></li>
-        <li><a href="{{ route('faktor.index') }}"> <i class="fa fa-object-ungroup"></i> <span> Sub Kriteria </span></a></li>                       
-        <li><a href="{{ route('nilai.index') }}"> <i class="fa fa-star"></i> <span> Nilai Siswa </span></a></li>
-        <li><a href="{{ route('gap.index') }}"> <i class="fa fa-sliders"></i> <span> GAP </span></a></li>
-        <li><a href="{{ route('hasil.index') }}"> <i class="fa fa-list-alt"></i> <span> Result </span></a></li>
+        @if(Auth::user()->id_role == 1)
+          <li><a href="{{ route('siswa.index') }}"> <i class="fa fa-user"></i> <span> Siswa </span></a></li>
+          <li><a href="{{ route('aspek.index') }}"> <i class="fa fa-object-group"></i> <span> Kriteria </span></a></li>
+          <li><a href="{{ route('faktor.index') }}"> <i class="fa fa-object-ungroup"></i> <span> Sub Kriteria </span></a></li>                       
+          <li><a href="{{ route('nilai.index') }}"> <i class="fa fa-star"></i> <span> Nilai Siswa </span></a></li>
+          <li><a href="{{ route('gap.index') }}"> <i class="fa fa-sliders"></i> <span> GAP </span></a></li>
+        @endif
+        <li><a href="{{ route('hasil.index') }}"> <i class="fa fa-list-alt"></i> <span> Result 
+                       
+        </span></a></li>
         <li style="float:right"><a href="{{ url('/logout') }}"> <i class="fa fa-power-off"></i> <span> Sign Out </span></a></li>
         <!-- <li><a href="{{ route('manager.index') }}"> <i class="fa fa-user-circle-o"></i> <span> Kepala Bidang </span></a></li> -->
       @endif

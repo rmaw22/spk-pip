@@ -47,7 +47,7 @@
                                 <td>Sub Kriteria</td>
                                 <td>Nilai Ideal</td>
                                 <td>Nilai Siswa</td>
-                                <td>GAP</td>
+                                <td>Nilai Gap</td>
                             </tr>
                         </thead>
                         <tbody>
