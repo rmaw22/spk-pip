@@ -28,10 +28,10 @@
 
                                 </th>
                                 <td width="1%">No</td>
+                                <td>Nomor Induk Siswa</td>
                                 <td>Nama Siswa</td>
-                                <td>Jenis Kriteria</td>
-                                <td>Sub Kriteria</td>
-                                <td>Nilai</td>
+                                <td>Tahun Periode</td>
+                                <td>Status Penilaian</td>
                                 <th class="nosort" width="1%">Action</th>
                             </tr>
                         </thead>
@@ -43,12 +43,12 @@
                                     <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="<?php echo e($nilai->id); ?>" />
                                 </td>
                                 <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($nilai->nis); ?></td>
                                 <td><?php echo e($nilai->nama_siswa); ?></td>
-                                <td><?php echo e($nilai->aspek); ?></td>
-                                <td><?php echo e($nilai->faktor); ?></td>
-                                <td><?php echo e($nilai->nilai); ?></td>
+                                <td><?php echo e($nilai->periode); ?></td>
+                                <td><?php echo ($nilai->status_penilaian == 0) ? '<span class="text-danger">Not Completed </span>':'<span class="text-info">Completed</span>'; ?></td>
                                 <td class="center" align="center">
-                                    <?php echo e(Html::linkRoute('nilai.edit', '', array($nilai->id), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit'))); ?>
+                                    <?php echo e(Html::linkRoute('nilai.detail', '', array($nilai->nis), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit'))); ?>
 
                                 </td>
                             </tr>

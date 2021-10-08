@@ -33,6 +33,7 @@ Route::resource('faktor', 'FaktorController');
 Route::delete('faktor', ['as'=>'faktor.destroy', 'uses'=>'FaktorController@destroy']);
 Route::resource('gap', 'GapController');
 Route::delete('gap', ['as'=>'gap.destroy', 'uses'=>'GapController@destroy']);
+Route::get('nilai/detail/{id_siswa}', ['as'=>'nilai.detail', 'uses'=>'NilaiController@detail_score']);
 Route::resource('nilai', 'NilaiController');
 Route::delete('nilai', ['as'=>'nilai.destroy', 'uses'=>'NilaiController@destroy']);
 Route::resource('manager', 'ManagerController');

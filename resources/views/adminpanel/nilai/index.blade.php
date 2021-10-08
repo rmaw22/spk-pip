@@ -26,10 +26,10 @@
                                     {{ Form::checkbox('checkAll') }}
                                 </th>
                                 <td width="1%">No</td>
+                                <td>Nomor Induk Siswa</td>
                                 <td>Nama Siswa</td>
-                                <td>Jenis Kriteria</td>
-                                <td>Sub Kriteria</td>
-                                <td>Nilai</td>
+                                <td>Tahun Periode</td>
+                                <td>Status Penilaian</td>
                                 <th class="nosort" width="1%">Action</th>
                             </tr>
                         </thead>
@@ -41,12 +41,12 @@
                                     <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="{{ $nilai->id }}" />
                                 </td>
                                 <td>{{ $no++ }}</td>
+                                <td>{{ $nilai->nis }}</td>
                                 <td>{{ $nilai->nama_siswa }}</td>
-                                <td>{{ $nilai->aspek}}</td>
-                                <td>{{ $nilai->faktor }}</td>
-                                <td>{{ $nilai->nilai }}</td>
+                                <td>{{ $nilai->periode}}</td>
+                                <td>{!! ($nilai->status_penilaian == 0) ? '<span class="text-danger">Not Completed </span>':'<span class="text-info">Completed</span>' !!}</td>
                                 <td class="center" align="center">
-                                    {{ Html::linkRoute('nilai.edit', '', array($nilai->id), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
+                                    {{ Html::linkRoute('nilai.detail', '', array($nilai->nis), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
                                 </td>
                             </tr>
                             @endforeach

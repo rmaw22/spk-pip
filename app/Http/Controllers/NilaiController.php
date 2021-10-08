@@ -31,16 +31,33 @@ class NilaiController extends Controller
     public function index()
     {
       $query = 'SELECT
+      students.id,students.nis, students.nama as nama_siswa,students.periode,students.status_penilaian
+      FROM
+      students';
+
+      $nilais = DB::SELECT($query);
+        // dd($nilais);
+        return view('adminpanel.nilai.index', compact('nilais'));
+    }
+    public function detail_score(Request $request)
+    {
+        $nis = $request->id_siswa;
+        $aspeks = DB::table('aspeks')->pluck('aspek', 'id_aspek');
+      $siswas = Siswa::where('nis',$nis)->get();
+    //   $id_faktor = Nilai::where('nis',$nis)->where('id_aspeks',1)->select('id_faktor')->pluck('id_faktor')->toArray();
+    //   $faktors = DB::table('faktors')->where("id_aspek",1)->whereNotIn('id_faktor',$id_faktor)->pluck('faktor', 'id_faktor');
+    //   dd($faktors);
+      $query = 'SELECT
       nilais.* , students.nama as nama_siswa, aspeks.aspek as aspek, faktors.faktor as faktor
       FROM
       nilais
       JOIN students USING (nis)
       JOIN aspeks ON (nilais.id_aspeks = aspeks.id_aspek)
-      JOIN faktors USING (id_faktor)';
+      JOIN faktors USING (id_faktor) WHERE students.nis = "'.$nis.'"';
 
       $nilais = DB::SELECT($query);
         // dd($nilais);
-        return view('adminpanel.nilai.index', compact('nilais'));
+        return view('adminpanel.nilai.detail_score', compact('nilais','aspeks', 'siswas'));
     }
 
     /**
@@ -61,9 +78,13 @@ class NilaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     public function FaktorAjax($id)
+     public function FaktorAjax(Request $request, $id)
      {
-         $faktors = DB::table('faktors')->where("id_aspek",$id)->pluck('faktor', 'id_faktor');
+         $nis = $request->nis_siswa;
+         $id_faktor = Nilai::where('nis',$nis)->where('id_aspeks',$id)->select('id_faktor')->pluck('id_faktor')->toArray();
+         $faktors = DB::table('faktors')->where("id_aspek",$id)->whereNotIn('id_faktor',$id_faktor)->pluck('faktor', 'id_faktor');
+        //  dd($faktors);
+        //  $faktors = DB::table('faktors')->where("id_aspek",$id)->pluck('faktor', 'id_faktor');
          return json_encode($faktors);
      }
 
