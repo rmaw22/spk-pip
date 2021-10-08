@@ -61,6 +61,7 @@ class SiswaController extends Controller
         $siswas->kelamin = $request->kelamin;
         $siswas->agama = $request->agama;
         $siswas->phone = $request->phone;
+        $siswas->periode = $request->periode;
         $siswas->save();
         return redirect()->route('siswa.index')->with('alert-success', 'Berhasil Menambah Data');
     }
@@ -106,6 +107,7 @@ class SiswaController extends Controller
         $siswas->kelamin = $request->kelamin;
         $siswas->agama = $request->agama;
         $siswas->phone = $request->phone;
+        $siswas->periode = $request->periode;
         $siswas->save();
         return redirect()->route('siswa.index')->with('alert-success', 'Berhasil Mengubah Data');
     }

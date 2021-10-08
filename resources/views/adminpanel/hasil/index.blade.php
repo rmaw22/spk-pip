@@ -14,6 +14,23 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Result</div>
                 <div class="panel-body table-responsive">
+                {{ Form::open(['route' => 'hasil.search','method'=>'GET']) }}
+                      
+                        <div class="form-group{!! $errors->has('periode') ? ' has-error' : '' !!}">
+                            {{ Form::label('periode', 'Tahun Periode') }}
+                            <!-- <div class="input-group date"> -->
+                            <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
+                                {{ Form::selectYear('periode', $get_tahun[0]->year_start, $get_tahun[0]->year_end,  date('Y'),['class' => 'form-control', '']) }}
+                              
+                            <!-- </div> -->
+                            {!! $errors->first('periode', '<p class="help-block">:message</p>') !!}
+                        </div>
+                        
+                        <div class="form-group">
+                            {{ Form::submit('Cari', ['class'=>'btn btn-primary  btn-xs']) }}
+                        </div>
+                    {{ Form::close() }}
+                    <hr/>
                     <!-- <center><h4><b><br>Skala<br><br></b></h1></center>
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -33,7 +50,7 @@
                                 <td>{{ $hsl->nama }}</td>
                                 <td>{{ $hsl->aspek }}</td>
                                 <td>{{ $hsl->faktor }}</td>
-                                <td>{{ $hsl->skala }}</td>
+                                <td>{{ $hsl->nama }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -171,8 +188,8 @@
                     <!-- <div class="text-center">
                         <h4>Manager</h4>
                         <br><br><br>
-                        <h4><u>{{ $managers->nama }}</u></h4>
-                        <h4>{{ $managers->nip }}</h4>
+                        <h4><u>{{-- $managers->nama --}}</u></h4>
+                        <h4>{{-- $managers->nip --}}</h4>
                     </div><br> -->
                     <div class="text-center">
                         <a href="{{ route('export.excel') }}">

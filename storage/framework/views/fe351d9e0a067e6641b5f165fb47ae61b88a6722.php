@@ -13,53 +13,10 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Result</div>
                 <div class="panel-body table-responsive">
-                <?php echo e(Form::open(['route' => 'hasil.search','method'=>'GET'])); ?>
-
-                      
-                        <div class="form-group<?php echo $errors->has('periode') ? ' has-error' : ''; ?>">
-                            <?php echo e(Form::label('periode', 'Tahun Periode')); ?>
-
-                            <!-- <div class="input-group date"> -->
-                            <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
-                                <?php echo e(Form::selectYear('periode', $get_tahun[0]->year_start, $get_tahun[0]->year_end,  date('Y'),['class' => 'form-control', ''])); ?>
-
-                              
-                            <!-- </div> -->
-                            <?php echo $errors->first('periode', '<p class="help-block">:message</p>'); ?>
-
-                        </div>
-                        
-                        <div class="form-group">
-                            <?php echo e(Form::submit('Cari', ['class'=>'btn btn-primary  btn-xs'])); ?>
-
-                        </div>
-                    <?php echo e(Form::close()); ?>
-
+                   <h2><b>Tahun Periode : <?php echo e($periode); ?></b></h2>  
+                 <a href="<?php echo e(route('hasil.index')); ?>" class="btn btn-success">Kembali</a>
                     <hr/>
-                    <!-- <center><h4><b><br>Skala<br><br></b></h1></center>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <td width="1%">No</td>
-                                <td>NIS</td>
-                                <td>Jenis Kriteria</td>
-                                <td>Sub Kriteria</td>
-                                <td>Skala</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no=1; ?>
-                            <?php foreach($result1 as $hsl): ?>
-                            <tr>
-                                <td><?php echo e($no++); ?></td>
-                                <td><?php echo e($hsl->nama); ?></td>
-                                <td><?php echo e($hsl->aspek); ?></td>
-                                <td><?php echo e($hsl->faktor); ?></td>
-                                <td><?php echo e($hsl->nama); ?></td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table> -->
+                   
                     <center><h4><b><br>Hasil<br><br></b></h1></center>
                     <table class="table table-bordered table-striped">
                         <thead>

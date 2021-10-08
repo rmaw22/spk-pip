@@ -237,7 +237,9 @@
     <?php /* Html::script('/bootstrap/datatable/extensions/Responsive/js/responsive.bootstrap4.js') */ ?>
     <?php /* Html::script('/bootstrap/datatable/extensions/FixedHeader/js/dataTables.fixedHeader.js') */ ?>
     <script type="text/javascript">
+
         $(function() {
+              
             $('table.table').dataTable( {
                      "order": [],
             "columnDefs": [ {

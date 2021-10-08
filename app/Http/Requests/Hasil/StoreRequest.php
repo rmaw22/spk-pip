@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Hasil;
 
 use App\Http\Requests\Request;
-use App\AppModel\Pendaftar;
 
 class StoreRequest extends Request
 {
@@ -25,7 +24,7 @@ class StoreRequest extends Request
     public function rules()
     {
         return [
-            'pendaftar_id' => 'required|unique:hasils|exists:pendaftars,id',
+            'pendaftar_id' => 'required',
             'jurusan' => 'required',
             'penguji' => 'required',
             'tahun_ajaran' => 'required',

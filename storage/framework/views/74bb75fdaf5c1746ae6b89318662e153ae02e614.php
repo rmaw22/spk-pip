@@ -15,6 +15,18 @@
                             <?php echo $errors->first('nis', '<p class="help-block">:message</p>'); ?>
 
                         </div>
+                        <div class="form-group<?php echo $errors->has('periode') ? ' has-error' : ''; ?>">
+                            <?php echo e(Form::label('periode', 'Tahun Periode')); ?>
+
+                            <!-- <div class="input-group date"> -->
+                            <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
+                                <?php echo e(Form::selectYear('periode', date("Y", strtotime('-50 years')), date("Y", strtotime('+3 years')),  $siswas->periode,['class' => 'form-control', 'placeholder' => 'Masukkan Tahun Periode', ''])); ?>
+
+                              
+                            <!-- </div> -->
+                            <?php echo $errors->first('periode', '<p class="help-block">:message</p>'); ?>
+
+                        </div>
                         <div class="form-group<?php echo $errors->has('nama') ? ' has-error' : ''; ?>">
                             <?php echo e(Form::label('nama', 'Nama Siswa')); ?>
 

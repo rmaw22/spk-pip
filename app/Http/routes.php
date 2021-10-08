@@ -36,6 +36,7 @@ Route::delete('gap', ['as'=>'gap.destroy', 'uses'=>'GapController@destroy']);
 Route::resource('nilai', 'NilaiController');
 Route::delete('nilai', ['as'=>'nilai.destroy', 'uses'=>'NilaiController@destroy']);
 Route::resource('manager', 'ManagerController');
+Route::get('hasil/search', ['as'=>'hasil.search', 'uses'=>'HasilController@searchYear']);
 Route::resource('hasil', 'HasilController');
 Route::get('importExport', 'HasilController@importExport');
 Route::get('downloadExcel',  ['as'=>'export.excel', 'uses'=>'HasilController@downloadExcel']);

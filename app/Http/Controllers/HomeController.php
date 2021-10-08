@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\AppModel\Hasil;
 use App\AppModel\Karyawan;
 use App\AppModel\Aspek;
 use App\AppModel\Faktor;

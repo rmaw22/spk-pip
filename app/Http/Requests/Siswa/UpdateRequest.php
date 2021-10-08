@@ -28,6 +28,7 @@ class UpdateRequest extends Request
             'nama' => 'min:2|regex:/^[a-z A-Z]+$/',
             'tempat_lahir' => 'min:2|regex:/^[a-zA-Z]+$/',
             'phone' => 'min:6|regex:/^[0-9+]+$/',
+            'periode' => 'required|min:4', 
         ];
 
     }
@@ -42,6 +43,8 @@ class UpdateRequest extends Request
             'tempat_lahir.regex' => 'Hanya Boleh Menggunakan Huruf Besar/Kecil',
             'phone.min' => 'Minimal Menggunakan 6 Karakter',
             'phone.regex' => 'Hanya Boleh Menggunakan Huruf Besar/Kecil/Tanda +',
+            'periode.require' => 'Tahun Periode Wajib Diisi',
+            'periode.min'  => ' Tahun Periode Melebihi Batas Karakter',
         ];
     }
 }

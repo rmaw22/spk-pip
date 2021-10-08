@@ -14,6 +14,15 @@
                             {{ Form::text('nis', null, ['class'=>'form-control', 'placeholder'=>'e.g 10119479', 'required', 'oninvalid' => 'this.setCustomValidity("NIS Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '8']) }}
                             {!! $errors->first('nis', '<p class="help-block">:message</p>') !!}
                         </div>
+                        <div class="form-group{!! $errors->has('periode') ? ' has-error' : '' !!}">
+                            {{ Form::label('periode', 'Tahun Periode') }}
+                            <!-- <div class="input-group date"> -->
+                            <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
+                                {{ Form::selectYear('periode', date("Y", strtotime('-50 years')), date("Y", strtotime('+3 years')),  date('Y'),['class' => 'form-control', 'placeholder' => 'Masukkan Tahun Periode', '']) }}
+                              
+                            <!-- </div> -->
+                            {!! $errors->first('periode', '<p class="help-block">:message</p>') !!}
+                        </div>
                         <div class="form-group{!! $errors->has('nama') ? ' has-error' : '' !!}">
                             {{ Form::label('nama', 'Nama Siswa') }}
                             {{ Form::text('nama', null, ['class'=>'form-control', 'placeholder'=>'Masukkan Nama', 'required', 'oninvalid' => 'this.setCustomValidity("Nama Harus Diisi")', 'onchange' => 'this.setCustomValidity("")', 'maxlength' => '40']) }}
