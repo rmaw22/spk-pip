@@ -96,7 +96,7 @@ class NilaiController extends Controller
         $nilai->id_faktor = $request->id_faktor;
         $nilai->nilai = $request->nilai;
         $nilai->save();
-        return redirect()->route('nilai.index')->with('alert-success', 'Berhasil Menambah Data');
+        return redirect()->route('nilai.detail',[$request->nis])->with('alert-success', 'Berhasil Menambah Data');
     }
 
     /**

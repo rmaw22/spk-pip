@@ -137,4 +137,16 @@ class SiswaController extends Controller
         });
         echo "Success";
     }
+    public function markComplete(Request $request)
+    {
+        return response()->json([
+            'name' => $request->listStudents
+        ]);
+    }
+    public function markUncomplete(Request $request)
+    {
+        return response()->json([
+            'name' => $request
+        ]);
+    }
 }

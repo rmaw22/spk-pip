@@ -56,7 +56,10 @@
                                 <td align="center">
                                     {{ Form::button('<i class="glyphicon glyphicon-remove"></i>', array('class'=>'btn btn-danger btn-xs btn-del', 'type'=>'submit')) }}
                                 </td>
-                                <td colspan="5"></td>
+                                <td align="center">
+                                {{ Form::button('Mark As Completed', array('class'=>'btn btn-info btn-xs btn-del', 'type'=>'submit','disabled','id'=>'markComplete')) }}
+                                </td>
+                                <td colspan="4"></td>
                                 <td align="center">
                                     {{ Html::linkRoute('nilai.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus')) }}
                                 </td>
@@ -69,4 +72,50 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script >
+     $(document).ready(function() {
+        $('input:checkbox').click(function() {
+            if ($(this).is(':checked')) {
+            $('#markComplete').prop("disabled", false);
+            } else {
+            if ($('.checkGroup').filter(':checked').length < 1){
+            $('#markComplete').attr('disabled',true);}
+            }
+        });
+        $("input[name='checkAll']").click(function() {
+            if ($(this).is(':checked')) {
+                $('#markComplete').prop("disabled", false);
+            } else {
+                if ($("input[name='checkAll']").filter(':checked').length < 1){
+                $('#markComplete').attr('disabled',true);}
+            }
+        });
+        $('#markComplete').click(function(e) {
+            e.preventDefault();
+           
+            $.ajax({
+                url: "{{route('siswa.completed')}}",
+                dataType: "json",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                data: { listStudents: myCheckboxes},
+                async: false,
+                processData: false,
+                cache: false,
+                beforeSend:function(){
+                    // return confirm("Are you sure?");
+                },
+                success: function (r) {
+                   console.log(r);
+                },
+                error: function (xhr) {
+                       console.log(xhr);
+                }
+            });  
+        });     
+        
+     });
+</script>
 @endsection

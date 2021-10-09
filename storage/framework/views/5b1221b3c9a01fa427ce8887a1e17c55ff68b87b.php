@@ -60,7 +60,11 @@
                                     <?php echo e(Form::button('<i class="glyphicon glyphicon-remove"></i>', array('class'=>'btn btn-danger btn-xs btn-del', 'type'=>'submit'))); ?>
 
                                 </td>
-                                <td colspan="5"></td>
+                                <td align="center">
+                                <?php echo e(Form::button('Mark As Completed', array('class'=>'btn btn-info btn-xs btn-del', 'type'=>'submit','disabled','id'=>'markComplete'))); ?>
+
+                                </td>
+                                <td colspan="4"></td>
                                 <td align="center">
                                     <?php echo e(Html::linkRoute('nilai.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus'))); ?>
 
@@ -75,6 +79,56 @@
         </div>
     </div>
 </div>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+<script >
+     $(document).ready(function() {
+        $('input:checkbox').click(function() {
+            if ($(this).is(':checked')) {
+            $('#markComplete').prop("disabled", false);
+            } else {
+            if ($('.checkGroup').filter(':checked').length < 1){
+            $('#markComplete').attr('disabled',true);}
+            }
+        });
+        $("input[name='checkAll']").click(function() {
+            if ($(this).is(':checked')) {
+                $('#markComplete').prop("disabled", false);
+            } else {
+                if ($("input[name='checkAll']").filter(':checked').length < 1){
+                $('#markComplete').attr('disabled',true);}
+            }
+        });
+        $('#markComplete').click(function(e) {
+            e.preventDefault();
+            var myCheckboxes = new Array();
+                $(".checkGroup").each(function() {
+                myCheckboxes.push($(this).val());
+                });
+                console.log($("input[name='checkItem']"));
+            $.ajax({
+                url: "<?php echo e(route('siswa.completed')); ?>",
+                dataType: "json",
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                data: { listStudents: myCheckboxes},
+                async: false,
+                processData: false,
+                cache: false,
+                beforeSend:function(){
+                    // return confirm("Are you sure?");
+                },
+                success: function (r) {
+                   console.log(r);
+                },
+                error: function (xhr) {
+                       console.log(xhr);
+                }
+            });  
+        });     
+        
+     });
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
