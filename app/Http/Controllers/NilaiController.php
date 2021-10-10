@@ -81,8 +81,9 @@ class NilaiController extends Controller
      public function FaktorAjax(Request $request, $id)
      {
          $nis = $request->nis_siswa;
+         $category = $request->category_faktor ;
          $id_faktor = Nilai::where('nis',$nis)->where('id_aspeks',$id)->select('id_faktor')->pluck('id_faktor')->toArray();
-         $faktors = DB::table('faktors')->where("id_aspek",$id)->whereNotIn('id_faktor',$id_faktor)->pluck('faktor', 'id_faktor');
+         $faktors = DB::table('faktors')->where("id_aspek",$id)->whereNotIn('id_faktor',$id_faktor)->where('category',$category)->pluck('faktor', 'id_faktor');
         //  dd($faktors);
         //  $faktors = DB::table('faktors')->where("id_aspek",$id)->pluck('faktor', 'id_faktor');
          return json_encode($faktors);
@@ -175,4 +176,18 @@ class NilaiController extends Controller
         });
         echo "Success";
     }
+    
+    public function Faktorcategory(Request $request, $id)
+     {
+         $nis = $request->nis_siswa;
+         $id_faktor = Nilai::where('nis',$nis)->where('id_aspeks',$id)->select('id_faktor')->pluck('id_faktor')->toArray();
+         //get category
+         $category = DB::table('faktors')->where("id_aspek",$id)->whereIn('id_faktor',$id_faktor)->pluck('category');
+         //get category available
+         $categoryAvailable = DB::table('faktors')->where("id_aspek",$id)->whereNotIn('category',$category)->groupBy('category')->pluck('category');
+         $faktors = DB::table('faktors')->where("id_aspek",$id)->whereNotIn('id_faktor',$id_faktor)->pluck('faktor', 'id_faktor');
+        //  dd($categoryAvailable);
+        //  $faktors = DB::table('faktors')->where("id_aspek",$id)->pluck('faktor', 'id_faktor');
+         return json_encode($categoryAvailable);
+     }
 }

@@ -53,6 +53,7 @@
                         </select>
                         {!! $errors->first('aspek', '<p class="help-block">:message</p>') !!}
                     </div>
+                    
                         <div class="form-group{!! $errors->has('id_faktor') ? ' has-error' : '' !!}">
                             {{ Form::label('id_faktor', 'Sub Kriteria') }}
                             <select name="id_faktor" class="form-control" required="required"></select>

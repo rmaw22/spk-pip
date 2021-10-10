@@ -64,6 +64,8 @@ class FaktorController extends Controller
         $faktors->faktor = $request->faktor;
         $faktors->nilai_sub = $request->nilai;
         $faktors->kelompok = $request->kelompok;
+        $faktors->category = $request->category;
+        $faktors->nilai_ideal = 4;
         $faktors->save();
         return redirect()->route('faktor.index')->with('alert-success', 'Input Success');
     }
@@ -88,11 +90,14 @@ class FaktorController extends Controller
     public function edit($id)
     {
         $faktors = Faktor::join('aspeks', 'faktors.id_aspek', '=', 'aspeks.id_aspek')
-                -> SELECT('faktors.*', 'faktors.id_aspek as aspekid', 'aspeks.aspek as aspek')
+                -> SELECT('faktors.*', 'faktors.id_aspek as aspekid', 'aspeks.aspek as aspek','faktors.category')
                 -> where('faktors.id_faktor', '=', $id)
                 -> first();
         $aspeks = Aspek::all();
-        return view('adminpanel.faktor.edit', compact('faktors', 'aspeks'));
+        $categorys = Faktor::where('id_faktor', '=', $id)
+                    -> first();
+                    // dd($categorys)
+        return view('adminpanel.faktor.edit', compact('faktors', 'aspeks','categorys'));
     }
 
     /**
@@ -109,6 +114,8 @@ class FaktorController extends Controller
         $faktors->faktor = $request->faktor;
         $faktors->nilai_sub = $request->nilai;
         $faktors->kelompok = $request->kelompok;
+        $faktors->category = $request->category;
+        $faktors->nilai_ideal = 4;
         $faktors->save();
         return redirect()->route('faktor.index')->with('alert-success', 'Update Success');
     }
@@ -138,4 +145,11 @@ class FaktorController extends Controller
         });
         echo "Success";
     }
+    
+    public function getCategory($id)
+     {
+         //get category
+         $getCategory = DB::table('faktors')->where("id_aspek",$id)->groupby('category')->pluck('category');
+          return json_encode($getCategory);
+     }
 }

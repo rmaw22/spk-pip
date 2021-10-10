@@ -4,19 +4,52 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('select[name="aspek"]').on('change', function() {
-            console.log('cek');
+            // console.log('cek');
             var aspekID = $(this).val();
             var nis = $('select[name="nis"]').val();
             if(aspekID) {
                 $.ajax({
-                    url: '/nilai/edit/'+aspekID,
+                    url: '/nilai/category/'+aspekID,
                     type: "GET",
                     dataType: "json",
                     data : {
                         nis_siswa : nis
                     },
                     success:function(data) {
+                        // console.log(data);
+                        $('select[name="category"]').empty();
                         $('select[name="id_faktor"]').empty();
+                        $('select[name="category"]').append('<option value="">--- Pilih Category ---</option>');
+                        $.each(data, function(aspek, value) {
+                            
+                            $('select[name="category"]').append('<option value="'+ value +'">'+ value +'</option>');
+                        });
+                    },error: function(data){
+                        console.log(data);
+                    }
+                });
+            }else{
+                $('select[name="category"]').empty();
+            }
+        });
+        $('select[name="category"]').on('change', function() {
+            var CategoryID = $(this).val();
+            console.log(CategoryID);
+            var nis = $('select[name="nis"]').val();
+            var aspek = $('select[name="aspek"]').find(":selected").val();
+            if(aspek) {
+                $.ajax({
+                    url: '/nilai/edit/'+aspek,
+                    type: "GET",
+                    dataType: "json",
+                    data : {
+                        nis_siswa : nis,
+                        category_faktor: CategoryID
+                    },
+                    success:function(data) {
+                        console.log(data);
+                        $('select[name="id_faktor"]').empty();
+                        
                         $.each(data, function(aspek, value) {
                             $('select[name="id_faktor"]').append('<option value="'+ aspek +'">'+ value +'</option>');
                         });
@@ -57,6 +90,14 @@
                             @endforeach
                         </select>
                         {!! $errors->first('aspek', '<p class="help-block">:message</p>') !!}
+                    </div>
+                    <div class="form-group{!! $errors->has('category') ? ' has-error' : '' !!}">
+                        {{ Form::label('category', 'Jenis Kategory') }}
+                        <select name="category" id="category" class="form-control" required="required">
+                          <option value="">--- Pilih Category ---</option>
+                          
+                        </select>
+                        {!! $errors->first('category', '<p class="help-block">:message</p>') !!}
                     </div>
                         <div class="form-group{!! $errors->has('id_faktor') ? ' has-error' : '' !!}">
                             {{ Form::label('id_faktor', 'Sub Kriteria') }}
@@ -132,10 +173,10 @@
                                 <td align="center">
                                     {{ Form::button('<i class="glyphicon glyphicon-remove"></i>', array('class'=>'btn btn-danger btn-xs btn-del', 'type'=>'submit')) }}
                                 </td>
-                                <td colspan="5"></td>
-                                <td align="center">
-                                    {{ Html::linkRoute('nilai.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus')) }}
-                                </td>
+                                <td colspan="6"></td>
+                                <!-- <td align="center">
+                                    {{-- Html::linkRoute('nilai.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus')) --}}
+                                </td> -->
                             </tr>
                          </tfoot>
                     </table>

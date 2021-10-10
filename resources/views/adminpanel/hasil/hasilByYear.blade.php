@@ -26,8 +26,8 @@
                                 <td>Nama Siswa</td>
                                 <td>Jenis Kriteria</td>
                                 <td>Sub Kriteria</td>
-                                <td>Nilai Ideal</td>
                                 <td>Nilai Siswa</td>
+                                <td>Nilai Ideal</td>
                                 <td>Nilai Gap</td>
                             </tr>
                         </thead>
@@ -40,7 +40,7 @@
                                 <td>{{ $hsl->aspek }}</td>
                                 <td>{{ $hsl->faktor }}</td>
                                 <td>{{ $hsl->nilai }}</td>
-                                <td>{{ $hsl->nilai_sub }}</td>
+                                <td>{{ $hsl->nilai_ideal }}</td>
                                 <td>{{ $hsl->hasil }}</td>
                             </tr>
                             @endforeach

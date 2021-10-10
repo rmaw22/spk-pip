@@ -1,4 +1,31 @@
 <?php $__env->startSection('content'); ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('select[name="aspek"]').on('change', function() {
+            console.log('cek');
+            var aspekID = $(this).val();
+            if(aspekID) {
+                $.ajax({
+                    url: '/nilai/getCategory/'+aspekID,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        // console.log(data);
+                        $('select[name="category"]').empty();
+                        $.each(data, function(aspek, value) {
+                            
+                            $('select[name="category"]').append('<option value="'+ value +'">'+ value +'</option>');
+                        });
+                    },error: function(data){
+                        console.log(data);
+                    }
+                });
+            }else{
+                $('select[name="category"]').empty();
+            }
+        });
+    });
+</script>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -14,6 +41,15 @@
                         <?php echo e(Form::select('aspek', $aspeks, null,['class'=>'form-control', 'placeholder'=>'Pilih Jenis Aspek'])); ?>
 
                         <?php echo $errors->first('aspek', '<p class="help-block">:message</p>'); ?>
+
+                    </div>
+                    <div class="form-group<?php echo $errors->has('category') ? ' has-error' : ''; ?>">
+                        <?php echo e(Form::label('category', 'Jenis Kategory')); ?>
+
+                        <select name="category" id="category" class="form-control" required="required">
+                          <option value="">--- Pilih Category ---</option>
+                        </select>
+                        <?php echo $errors->first('category', '<p class="help-block">:message</p>'); ?>
 
                     </div>
                     <div class="form-group<?php echo $errors->has('faktor') ? ' has-error' : ''; ?>">

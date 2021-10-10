@@ -68,8 +68,8 @@
                                 <td>Nama Siswa</td>
                                 <td>Jenis Kriteria</td>
                                 <td>Sub Kriteria</td>
-                                <td>Nilai Ideal</td>
                                 <td>Nilai Siswa</td>
+                                <td>Nilai Ideal</td>
                                 <td>Nilai Gap</td>
                             </tr>
                         </thead>
@@ -82,7 +82,7 @@
                                 <td><?php echo e($hsl->aspek); ?></td>
                                 <td><?php echo e($hsl->faktor); ?></td>
                                 <td><?php echo e($hsl->nilai); ?></td>
-                                <td><?php echo e($hsl->nilai_sub); ?></td>
+                                <td><?php echo e($hsl->nilai_ideal); ?></td>
                                 <td><?php echo e($hsl->hasil); ?></td>
                             </tr>
                             <?php endforeach; ?>

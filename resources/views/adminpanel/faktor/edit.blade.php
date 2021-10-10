@@ -1,6 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('select[name="aspek"]').on('change', function() {
+            console.log('cek');
+            var aspekID = $(this).val();
+            if(aspekID) {
+                $.ajax({
+                    url: '/nilai/getCategory/'+aspekID,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        // console.log(data);
+                        $('select[name="category"]').empty();
+                        $.each(data, function(aspek, value) {
+                            
+                            $('select[name="category"]').append('<option value="'+ value +'">'+ value +'</option>');
+                        });
+                    },error: function(data){
+                        console.log(data);
+                    }
+                });
+            }else{
+                $('select[name="category"]').empty();
+            }
+        });
+    });
+</script>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -20,6 +47,14 @@
                               @endforeach
                             </select>
                             {!! $errors->first('aspek', '<p class="help-block">:message</p>') !!}
+                        </div>
+                        <div class="form-group{!! $errors->has('category') ? ' has-error' : '' !!}">
+                        {{ Form::label('category', 'Jenis Kategory') }}
+                        <select name="category" id="category" class="form-control" required="required">
+                        <option selected="selected" value="{{ $faktors->category }}">{{ $faktors->category }}</option>
+                              
+                        </select>
+                        {!! $errors->first('category', '<p class="help-block">:message</p>') !!}
                         </div>
                         <div class="form-group{!! $errors->has('faktor') ? ' has-error' : '' !!}">
                             {{ Form::label('faktor', 'Nama Faktor') }}

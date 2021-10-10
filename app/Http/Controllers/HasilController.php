@@ -37,7 +37,7 @@ class HasilController extends Controller
         /**
         * For to Display a Eloquent into Query.
         *
-        * $result = Nilai::select(DB::raw('students.nama as nama, aspeks.aspek AS aspek, faktors.faktor AS faktor,faktors.nilai_sub AS nilai_sub,nilais.nilai AS nilai, (nilais.nilai - faktors.nilai_sub) AS hasil'))
+        * $result = Nilai::select(DB::raw('students.nama as nama, aspeks.aspek AS aspek, faktors.faktor AS faktor,faktors.nilai_ideal AS nilai_ideal,nilais.nilai AS nilai, (nilais.nilai - faktors.nilai_ideal) AS hasil'))
              -> join('aspeks', 'nilais.id_aspeks', '=', 'aspeks.id_aspek')
              -> join('faktors', 'nilais.id_faktor', '=', 'faktors.id_faktor') //Because eloquent doesn't support using operator "USING" from query 
              -> join('students', 'nilais.nis', '=', 'students.nis') //Because eloquent doesn't support using operator "USING" from query 
@@ -73,16 +73,16 @@ class HasilController extends Controller
                     nama, 
                     aspek, 
                     faktor, 
-                    nilai_sub, 
+                    nilai_ideal, 
                     nilai, 
                     bobot, 
                     kelompok, 
-                    (nilai-nilai_sub) as hasil
+                    (nilai-nilai_ideal) as hasil
                   FROM nilais
                     JOIN students USING (nis)
                     JOIN faktors USING (id_faktor)
                     JOIN aspeks USING (id_aspek)
-                    JOIN gaps ON selisih = (nilai - nilai_sub) WHERE students.periode like "%'.$periode.'%"';
+                    JOIN gaps ON selisih = (nilai - nilai_ideal) WHERE students.periode like "%'.$periode.'%"';
 
         $query2   = 'SELECT 
                     nama, 
@@ -93,12 +93,12 @@ class HasilController extends Controller
                     JOIN students USING(nis)
                     JOIN faktors USING(id_faktor)
                     JOIN aspeks USING(id_aspek)
-                    JOIN gaps ON selisih=(nilai-nilai_sub) WHERE students.periode like "%'.$periode.'%"';
+                    JOIN gaps ON selisih=(nilai-nilai_ideal) WHERE students.periode like "%'.$periode.'%"';
          $query21   = 'SELECT 
          students.nama, 
          aspek,
-         SUM(IF(kelompok="core",nilai_sub,0)) as cores,
-         SUM(IF(kelompok="secondary",nilai_sub,0)) as second,
+         SUM(IF(kelompok="core",nilai_ideal,0)) as cores,
+         SUM(IF(kelompok="secondary",nilai_ideal,0)) as second,
          SUM(IF(kelompok="core",nilai,0)) as coresget,
          SUM(IF(kelompok="secondary",nilai,0)) as secondget,
          count(IF(kelompok="core",id_faktor,0)) as CountCore,
@@ -109,7 +109,7 @@ class HasilController extends Controller
          JOIN students USING(nis)
          JOIN faktors USING(id_faktor)
          JOIN aspeks USING(id_aspek)
-         JOIN gaps ON selisih=(nilai-nilai_sub) WHERE students.periode like "%'.$periode.'%"
+         JOIN gaps ON selisih=(nilai-nilai_ideal) WHERE students.periode like "%'.$periode.'%"
          group by students.nama';
           
       $query_get = ' SELECT 
@@ -124,7 +124,7 @@ class HasilController extends Controller
       JOIN students b USING(nis)
       JOIN faktors d USING(id_faktor)
       JOIN aspeks c USING(id_aspek)
-      JOIN gaps e ON e.selisih=(a.nilai-d.nilai_sub) WHERE b.periode like "%'.$periode.'%"
+      JOIN gaps e ON e.selisih=(a.nilai-d.nilai_ideal) WHERE b.periode like "%'.$periode.'%"
     GROUP BY b.nama,aspek
     ORDER BY b.nama';    
 
@@ -152,7 +152,7 @@ class HasilController extends Controller
                           JOIN students b USING(nis)
                           JOIN faktors d USING(id_faktor)
                           JOIN aspeks c USING(id_aspek)
-                          JOIN gaps e ON e.selisih=(a.nilai-d.nilai_sub) WHERE b.periode like "%'.$periode.'%"
+                          JOIN gaps e ON e.selisih=(a.nilai-d.nilai_ideal) WHERE b.periode like "%'.$periode.'%"
                         GROUP BY b.nama,aspek
                         ORDER BY b.nama
                       ) f
@@ -170,7 +170,7 @@ class HasilController extends Controller
                         JOIN students b USING(nis)
                         JOIN faktors d USING(id_faktor)
                         JOIN aspeks c USING(id_aspek)
-                        JOIN gaps e ON e.selisih=(a.nilai-d.nilai_sub) WHERE b.periode like "%'.$periode.'%"
+                        JOIN gaps e ON e.selisih=(a.nilai-d.nilai_ideal) WHERE b.periode like "%'.$periode.'%"
                       GROUP BY b.nama,aspek
                       ORDER BY b.nama');
         $Nilai_total = DB::SELECT('SELECT
@@ -193,7 +193,7 @@ class HasilController extends Controller
                         JOIN students b USING(nis)
                         JOIN faktors d USING(id_faktor)
                         JOIN aspeks c USING(id_aspek)
-                        JOIN gaps e ON e.selisih=(a.nilai-d.nilai_sub) WHERE b.periode like "%'.$periode.'%"
+                        JOIN gaps e ON e.selisih=(a.nilai-d.nilai_ideal) WHERE b.periode like "%'.$periode.'%"
                       GROUP BY b.nama,aspek
                       ORDER BY b.nama) as f
                     ');
@@ -222,16 +222,16 @@ class HasilController extends Controller
                     nama, 
                     aspek, 
                     faktor, 
-                    nilai_sub, 
+                    nilai_ideal, 
                     nilai, 
                     bobot, 
                     kelompok, 
-                    (nilai-nilai_sub) as hasil
+                    (nilai-nilai_ideal) as hasil
                   FROM nilais
                     JOIN students USING (nis)
                     JOIN faktors USING (id_faktor)
                     JOIN aspeks USING (id_aspek)
-                    JOIN gaps ON selisih = (nilai - nilai_sub) WHERE students.periode like "%'.$periode.'%"';
+                    JOIN gaps ON selisih = (nilai - nilai_ideal) WHERE students.periode like "%'.$periode.'%"';
 
         $query2   = 'SELECT 
                     nama, 
@@ -242,12 +242,12 @@ class HasilController extends Controller
                     JOIN students USING(nis)
                     JOIN faktors USING(id_faktor)
                     JOIN aspeks USING(id_aspek)
-                    JOIN gaps ON selisih=(nilai-nilai_sub) WHERE students.periode like "%'.$periode.'%"';
+                    JOIN gaps ON selisih=(nilai-nilai_ideal) WHERE students.periode like "%'.$periode.'%"';
          $query21   = 'SELECT 
          students.nama, 
          aspek,
-         SUM(IF(kelompok="core",nilai_sub,0)) as cores,
-         SUM(IF(kelompok="secondary",nilai_sub,0)) as second,
+         SUM(IF(kelompok="core",nilai_ideal,0)) as cores,
+         SUM(IF(kelompok="secondary",nilai_ideal,0)) as second,
          SUM(IF(kelompok="core",nilai,0)) as coresget,
          SUM(IF(kelompok="secondary",nilai,0)) as secondget,
          count(IF(kelompok="core",id_faktor,0)) as CountCore,
@@ -258,7 +258,7 @@ class HasilController extends Controller
          JOIN students USING(nis)
          JOIN faktors USING(id_faktor)
          JOIN aspeks USING(id_aspek)
-         JOIN gaps ON selisih=(nilai-nilai_sub)  WHERE students.periode like "%'.$periode.'%"
+         JOIN gaps ON selisih=(nilai-nilai_ideal)  WHERE students.periode like "%'.$periode.'%"
          group by students.nama';
           
       $query_get = ' SELECT 
@@ -273,7 +273,7 @@ class HasilController extends Controller
       JOIN students b USING(nis)
       JOIN faktors d USING(id_faktor)
       JOIN aspeks c USING(id_aspek)
-      JOIN gaps e ON e.selisih=(a.nilai-d.nilai_sub) WHERE b.periode like "%'.$periode.'%"
+      JOIN gaps e ON e.selisih=(a.nilai-d.nilai_ideal) WHERE b.periode like "%'.$periode.'%"
     GROUP BY b.nama,aspek
     ORDER BY b.nama';    
 
@@ -301,7 +301,7 @@ class HasilController extends Controller
                           JOIN students b USING(nis)
                           JOIN faktors d USING(id_faktor)
                           JOIN aspeks c USING(id_aspek)
-                          JOIN gaps e ON e.selisih=(a.nilai-d.nilai_sub) WHERE b.periode like "%'.$periode.'%"
+                          JOIN gaps e ON e.selisih=(a.nilai-d.nilai_ideal) WHERE b.periode like "%'.$periode.'%"
                         GROUP BY b.nama,aspek
                         ORDER BY b.nama
                       ) f
@@ -319,7 +319,7 @@ class HasilController extends Controller
                         JOIN students b USING(nis)
                         JOIN faktors d USING(id_faktor)
                         JOIN aspeks c USING(id_aspek)
-                        JOIN gaps e ON e.selisih=(a.nilai-d.nilai_sub) WHERE b.periode like "%'.$periode.'%"
+                        JOIN gaps e ON e.selisih=(a.nilai-d.nilai_ideal) WHERE b.periode like "%'.$periode.'%"
                       GROUP BY b.nama,aspek
                       ORDER BY b.nama');
         $Nilai_total = DB::SELECT('SELECT
@@ -342,7 +342,7 @@ class HasilController extends Controller
                         JOIN students b USING(nis)
                         JOIN faktors d USING(id_faktor)
                         JOIN aspeks c USING(id_aspek)
-                        JOIN gaps e ON e.selisih=(a.nilai-d.nilai_sub) WHERE b.periode like "%'.$periode.'%"
+                        JOIN gaps e ON e.selisih=(a.nilai-d.nilai_ideal) WHERE b.periode like "%'.$periode.'%"
                       GROUP BY b.nama,aspek
                       ORDER BY b.nama) as f
                     ');

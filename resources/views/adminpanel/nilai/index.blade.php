@@ -56,13 +56,13 @@
                                 <td align="center">
                                     {{ Form::button('<i class="glyphicon glyphicon-remove"></i>', array('class'=>'btn btn-danger btn-xs btn-del', 'type'=>'submit')) }}
                                 </td>
-                                <td align="center">
-                                {{ Form::button('Mark As Completed', array('class'=>'btn btn-info btn-xs btn-del', 'type'=>'submit','disabled','id'=>'markComplete')) }}
-                                </td>
-                                <td colspan="4"></td>
-                                <td align="center">
-                                    {{ Html::linkRoute('nilai.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus')) }}
-                                </td>
+                                <!-- <td align="center"> -->
+                                {{-- Form::button('Mark As Completed', array('class'=>'btn btn-info btn-xs btn-del', 'type'=>'submit','disabled','id'=>'markComplete')) --}}
+                                <!-- </td> -->
+                                <td colspan="6"></td>
+                                <!-- <td align="center">
+                                    {{-- Html::linkRoute('nilai.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus')) --}}
+                                </td> -->
                             </tr>
                          </tfoot>
                     </table>
