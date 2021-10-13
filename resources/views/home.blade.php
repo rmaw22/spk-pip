@@ -14,40 +14,17 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Result</div>
                 <div class="panel-body table-responsive">
-                    <!-- <center><h4><b><br>Skala<br><br></b></h1></center>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <td width="1%">No</td>
-                                <td>NIS</td>
-                                <td>Jenis Kriteria</td>
-                                <td>Sub Kriteria</td>
-                                <td>Skala</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no=1; ?>
-                            @foreach ($result1 as $hsl)
-                            <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $hsl->nama }}</td>
-                                <td>{{ $hsl->aspek }}</td>
-                                <td>{{ $hsl->faktor }}</td>
-                                <td>{{ $hsl->skala }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table> -->
+                    
                     <center><h4><b><br>Hasil<br><br></b></h1></center>
                     <table class="table table-bordered table-striped">
-                        <thead>
+                    <thead>
                             <tr>
                                 <td>No</td>
                                 <td>Nama Siswa</td>
                                 <td>Jenis Kriteria</td>
                                 <td>Sub Kriteria</td>
-                                <td>Nilai Ideal</td>
                                 <td>Nilai Siswa</td>
+                                <td>Nilai Ideal</td>
                                 <td>Nilai Gap</td>
                             </tr>
                         </thead>
@@ -60,7 +37,7 @@
                                 <td>{{ $hsl->aspek }}</td>
                                 <td>{{ $hsl->faktor }}</td>
                                 <td>{{ $hsl->nilai }}</td>
-                                <td>{{ $hsl->nilai_sub }}</td>
+                                <td>{{ $hsl->nilai_ideal }}</td>
                                 <td>{{ $hsl->hasil }}</td>
                             </tr>
                             @endforeach
@@ -168,12 +145,7 @@
                             @endforeach
                         </tbody>
                     </table><br><br><br>
-                    <!-- <div class="text-center">
-                        <h4>Manager</h4>
-                        <br><br><br>
-                        <h4><u>{{ $managers->nama }}</u></h4>
-                        <h4>{{ $managers->nip }}</h4>
-                    </div><br> -->
+                   
                     <div class="text-center">
                         <a href="{{ route('export.excel') }}">
                         <button class="btn btn-primary btn-xs">Download Excel</button>

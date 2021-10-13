@@ -13,40 +13,17 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Result</div>
                 <div class="panel-body table-responsive">
-                    <!-- <center><h4><b><br>Skala<br><br></b></h1></center>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <td width="1%">No</td>
-                                <td>NIS</td>
-                                <td>Jenis Kriteria</td>
-                                <td>Sub Kriteria</td>
-                                <td>Skala</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no=1; ?>
-                            <?php foreach($result1 as $hsl): ?>
-                            <tr>
-                                <td><?php echo e($no++); ?></td>
-                                <td><?php echo e($hsl->nama); ?></td>
-                                <td><?php echo e($hsl->aspek); ?></td>
-                                <td><?php echo e($hsl->faktor); ?></td>
-                                <td><?php echo e($hsl->skala); ?></td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table> -->
+                    
                     <center><h4><b><br>Hasil<br><br></b></h1></center>
                     <table class="table table-bordered table-striped">
-                        <thead>
+                    <thead>
                             <tr>
                                 <td>No</td>
                                 <td>Nama Siswa</td>
                                 <td>Jenis Kriteria</td>
                                 <td>Sub Kriteria</td>
-                                <td>Nilai Ideal</td>
                                 <td>Nilai Siswa</td>
+                                <td>Nilai Ideal</td>
                                 <td>Nilai Gap</td>
                             </tr>
                         </thead>
@@ -59,7 +36,7 @@
                                 <td><?php echo e($hsl->aspek); ?></td>
                                 <td><?php echo e($hsl->faktor); ?></td>
                                 <td><?php echo e($hsl->nilai); ?></td>
-                                <td><?php echo e($hsl->nilai_sub); ?></td>
+                                <td><?php echo e($hsl->nilai_ideal); ?></td>
                                 <td><?php echo e($hsl->hasil); ?></td>
                             </tr>
                             <?php endforeach; ?>
@@ -167,12 +144,7 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table><br><br><br>
-                    <!-- <div class="text-center">
-                        <h4>Manager</h4>
-                        <br><br><br>
-                        <h4><u><?php echo e($managers->nama); ?></u></h4>
-                        <h4><?php echo e($managers->nip); ?></h4>
-                    </div><br> -->
+                   
                     <div class="text-center">
                         <a href="<?php echo e(route('export.excel')); ?>">
                         <button class="btn btn-primary btn-xs">Download Excel</button>

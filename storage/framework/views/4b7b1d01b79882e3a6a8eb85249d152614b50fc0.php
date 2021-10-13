@@ -4,6 +4,7 @@
         padding:10px;
     }
 </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -13,22 +14,18 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Result</div>
                 <div class="panel-body table-responsive">
-                <?php echo e(Form::open(['route' => 'hasil.search','method'=>'GET'])); ?>
-
-                      
+                <?php echo e(Form::open(['route' => 'hasil.search','method'=>'GET'])); ?>                      
                         <div class="form-group<?php echo $errors->has('periode') ? ' has-error' : ''; ?>">
                             <?php echo e(Form::label('periode', 'Tahun Periode')); ?>
 
                             <!-- <div class="input-group date"> -->
                             <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
-                                <?php echo e(Form::selectYear('periode', $get_tahun[0]->year_start, $get_tahun[0]->year_end,  date('Y'),['class' => 'form-control', ''])); ?>
-
-                              
-                            <!-- </div> -->
+                                <?php /* Form::selectYear('periode', $get_tahun[0]->year_start, $get_tahun[0]->year_end,  date('Y'),['class' => 'form-control', '']) */ ?>
+                                <input type="text" class="form-control" name="periode" id="datepicker" value="<?php echo e(date('Y')); ?>" onkeypress='validate(event)'/>
+                                <!-- </div> -->
                             <?php echo $errors->first('periode', '<p class="help-block">:message</p>'); ?>
 
-                        </div>
-                        
+                        </div>                        
                         <div class="form-group">
                             <?php echo e(Form::submit('Cari', ['class'=>'btn btn-primary  btn-xs'])); ?>
 
@@ -211,8 +208,16 @@
 </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
         $(function() {
+        $("#datepicker").datepicker({
+            format: "yyyy",
+            viewMode: "years", 
+            minViewMode: "years",
+            autoclose:true
+        });   
+
         $('#table-ranking').dataTable( {
             dom: 'Bfrtip',
             buttons: [
@@ -241,6 +246,23 @@
                 "orderable": false,
             }]
         } );
+        function validate(evt) {
+            var theEvent = evt || window.event;
+
+            // Handle paste
+            if (theEvent.type === 'paste') {
+                key = event.clipboardData.getData('text/plain');
+            } else {
+            // Handle key press
+                var key = theEvent.keyCode || theEvent.which;
+                key = String.fromCharCode(key);
+            }
+            var regex = /[0-9]|\./;
+            if( !regex.test(key) ) {
+                theEvent.returnValue = false;
+                if(theEvent.preventDefault) theEvent.preventDefault();
+            }
+        }
         });
     </script>
 <?php $__env->stopSection(); ?>

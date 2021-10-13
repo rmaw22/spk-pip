@@ -61,7 +61,7 @@
                         </div>
 
 
-                        <div class="form-group{!! $errors->has('nilai') ? ' has-error' : '' !!}">
+                        <div class="form-group{!! $errors->has('nilai') ? ' has-error' : '' !!}" >
                             {{ Form::label('nilai', 'Nilai') }}
                             {{ Form::select('nilai', array('1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5'), null, ['class'=>'form-control', 'placeholder'=>'Pilih Nilai']) }}
                             {!! $errors->first('nilai', '<p class="help-block">:message</p>') !!}

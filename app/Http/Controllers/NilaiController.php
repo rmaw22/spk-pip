@@ -36,8 +36,22 @@ class NilaiController extends Controller
       students';
 
       $nilais = DB::SELECT($query);
-        // dd($nilais);
-        return view('adminpanel.nilai.index', compact('nilais'));
+      $data = [];
+      foreach ($nilais as $key => $value) {
+        $id_faktor = Nilai::where('nis',$value->nis)->select('id_faktor')->pluck('id_faktor')->toArray();
+        //get category
+        $category = DB::table('faktors')->whereIn('id_faktor',$id_faktor)->pluck('category');
+        //get category available
+        $categoryAvailable = DB::table('faktors')->whereNotIn('category',$category)->groupBy('category')->pluck('category');
+       
+          $data[$key]['id'] = $value->id;
+          $data[$key]['nis'] = $value->nis;
+          $data[$key]['nama_siswa'] = $value->nama_siswa;
+          $data[$key]['periode'] = $value->periode;
+          $data[$key]['category'] = $categoryAvailable;
+      }
+        // dd(json_encode($data,$nilais);
+        return view('adminpanel.nilai.index', compact('nilais','data'));
     }
     public function detail_score(Request $request)
     {
@@ -95,7 +109,9 @@ class NilaiController extends Controller
         $nilai->nis = $request->nis;
         $nilai->id_aspeks = $request->aspek;
         $nilai->id_faktor = $request->id_faktor;
-        $nilai->nilai = $request->nilai;
+        $nilai_faktor =  Faktor::where('id_faktor',$request->id_faktor)->first();
+        // $nilai->nilai = $request->nilai;
+        $nilai->nilai = $nilai_faktor->nilai_sub;
         $nilai->save();
         return redirect()->route('nilai.detail',[$request->nis])->with('alert-success', 'Berhasil Menambah Data');
     }
@@ -123,7 +139,7 @@ class NilaiController extends Controller
                 -> join('aspeks', 'nilais.id_aspeks', '=', 'aspeks.id_aspek')
                 -> join('faktors', 'nilais.id_faktor', '=', 'faktors.id_faktor')
                 -> where('nilais.id', '=', $id)
-                -> select('nilais.*', 'students.nis AS karyawan_id', 'students.nama AS karyawan_name', 'aspeks.id_aspek AS aspek_id', 'aspeks.aspek AS aspek_name', 'faktors.id_faktor AS faktor_id', 'faktors.faktor AS faktor_name')
+                -> select('nilais.*', 'students.nis AS students_id', 'students.nama AS students_name', 'aspeks.id_aspek AS aspek_id', 'aspeks.aspek AS aspek_name', 'faktors.id_faktor AS faktor_id', 'faktors.faktor AS faktor_name')
                 -> first();
         // dd($nilais->id_aspeks);
         $aspeks = Aspek::all();
@@ -189,5 +205,9 @@ class NilaiController extends Controller
         //  dd($categoryAvailable);
         //  $faktors = DB::table('faktors')->where("id_aspek",$id)->pluck('faktor', 'id_faktor');
          return json_encode($categoryAvailable);
+     }
+     public function getFaktorScore($id){
+        // $nilai->nilai = $request->nilai;
+         return Faktor::where('id_faktor',$id)->first()->nilai_sub;
      }
 }

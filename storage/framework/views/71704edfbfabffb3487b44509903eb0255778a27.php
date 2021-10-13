@@ -113,7 +113,7 @@
                         </div>
 
 
-                        <div class="form-group<?php echo $errors->has('nilai') ? ' has-error' : ''; ?>">
+                        <div class="form-group<?php echo $errors->has('nilai') ? ' has-error' : ''; ?>" style="display:none">
                             <?php echo e(Form::label('nilai', 'Nilai')); ?>
 
                             <?php echo e(Form::select('nilai', array('1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5'), null, ['class'=>'form-control', 'placeholder'=>'Pilih Nilai'])); ?>
@@ -163,7 +163,7 @@
                                 <td>Jenis Kriteria</td>
                                 <td>Sub Kriteria</td>
                                 <td>Nilai</td>
-                                <th class="nosort" width="1%">Action</th>
+                                <!-- <th class="nosort" width="1%">Action</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -178,10 +178,9 @@
                                 <td><?php echo e($nilai->aspek); ?></td>
                                 <td><?php echo e($nilai->faktor); ?></td>
                                 <td><?php echo e($nilai->nilai); ?></td>
-                                <td class="center" align="center">
-                                    <?php echo e(Html::linkRoute('nilai.edit', '', array($nilai->id), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit'))); ?>
-
-                                </td>
+                                <!-- <td class="center" align="center">
+                                    <?php /* Html::linkRoute('nilai.edit', '', array($nilai->id), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) */ ?>
+                                </td> -->
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -192,10 +191,9 @@
 
                                 </td>
                                 <td colspan="5"></td>
-                                <td align="center">
-                                    <?php echo e(Html::linkRoute('nilai.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus'))); ?>
-
-                                </td>
+                                <!-- <td align="center">
+                                    <?php /* Html::linkRoute('nilai.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus')) */ ?>
+                                </td> -->
                             </tr>
                          </tfoot>
                     </table>

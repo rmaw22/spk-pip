@@ -5,6 +5,7 @@
         padding:10px;
     }
 </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -14,18 +15,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Result</div>
                 <div class="panel-body table-responsive">
-                {{ Form::open(['route' => 'hasil.search','method'=>'GET']) }}
-                      
+                {{ Form::open(['route' => 'hasil.search','method'=>'GET']) }}                      
                         <div class="form-group{!! $errors->has('periode') ? ' has-error' : '' !!}">
                             {{ Form::label('periode', 'Tahun Periode') }}
                             <!-- <div class="input-group date"> -->
                             <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
-                                {{ Form::selectYear('periode', $get_tahun[0]->year_start, $get_tahun[0]->year_end,  date('Y'),['class' => 'form-control', '']) }}
-                              
-                            <!-- </div> -->
+                                {{-- Form::selectYear('periode', $get_tahun[0]->year_start, $get_tahun[0]->year_end,  date('Y'),['class' => 'form-control', '']) --}}
+                                <input type="text" class="form-control" name="periode" id="datepicker" value="{{date('Y')}}"/>
+                                <!-- </div> -->
                             {!! $errors->first('periode', '<p class="help-block">:message</p>') !!}
-                        </div>
-                        
+                        </div>                        
                         <div class="form-group">
                             {{ Form::submit('Cari', ['class'=>'btn btn-primary  btn-xs']) }}
                         </div>
@@ -206,8 +205,16 @@
 </div>
 @endsection
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
         $(function() {
+        $("#datepicker").datepicker({
+            format: "yyyy",
+            viewMode: "years", 
+            minViewMode: "years",
+            autoclose:true
+        });   
+
         $('#table-ranking').dataTable( {
             dom: 'Bfrtip',
             buttons: [

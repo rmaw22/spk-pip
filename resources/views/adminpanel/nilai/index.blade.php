@@ -35,18 +35,18 @@
                         </thead>
                         <tbody>
                             <?php $no=1; ?>
-                            @foreach($nilais as $nilai)
+                            @foreach($data as $nilai)
                             <tr>
                                 <td>
-                                    <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="{{ $nilai->id }}" />
+                                    <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="{{ $nilai['id'] }}" />
                                 </td>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $nilai->nis }}</td>
-                                <td>{{ $nilai->nama_siswa }}</td>
-                                <td>{{ $nilai->periode}}</td>
-                                <td>{!! ($nilai->status_penilaian == 0) ? '<span class="text-danger">Not Completed </span>':'<span class="text-info">Completed</span>' !!}</td>
+                                <td>{{ $nilai['nis'] }} </td>
+                                <td>{{ $nilai['nama_siswa'] }}</td>
+                                <td>{{ $nilai['periode']}}</td>
+                                <td>{!! (count($nilai['category']) > 0) ? '<span class="text-danger">Not Completed </span>':'<span class="text-info">Completed</span>' !!}</td>
                                 <td class="center" align="center">
-                                    {{ Html::linkRoute('nilai.detail', '', array($nilai->nis), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
+                                    {{ Html::linkRoute('nilai.detail', '', array($nilai['nis']), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
                                 </td>
                             </tr>
                             @endforeach

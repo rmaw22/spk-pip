@@ -37,18 +37,18 @@
                         </thead>
                         <tbody>
                             <?php $no=1; ?>
-                            <?php foreach($nilais as $nilai): ?>
+                            <?php foreach($data as $nilai): ?>
                             <tr>
                                 <td>
-                                    <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="<?php echo e($nilai->id); ?>" />
+                                    <input type="checkbox" id="checkItem" name="checkItem[]" class="checkGroup" value="<?php echo e($nilai['id']); ?>" />
                                 </td>
                                 <td><?php echo e($no++); ?></td>
-                                <td><?php echo e($nilai->nis); ?></td>
-                                <td><?php echo e($nilai->nama_siswa); ?></td>
-                                <td><?php echo e($nilai->periode); ?></td>
-                                <td><?php echo ($nilai->status_penilaian == 0) ? '<span class="text-danger">Not Completed </span>':'<span class="text-info">Completed</span>'; ?></td>
+                                <td><?php echo e($nilai['nis']); ?> </td>
+                                <td><?php echo e($nilai['nama_siswa']); ?></td>
+                                <td><?php echo e($nilai['periode']); ?></td>
+                                <td><?php echo (count($nilai['category']) > 0) ? '<span class="text-danger">Not Completed </span>':'<span class="text-info">Completed</span>'; ?></td>
                                 <td class="center" align="center">
-                                    <?php echo e(Html::linkRoute('nilai.detail', '', array($nilai->nis), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit'))); ?>
+                                    <?php echo e(Html::linkRoute('nilai.detail', '', array($nilai['nis']), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit'))); ?>
 
                                 </td>
                             </tr>

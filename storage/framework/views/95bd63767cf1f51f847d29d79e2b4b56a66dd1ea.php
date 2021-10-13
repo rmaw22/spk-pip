@@ -8,16 +8,11 @@
                 <div class="panel-body table-responsive">
                     <?php echo e(Form::model($nilais, ['route'=>['nilai.update', $nilais->id], 'method'=>'PATCH'])); ?>
 
-                    <div class="form-group<?php echo $errors->has('nis') ? ' has-error' : ''; ?>">
+                    <div class="form-group<?php echo $errors->has('nis') ? ' has-error' : ''; ?>" style="display:none">
                         <?php echo e(Form::label('nis','Nama Siswa' , ['class' => 'control-label'])); ?>
 
                         <select id="nis" class="form-control" name="nis" required="required">
-                            <option selected="selected" value="<?php echo e($nilais->karyawan_id); ?>"><?php echo e($nilais->karyawan_name); ?></option>
-                            <?php foreach($siswas as $siswa): ?>
-                                <?php if ( ! ($siswa->nis === $nilais->karyawan_id)): ?>
-                                    <option value=<?php echo e($siswa->nis); ?>><?php echo e($siswa->nama); ?></option>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+                            <option selected="selected" value="<?php echo e($nilais->students_id); ?>"><?php echo e($nilais->students_name); ?></option>
                         </select>
                     <?php echo $errors->first('nis', '<p class="help-block">:message</p>'); ?>
 
@@ -34,6 +29,16 @@
                             <?php endforeach; ?>
                         </select>
                         <?php echo $errors->first('aspek', '<p class="help-block">:message</p>'); ?>
+
+                    </div>
+                    <div class="form-group<?php echo $errors->has('category') ? ' has-error' : ''; ?>">
+                        <?php echo e(Form::label('category', 'Jenis Kategory')); ?>
+
+                        <select name="category" id="category" class="form-control" required="required">
+                          <option value="">--- Pilih Category ---</option>
+                          
+                        </select>
+                        <?php echo $errors->first('category', '<p class="help-block">:message</p>'); ?>
 
                     </div>
                     <div class="form-group<?php echo $errors->has('id_faktor') ? ' has-error' : ''; ?>">
@@ -56,39 +61,7 @@
                     <div class="form-group<?php echo $errors->has('nilai') ? ' has-error' : ''; ?>">
                     <?php echo e(Form::label('nilai', 'Nilai')); ?>
 
-                        <select name="nilai" class="form-control" required="required">
-                            <?php if($nilais->nilai == '1'): ?>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">5</option>
-                            <option value="5">5</option>
-                        <?php elseif($nilais->nilai == '2'): ?>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="1">1</option>
-                        <?php elseif($nilais->nilai == '3'): ?>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        <?php elseif($nilais->nilai == '4'): ?>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        <?php elseif($nilais->nilai == '5'): ?>
-                            <option value="5">5</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        <?php endif; ?>
-                        </select>
+                        <input type="number" name="nilai" id="nilai" value="<?php echo e($nilais->nilai); ?>" min=0 class="form-control">
                     <?php echo $errors->first('nilai', '<p class="help-block">:message</p>'); ?>
 
                     </div>
@@ -111,20 +84,76 @@
         $("#aspek").click(function(){
         // $('#aspek').on('change', function() {
             var aspekID = $(this).val();
+            var nis = $('select[name="nis"]').val();
             if(aspekID) {
                 $.ajax({
-                    url: '/nilai/edit/'+aspekID,
+                    url: '/nilai/category/'+aspekID,
                     type: "GET",
                     dataType: "json",
+                    data : {
+                        nis_siswa : nis
+                    },
                     success:function(data) {
-                        $('select[name="id_faktor"]').empty();
+                        $('select[name="category"]').empty();
+                        $('select[name="category"]').append('<option value="">--- Pilih Category ---</option>');
                         $.each(data, function(aspek, value) {
-                            $('select[name="id_faktor"]').append('<option value="'+ aspek +'">'+ value +'</option>');
+                            
+                            $('select[name="category"]').append('<option value="'+ value +'">'+ value +'</option>');
                         });
                     }
                 });
             }else{
-                $('select[name="id_faktor"]').empty();
+                $('select[name="category"]').empty();
+            }
+        });
+        $('select[name="category"]').on('change', function() {
+            var CategoryID = $(this).val();
+            console.log(CategoryID);
+            var nis = $('select[name="nis"]').val();
+            var aspek = $('select[name="aspek"]').find(":selected").val();
+            if(aspek) {
+                $.ajax({
+                    url: '/nilai/edit/'+aspek,
+                    type: "GET",
+                    dataType: "json",
+                    data : {
+                        nis_siswa : nis,
+                        category_faktor: CategoryID
+                    },
+                    success:function(data) {
+                        if (data.length == 0) {
+                            
+                        }else{
+                            $('select[name="id_faktor"]').empty();
+
+                        }
+                        
+                        $.each(data, function(aspek, value) {
+                            $('select[name="id_faktor"]').append('<option value="'+ aspek +'">'+ value +'</option>');
+                        });
+                    },error: function(data){
+                        console.log(data);
+                    }
+                });
+            }else{
+                // $('select[name="id_faktor"]').empty();
+            }
+        });
+        $("#id_faktor").click(function(){
+            var fakID = $(this).val();
+            if(fakID) {
+                $.ajax({
+                    url: '/nilai/getFaktorScore/'+fakID,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                        console.log(data);
+                        $('#nilai').empty();
+                        $('#nilai').val(data);
+                    }
+                });
+            }else{
+                $('#nilai').empty();
             }
         });
     });
