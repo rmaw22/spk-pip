@@ -2,19 +2,19 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('select[name="aspek"]').on('change', function() {
-            console.log('cek');
+            // console.log('cek');
             var aspekID = $(this).val();
             if(aspekID) {
                 $.ajax({
                     url: '/nilai/getCategory/'+aspekID,
                     type: "GET",
                     dataType: "json",
-                    success:function(data) {
-                        // console.log(data);
+                    success:function(data) {                        
                         $('select[name="category"]').empty();
                         $.each(data, function(aspek, value) {
-                            
-                            $('select[name="category"]').append('<option value="'+ value +'">'+ value +'</option>');
+                            // console.log(value);
+                            $('select[name="category"]').append('<option value="'+ value.category +'">'+ value.category +'</option>');
+                            // $('#nilai_ideal').val(value.nilai_ideal);
                         });
                     },error: function(data){
                         console.log(data);
@@ -82,6 +82,7 @@
                         <?php echo e(Form::button('Batal', ['class'=>'btn btn-danger btn-xs', 'onClick'=>'history.back();'])); ?>
 
                     </div>
+                    <!-- <input type="hidden" name="nilai_ideal" id="nilai_ideal"> -->
                     <?php echo e(Form::close()); ?>
 
                 </div>

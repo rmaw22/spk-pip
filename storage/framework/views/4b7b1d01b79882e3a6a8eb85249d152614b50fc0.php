@@ -1,7 +1,7 @@
 <?php $__env->startSection('css'); ?>
 <style>
-    #table-ranking td{
-        padding:10px;
+    #table-ranking td {
+        padding: 10px;
     }
 </style>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
@@ -14,25 +14,26 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Result</div>
                 <div class="panel-body table-responsive">
-                <?php echo e(Form::open(['route' => 'hasil.search','method'=>'GET'])); ?>                      
-                        <div class="form-group<?php echo $errors->has('periode') ? ' has-error' : ''; ?>">
-                            <?php echo e(Form::label('periode', 'Tahun Periode')); ?>
+                    <?php echo e(Form::open(['route' => 'hasil.search','method'=>'GET'])); ?>
 
-                            <!-- <div class="input-group date"> -->
-                            <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
-                                <?php /* Form::selectYear('periode', $get_tahun[0]->year_start, $get_tahun[0]->year_end,  date('Y'),['class' => 'form-control', '']) */ ?>
-                                <input type="text" class="form-control" name="periode" id="datepicker" value="<?php echo e(date('Y')); ?>" onkeypress='validate(event)'/>
-                                <!-- </div> -->
-                            <?php echo $errors->first('periode', '<p class="help-block">:message</p>'); ?>
+                    <div class="form-group<?php echo $errors->has('periode') ? ' has-error' : ''; ?>">
+                        <?php echo e(Form::label('periode', 'Tahun Periode')); ?>
 
-                        </div>                        
-                        <div class="form-group">
-                            <?php echo e(Form::submit('Cari', ['class'=>'btn btn-primary  btn-xs'])); ?>
+                        <!-- <div class="input-group date"> -->
+                        <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
+                        <?php /* Form::selectYear('periode', $get_tahun[0]->year_start, $get_tahun[0]->year_end,  date('Y'),['class' => 'form-control', '']) */ ?>
+                        <input type="text" class="form-control allownumericwithoutdecimal" name="periode" id="datepicker" value="<?php echo e(date('Y')); ?>" />
+                        <!-- </div> -->
+                        <?php echo $errors->first('periode', '<p class="help-block">:message</p>'); ?>
 
-                        </div>
+                    </div>
+                    <div class="form-group">
+                        <?php echo e(Form::submit('Cari', ['class'=>'btn btn-primary  btn-xs'])); ?>
+
+                    </div>
                     <?php echo e(Form::close()); ?>
 
-                    <hr/>
+                    <hr />
                     <!-- <center><h4><b><br>Skala<br><br></b></h1></center>
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -45,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             <?php foreach($result1 as $hsl): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
@@ -57,7 +58,9 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table> -->
-                    <center><h4><b><br>Hasil<br><br></b></h1></center>
+                    <center>
+                        <h4><b><br>Hasil<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -71,7 +74,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             <?php foreach($result as $hsl): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
@@ -84,7 +87,10 @@
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
-                    </table><center><h4><b><br>Nilai Bobot<br><br></b></h1></center>
+                    </table>
+                    <center>
+                        <h4><b><br>Nilai Bobot<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -98,7 +104,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             <?php foreach($result as $hsl1): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
@@ -111,7 +117,10 @@
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
-                    </table><center><h4><b><br>Nilai Core Secondary<br><br></b></h1></center>
+                    </table>
+                    <center>
+                        <h4><b><br>Nilai Core Secondary<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -122,7 +131,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             <?php foreach($result2 as $hsl2): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
@@ -133,7 +142,9 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <center><h4><b><br>Nilai Total<br><br></b></h1></center>
+                    <center>
+                        <h4><b><br>Nilai Total<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -147,7 +158,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             <?php foreach($Nilai_total as $total): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
@@ -161,8 +172,10 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table><br>
-                    <center><h4><b><br>Ranking<br><br></b></h1></center>
-                    <table class="table-bordered table-striped" id="table-ranking" width="100%" >
+                    <center>
+                        <h4><b><br>Ranking<br><br></b></h1>
+                    </center>
+                    <table class="table-bordered table-striped" id="table-ranking" width="100%">
                         <thead>
                             <tr>
                                 <td>Rangking</td>
@@ -174,7 +187,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             <?php foreach($result3 as $hsl3): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
@@ -195,10 +208,10 @@
                     </div><br> -->
                     <div class="text-center">
                         <a href="<?php echo e(route('export.excel')); ?>">
-                        <button class="btn btn-primary btn-xs">Download Excel</button>
+                            <button class="btn btn-primary btn-xs">Download Excel</button>
                         </a>
                         <a href="#">
-                        <button class="btn btn-default btn-xs">Download PDF</button>
+                            <button class="btn btn-default btn-xs">Download PDF</button>
                         </a>
                     </div>
                 </div>
@@ -210,61 +223,41 @@
 <?php $__env->startSection('js'); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
-        $(function() {
+    $(function() {
         $("#datepicker").datepicker({
             format: "yyyy",
-            viewMode: "years", 
+            viewMode: "years",
             minViewMode: "years",
-            autoclose:true
-        });   
-
-        $('#table-ranking').dataTable( {
+            autoclose: true
+        });
+        $('#table-ranking').dataTable({
             dom: 'Bfrtip',
-            buttons: [
-                {
-                    text:'Download PDF Document',
-                    extend: 'pdfHtml5',
-                    title:'Ranking Siswa Berdasarkan Profile Matching',
-                    download: 'open',
-                    pageSize: 'A4',
-                    alignment: "center",
-                    customize: function (doc) {
-                        doc.defaultStyle.fontSize = 11; //2, 3, 4,etc
-                        doc.styles.tableHeader.alignment = 'center';
-                        doc.styles.tableBodyEven.padding = [10, 10, 10, 10];
-                        // doc.defaultStyle.alignment = 'center';
-                           doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
-                           doc.content[1].table.widths = [ '15%',  '25%', '20%', '20%', 
-                                                           '20%', '14%', '14%', '14%'];
-                        //    doc.styles.td.padding = 10;
-                          }
+            buttons: [{
+                text: 'Download PDF Document',
+                extend: 'pdfHtml5',
+                title: 'Ranking Siswa Berdasarkan Profile Matching',
+                download: 'open',
+                pageSize: 'A4',
+                alignment: "center",
+                customize: function(doc) {
+                    doc.defaultStyle.fontSize = 11; //2, 3, 4,etc
+                    doc.styles.tableHeader.alignment = 'center';
+                    doc.styles.tableBodyEven.padding = [10, 10, 10, 10];
+                    // doc.defaultStyle.alignment = 'center';
+                    doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                    doc.content[1].table.widths = ['15%', '25%', '20%', '20%',
+                        '20%', '14%', '14%', '14%'
+                    ];
                 }
-            ],
+            }],
             "order": [],
-            "columnDefs": [ {
-                "targets"  : 'nosort',
+            "columnDefs": [{
+                "targets": 'nosort',
                 "orderable": false,
             }]
-        } );
-        function validate(evt) {
-            var theEvent = evt || window.event;
-
-            // Handle paste
-            if (theEvent.type === 'paste') {
-                key = event.clipboardData.getData('text/plain');
-            } else {
-            // Handle key press
-                var key = theEvent.keyCode || theEvent.which;
-                key = String.fromCharCode(key);
-            }
-            var regex = /[0-9]|\./;
-            if( !regex.test(key) ) {
-                theEvent.returnValue = false;
-                if(theEvent.preventDefault) theEvent.preventDefault();
-            }
-        }
         });
-    </script>
+        
+    });
+</script>
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
