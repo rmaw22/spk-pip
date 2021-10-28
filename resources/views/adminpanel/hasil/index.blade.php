@@ -122,8 +122,9 @@
                             <tr>
                                 <td>No</td>
                                 <td>Nama Siswa</td>
-                                <td>Nilai Core</td>
-                                <td>Nilai Secondary</td>
+                                <td>Jenis Aspek</td>
+                                <td>Nilai Core (NCF)</td>
+                                <td>Nilai Secondary (NSF)</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -132,6 +133,7 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $hsl2->nama }}</td>
+                                <td>{{ $hsl2->aspek }}</td>
                                 <td>{{ $hsl2->core }}</td>
                                 <td>{{ $hsl2->secondary }}</td>
                             </tr>
@@ -184,13 +186,13 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($result3 as $hsl3)
+                            @foreach ($nilai_rangking as $hsl3)
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $hsl3->nama }}</td>
-                                <td>{{ $hsl3->Ni }}</td>
-                                <td>{{ $hsl3->Ns }}</td>
-                                <!-- <td>{{ $hsl3->Np }}</td> -->
+                                <td>{{ $hsl3->NK }}</td>
+                                <td>{{ $hsl3->NS }}</td>
+                                <!-- <td>{{-- $hsl3->Np --}}</td> -->
                                 <td>{{ $hsl3->Hasil }}</td>
                             </tr>
                             @endforeach

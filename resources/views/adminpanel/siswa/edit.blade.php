@@ -18,8 +18,9 @@
                             {{ Form::label('periode', 'Tahun Periode') }}
                             <!-- <div class="input-group date"> -->
                             <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
-                                {{ Form::selectYear('periode', date("Y", strtotime('-50 years')), date("Y", strtotime('+3 years')),  $siswas->periode,['class' => 'form-control', 'placeholder' => 'Masukkan Tahun Periode', '']) }}
-                              
+                                {{-- Form::selectYear('periode', date("Y", strtotime('-50 years')), date("Y", strtotime('+3 years')),  $siswas->periode,['class' => 'form-control', 'placeholder' => 'Masukkan Tahun Periode', '']) --}}
+                                <input type="text" class="form-control allownumericwithoutdecimal" name="periode" id="datepicker" placeholder="Masukkan Tahun Periode" value="{{$siswas->periode}}"/>
+
                             <!-- </div> -->
                             {!! $errors->first('periode', '<p class="help-block">:message</p>') !!}
                         </div>
@@ -106,4 +107,16 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script type="text/javascript">
+    $(function() {
+        $("#datepicker").datepicker({
+            format: "yyyy",
+            viewMode: "years",
+            minViewMode: "years",
+            autoclose: true
+        });
+    });
+</script>
 @endsection

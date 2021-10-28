@@ -1,13 +1,12 @@
-@extends('layouts.app')
-@section('css')
+<?php $__env->startSection('css'); ?>
 <style>
     #table-ranking td{
         padding:10px;
     }
 </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -32,17 +31,17 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($result as $hsl)
+                            <?php foreach($result as $hsl): ?>
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $hsl->nama }}</td>
-                                <td>{{ $hsl->aspek }}</td>
-                                <td>{{ $hsl->faktor }}</td>
-                                <td>{{ $hsl->nilai }}</td>
-                                <td>{{ $hsl->nilai_ideal }}</td>
-                                <td>{{ $hsl->hasil }}</td>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($hsl->nama); ?></td>
+                                <td><?php echo e($hsl->aspek); ?></td>
+                                <td><?php echo e($hsl->faktor); ?></td>
+                                <td><?php echo e($hsl->nilai); ?></td>
+                                <td><?php echo e($hsl->nilai_ideal); ?></td>
+                                <td><?php echo e($hsl->hasil); ?></td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                     <center>
@@ -62,17 +61,17 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($result as $hsl1)
+                            <?php foreach($result as $hsl1): ?>
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $hsl1->nama }}</td>
-                                <td>{{ $hsl1->aspek }}</td>
-                                <td>{{ $hsl1->faktor }}</td>
-                                <td>{{ $hsl1->bobot }}</td>
-                                <td>{{ $hsl1->hasil }}</td>
-                                <td>{{ $hsl1->kelompok}}</td>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($hsl1->nama); ?></td>
+                                <td><?php echo e($hsl1->aspek); ?></td>
+                                <td><?php echo e($hsl1->faktor); ?></td>
+                                <td><?php echo e($hsl1->bobot); ?></td>
+                                <td><?php echo e($hsl1->hasil); ?></td>
+                                <td><?php echo e($hsl1->kelompok); ?></td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                     <center>
@@ -90,15 +89,15 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($result2 as $hsl2)
+                            <?php foreach($result2 as $hsl2): ?>
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $hsl2->nama }}</td>
-                                <td>{{ $hsl2->aspek }}</td>
-                                <td>{{ $hsl2->core }}</td>
-                                <td>{{ $hsl2->secondary }}</td>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($hsl2->nama); ?></td>
+                                <td><?php echo e($hsl2->aspek); ?></td>
+                                <td><?php echo e($hsl2->core); ?></td>
+                                <td><?php echo e($hsl2->secondary); ?></td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                     <center>
@@ -118,17 +117,17 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($Nilai_total as $total)
+                            <?php foreach($Nilai_total as $total): ?>
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $total->nama }}</td>
-                                <td>{{ $total->aspek }}</td>
-                                <td>{{ $total->NCF }}</td>
-                                <td>{{ $total->NSF }}</td>
-                                <td>{{ ($total->N_K == NULL) ? '-' : $total->N_K }}</td>
-                                <td>{{ ($total->N_S == NULL) ? '-' : $total->N_S }}</td>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($total->nama); ?></td>
+                                <td><?php echo e($total->aspek); ?></td>
+                                <td><?php echo e($total->NCF); ?></td>
+                                <td><?php echo e($total->NSF); ?></td>
+                                <td><?php echo e(($total->N_K == NULL) ? '-' : $total->N_K); ?></td>
+                                <td><?php echo e(($total->N_S == NULL) ? '-' : $total->N_S); ?></td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; ?>
                         </tbody>
                     </table><br>
                     <center>
@@ -147,46 +146,39 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($nilai_rangking as $hsl3)
+                            <?php foreach($nilai_rangking as $hsl3): ?>
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $hsl3->nama }}</td>
-                                <td>{{ $hsl3->NK }}</td>
-                                <td>{{ $hsl3->NS }}</td>
-                                <!-- <td>{{-- $hsl3->Np --}}</td> -->
-                                <td>{{ $hsl3->Hasil }}</td>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($hsl3->nama); ?></td>
+                                <td><?php echo e($hsl3->NK); ?></td>
+                                <td><?php echo e($hsl3->NS); ?></td>
+                                <!-- <td><?php /* $hsl3->Np */ ?></td> -->
+                                <td><?php echo e($hsl3->Hasil); ?></td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; ?>
                         </tbody>
                     </table><br><br><br>
                     <!-- <div class="text-center">
                         <h4>Manager</h4>
                         <br><br><br>
-<<<<<<< HEAD
-                        <h4><u>{{ $managers->nama }}</u></h4>
-                        <h4>{{ $managers->nip }}</h4>
-                    </div><br> -->
-                    {{-- <div class="text-center">
-=======
-                        <h4><u>{{-- $managers->nama --}}</u></h4>
-                        <h4>{{-- $managers->nip --}}</h4>
+                        <h4><u><?php /* $managers->nama */ ?></u></h4>
+                        <h4><?php /* $managers->nip */ ?></h4>
                     </div><br> -->
                     <div class="text-center">
->>>>>>> main
-                        <a href="{{ route('export.excel') }}">
+                        <a href="<?php echo e(route('export.excel')); ?>">
                             <button class="btn btn-primary btn-xs">Download Excel</button>
                         </a>
                         <a href="#">
                             <button class="btn btn-default btn-xs">Download PDF</button>
                         </a>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
     $(function() {
@@ -198,25 +190,22 @@
         });
         $('#table-ranking').dataTable({
             dom: 'Bfrtip',
-            buttons: [
-                {
-                    text:'Download PDF Document',
-                    extend: 'pdfHtml5',
-                    title:'Ranking Siswa',
-                    download: 'open',
-                    pageSize: 'A4',
-                    alignment: "center",
-                    customize: function (doc) {
-                        doc.defaultStyle.fontSize = 11; //2, 3, 4,etc
-                        doc.styles.tableHeader.alignment = 'center';
-                        doc.styles.tableBodyEven.padding = [10, 10, 10, 10];
-                        // doc.defaultStyle.alignment = 'center';
-                           doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
-                           doc.content[1].table.widths = [ '15%',  '25%', '20%', '20%', 
-                                                           '20%', '14%', '14%', '14%'];
-                        //    doc.styles.td.padding = 10;
-                          }
-
+            buttons: [{
+                text: 'Download PDF Document',
+                extend: 'pdfHtml5',
+                title: 'Ranking Siswa Berdasarkan Profile Matching',
+                download: 'open',
+                pageSize: 'A4',
+                alignment: "center",
+                customize: function(doc) {
+                    doc.defaultStyle.fontSize = 11; //2, 3, 4,etc
+                    doc.styles.tableHeader.alignment = 'center';
+                    doc.styles.tableBodyEven.padding = [10, 10, 10, 10];
+                    // doc.defaultStyle.alignment = 'center';
+                    doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                    doc.content[1].table.widths = ['15%', '25%', '20%', '20%',
+                        '20%', '14%', '14%', '14%'
+                    ];
                 }
             }],
             "order": [],
@@ -228,4 +217,5 @@
         
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

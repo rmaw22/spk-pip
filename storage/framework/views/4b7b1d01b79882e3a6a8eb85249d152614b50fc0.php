@@ -1,23 +1,63 @@
-@extends('layouts.app')
-@section('css')
+<?php $__env->startSection('css'); ?>
 <style>
-    #table-ranking td{
-        padding:10px;
+    #table-ranking td {
+        padding: 10px;
     }
 </style>
-@endsection
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Result</div>
                 <div class="panel-body table-responsive">
-                   <h2><b>Tahun Periode : {{$periode}}</b></h2>  
-                 <a href="{{route('hasil.index')}}" class="btn btn-success">Kembali</a>
-                    <hr/>
-                   
+                    <?php echo e(Form::open(['route' => 'hasil.search','method'=>'GET'])); ?>
+
+                    <div class="form-group<?php echo $errors->has('periode') ? ' has-error' : ''; ?>">
+                        <?php echo e(Form::label('periode', 'Tahun Periode')); ?>
+
+                        <!-- <div class="input-group date"> -->
+                        <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
+                        <?php /* Form::selectYear('periode', $get_tahun[0]->year_start, $get_tahun[0]->year_end,  date('Y'),['class' => 'form-control', '']) */ ?>
+                        <input type="text" class="form-control allownumericwithoutdecimal" name="periode" id="datepicker" value="<?php echo e(date('Y')); ?>" />
+                        <!-- </div> -->
+                        <?php echo $errors->first('periode', '<p class="help-block">:message</p>'); ?>
+
+                    </div>
+                    <div class="form-group">
+                        <?php echo e(Form::submit('Cari', ['class'=>'btn btn-primary  btn-xs'])); ?>
+
+                    </div>
+                    <?php echo e(Form::close()); ?>
+
+                    <hr />
+                    <!-- <center><h4><b><br>Skala<br><br></b></h1></center>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <td width="1%">No</td>
+                                <td>NIS</td>
+                                <td>Jenis Kriteria</td>
+                                <td>Sub Kriteria</td>
+                                <td>Skala</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $no = 1; ?>
+                            <?php foreach($result1 as $hsl): ?>
+                            <tr>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($hsl->nama); ?></td>
+                                <td><?php echo e($hsl->aspek); ?></td>
+                                <td><?php echo e($hsl->faktor); ?></td>
+                                <td><?php echo e($hsl->nama); ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table> -->
                     <center>
                         <h4><b><br>Hasil<br><br></b></h1>
                     </center>
@@ -35,17 +75,17 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($result as $hsl)
+                            <?php foreach($result as $hsl): ?>
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $hsl->nama }}</td>
-                                <td>{{ $hsl->aspek }}</td>
-                                <td>{{ $hsl->faktor }}</td>
-                                <td>{{ $hsl->nilai }}</td>
-                                <td>{{ $hsl->nilai_ideal }}</td>
-                                <td>{{ $hsl->hasil }}</td>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($hsl->nama); ?></td>
+                                <td><?php echo e($hsl->aspek); ?></td>
+                                <td><?php echo e($hsl->faktor); ?></td>
+                                <td><?php echo e($hsl->nilai); ?></td>
+                                <td><?php echo e($hsl->nilai_ideal); ?></td>
+                                <td><?php echo e($hsl->hasil); ?></td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                     <center>
@@ -65,17 +105,17 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($result as $hsl1)
+                            <?php foreach($result as $hsl1): ?>
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $hsl1->nama }}</td>
-                                <td>{{ $hsl1->aspek }}</td>
-                                <td>{{ $hsl1->faktor }}</td>
-                                <td>{{ $hsl1->bobot }}</td>
-                                <td>{{ $hsl1->hasil }}</td>
-                                <td>{{ $hsl1->kelompok}}</td>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($hsl1->nama); ?></td>
+                                <td><?php echo e($hsl1->aspek); ?></td>
+                                <td><?php echo e($hsl1->faktor); ?></td>
+                                <td><?php echo e($hsl1->bobot); ?></td>
+                                <td><?php echo e($hsl1->hasil); ?></td>
+                                <td><?php echo e($hsl1->kelompok); ?></td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                     <center>
@@ -93,15 +133,15 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($result2 as $hsl2)
+                            <?php foreach($result2 as $hsl2): ?>
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $hsl2->nama }}</td>
-                                <td>{{ $hsl2->aspek }}</td>
-                                <td>{{ $hsl2->core }}</td>
-                                <td>{{ $hsl2->secondary }}</td>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($hsl2->nama); ?></td>
+                                <td><?php echo e($hsl2->aspek); ?></td>
+                                <td><?php echo e($hsl2->core); ?></td>
+                                <td><?php echo e($hsl2->secondary); ?></td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                     <center>
@@ -121,17 +161,17 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($Nilai_total as $total)
+                            <?php foreach($Nilai_total as $total): ?>
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $total->nama }}</td>
-                                <td>{{ $total->aspek }}</td>
-                                <td>{{ $total->NCF }}</td>
-                                <td>{{ $total->NSF }}</td>
-                                <td>{{ ($total->N_K == NULL) ? '-' : $total->N_K }}</td>
-                                <td>{{ ($total->N_S == NULL) ? '-' : $total->N_S }}</td>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($total->nama); ?></td>
+                                <td><?php echo e($total->aspek); ?></td>
+                                <td><?php echo e($total->NCF); ?></td>
+                                <td><?php echo e($total->NSF); ?></td>
+                                <td><?php echo e(($total->N_K == NULL) ? '-' : $total->N_K); ?></td>
+                                <td><?php echo e(($total->N_S == NULL) ? '-' : $total->N_S); ?></td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; ?>
                         </tbody>
                     </table><br>
                     <center>
@@ -150,39 +190,39 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            @foreach ($nilai_rangking as $hsl3)
+                            <?php foreach($nilai_rangking as $hsl3): ?>
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $hsl3->nama }}</td>
-                                <td>{{ $hsl3->NK }}</td>
-                                <td>{{ $hsl3->NS }}</td>
-                                <!-- <td>{{-- $hsl3->Np --}}</td> -->
-                                <td>{{ $hsl3->Hasil }}</td>
+                                <td><?php echo e($no++); ?></td>
+                                <td><?php echo e($hsl3->nama); ?></td>
+                                <td><?php echo e($hsl3->NK); ?></td>
+                                <td><?php echo e($hsl3->NS); ?></td>
+                                <!-- <td><?php /* $hsl3->Np */ ?></td> -->
+                                <td><?php echo e($hsl3->Hasil); ?></td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; ?>
                         </tbody>
                     </table><br><br><br>
                     <!-- <div class="text-center">
                         <h4>Manager</h4>
                         <br><br><br>
-                        <h4><u>{{-- $managers->nama --}}</u></h4>
-                        <h4>{{-- $managers->nip --}}</h4>
+                        <h4><u><?php /* $managers->nama */ ?></u></h4>
+                        <h4><?php /* $managers->nip */ ?></h4>
                     </div><br> -->
-                    {{-- <div class="text-center">
-                        <a href="{{ route('export.excel') }}">
+                    <div class="text-center">
+                        <a href="<?php echo e(route('export.excel')); ?>">
                             <button class="btn btn-primary btn-xs">Download Excel</button>
                         </a>
                         <a href="#">
                             <button class="btn btn-default btn-xs">Download PDF</button>
                         </a>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
     $(function() {
@@ -197,7 +237,7 @@
             buttons: [{
                 text: 'Download PDF Document',
                 extend: 'pdfHtml5',
-                title: 'Ranking Siswa',
+                title: 'Ranking Siswa Berdasarkan Profile Matching',
                 download: 'open',
                 pageSize: 'A4',
                 alignment: "center",
@@ -221,4 +261,5 @@
         
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
