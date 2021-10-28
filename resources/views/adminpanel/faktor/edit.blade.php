@@ -16,7 +16,7 @@
                         $('select[name="category"]').empty();
                         $.each(data, function(aspek, value) {
                             
-                            $('select[name="category"]').append('<option value="'+ value +'">'+ value +'</option>');
+                            $('select[name="category"]').append('<option value="'+ value.category +'">'+ value.category +'</option>');
                         });
                     },error: function(data){
                         console.log(data);
