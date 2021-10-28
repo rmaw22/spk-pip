@@ -126,8 +126,9 @@
                             <tr>
                                 <td>No</td>
                                 <td>Nama Siswa</td>
-                                <td>Nilai Core</td>
-                                <td>Nilai Secondary</td>
+                                <td>Jenis Aspek</td>
+                                <td>Nilai Core (NCF)</td>
+                                <td>Nilai Secondary (NSF)</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -136,6 +137,7 @@
                             <tr>
                                 <td><?php echo e($no++); ?></td>
                                 <td><?php echo e($hsl2->nama); ?></td>
+                                <td><?php echo e($hsl2->aspek); ?></td>
                                 <td><?php echo e($hsl2->core); ?></td>
                                 <td><?php echo e($hsl2->secondary); ?></td>
                             </tr>
@@ -188,13 +190,13 @@
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
-                            <?php foreach($result3 as $hsl3): ?>
+                            <?php foreach($nilai_rangking as $hsl3): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
                                 <td><?php echo e($hsl3->nama); ?></td>
-                                <td><?php echo e($hsl3->Ni); ?></td>
-                                <td><?php echo e($hsl3->Ns); ?></td>
-                                <!-- <td><?php echo e($hsl3->Np); ?></td> -->
+                                <td><?php echo e($hsl3->NK); ?></td>
+                                <td><?php echo e($hsl3->NS); ?></td>
+                                <!-- <td><?php /* $hsl3->Np */ ?></td> -->
                                 <td><?php echo e($hsl3->Hasil); ?></td>
                             </tr>
                             <?php endforeach; ?>

@@ -17,7 +17,9 @@
                  <a href="<?php echo e(route('hasil.index')); ?>" class="btn btn-success">Kembali</a>
                     <hr/>
                    
-                    <center><h4><b><br>Hasil<br><br></b></h1></center>
+                    <center>
+                        <h4><b><br>Hasil<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -25,13 +27,13 @@
                                 <td>Nama Siswa</td>
                                 <td>Jenis Kriteria</td>
                                 <td>Sub Kriteria</td>
-                                <td>Nilai Ideal</td>
                                 <td>Nilai Siswa</td>
+                                <td>Nilai Ideal</td>
                                 <td>Nilai Gap</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             <?php foreach($result as $hsl): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
@@ -39,12 +41,15 @@
                                 <td><?php echo e($hsl->aspek); ?></td>
                                 <td><?php echo e($hsl->faktor); ?></td>
                                 <td><?php echo e($hsl->nilai); ?></td>
-                                <td><?php echo e($hsl->nilai_sub); ?></td>
+                                <td><?php echo e($hsl->nilai_ideal); ?></td>
                                 <td><?php echo e($hsl->hasil); ?></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
-                    </table><center><h4><b><br>Nilai Bobot<br><br></b></h1></center>
+                    </table>
+                    <center>
+                        <h4><b><br>Nilai Bobot<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -58,7 +63,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             <?php foreach($result as $hsl1): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
@@ -71,29 +76,36 @@
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
-                    </table><center><h4><b><br>Nilai Core Secondary<br><br></b></h1></center>
+                    </table>
+                    <center>
+                        <h4><b><br>Nilai Core Secondary<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <td>No</td>
                                 <td>Nama Siswa</td>
-                                <td>Nilai Core</td>
-                                <td>Nilai Secondary</td>
+                                <td>Jenis Aspek</td>
+                                <td>Nilai Core (NCF)</td>
+                                <td>Nilai Secondary (NSF)</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             <?php foreach($result2 as $hsl2): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
                                 <td><?php echo e($hsl2->nama); ?></td>
+                                <td><?php echo e($hsl2->aspek); ?></td>
                                 <td><?php echo e($hsl2->core); ?></td>
                                 <td><?php echo e($hsl2->secondary); ?></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <center><h4><b><br>Nilai Total<br><br></b></h1></center>
+                    <center>
+                        <h4><b><br>Nilai Total<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -107,7 +119,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             <?php foreach($Nilai_total as $total): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
@@ -121,8 +133,10 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table><br>
-                    <center><h4><b><br>Ranking<br><br></b></h1></center>
-                    <table class="table-bordered table-striped" id="table-ranking" width="100%" >
+                    <center>
+                        <h4><b><br>Ranking<br><br></b></h1>
+                    </center>
+                    <table class="table-bordered table-striped" id="table-ranking" width="100%">
                         <thead>
                             <tr>
                                 <td>Rangking</td>
@@ -134,14 +148,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
-                            <?php foreach($result3 as $hsl3): ?>
+                            <?php $no = 1; ?>
+                            <?php foreach($nilai_rangking as $hsl3): ?>
                             <tr>
                                 <td><?php echo e($no++); ?></td>
                                 <td><?php echo e($hsl3->nama); ?></td>
-                                <td><?php echo e($hsl3->Ni); ?></td>
-                                <td><?php echo e($hsl3->Ns); ?></td>
-                                <!-- <td><?php echo e($hsl3->Np); ?></td> -->
+                                <td><?php echo e($hsl3->NK); ?></td>
+                                <td><?php echo e($hsl3->NS); ?></td>
+                                <!-- <td><?php /* $hsl3->Np */ ?></td> -->
                                 <td><?php echo e($hsl3->Hasil); ?></td>
                             </tr>
                             <?php endforeach; ?>
@@ -155,10 +169,10 @@
                     </div><br> -->
                     <div class="text-center">
                         <a href="<?php echo e(route('export.excel')); ?>">
-                        <button class="btn btn-primary btn-xs">Download Excel</button>
+                            <button class="btn btn-primary btn-xs">Download Excel</button>
                         </a>
                         <a href="#">
-                        <button class="btn btn-default btn-xs">Download PDF</button>
+                            <button class="btn btn-default btn-xs">Download PDF</button>
                         </a>
                     </div>
                 </div>
@@ -168,38 +182,43 @@
 </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
-        $(function() {
-        $('#table-ranking').dataTable( {
+    $(function() {
+        $("#datepicker").datepicker({
+            format: "yyyy",
+            viewMode: "years",
+            minViewMode: "years",
+            autoclose: true
+        });
+        $('#table-ranking').dataTable({
             dom: 'Bfrtip',
-            buttons: [
-                {
-                    text:'Download PDF Document',
-                    extend: 'pdfHtml5',
-                    title:'Ranking Siswa Berdasarkan Profile Matching',
-                    download: 'open',
-                    pageSize: 'A4',
-                    alignment: "center",
-                    customize: function (doc) {
-                        doc.defaultStyle.fontSize = 11; //2, 3, 4,etc
-                        doc.styles.tableHeader.alignment = 'center';
-                        doc.styles.tableBodyEven.padding = [10, 10, 10, 10];
-                        // doc.defaultStyle.alignment = 'center';
-                           doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
-                           doc.content[1].table.widths = [ '15%',  '25%', '20%', '20%', 
-                                                           '20%', '14%', '14%', '14%'];
-                        //    doc.styles.td.padding = 10;
-                          }
+            buttons: [{
+                text: 'Download PDF Document',
+                extend: 'pdfHtml5',
+                title: 'Ranking Siswa Berdasarkan Profile Matching',
+                download: 'open',
+                pageSize: 'A4',
+                alignment: "center",
+                customize: function(doc) {
+                    doc.defaultStyle.fontSize = 11; //2, 3, 4,etc
+                    doc.styles.tableHeader.alignment = 'center';
+                    doc.styles.tableBodyEven.padding = [10, 10, 10, 10];
+                    // doc.defaultStyle.alignment = 'center';
+                    doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                    doc.content[1].table.widths = ['15%', '25%', '20%', '20%',
+                        '20%', '14%', '14%', '14%'
+                    ];
                 }
-            ],
+            }],
             "order": [],
-            "columnDefs": [ {
-                "targets"  : 'nosort',
+            "columnDefs": [{
+                "targets": 'nosort',
                 "orderable": false,
             }]
-        } );
         });
-    </script>
+        
+    });
+</script>
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
