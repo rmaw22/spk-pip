@@ -154,14 +154,14 @@
                         <h4><u>{{-- $managers->nama --}}</u></h4>
                         <h4>{{-- $managers->nip --}}</h4>
                     </div><br> -->
-                    <div class="text-center">
+                    {{-- <div class="text-center">
                         <a href="{{ route('export.excel') }}">
                         <button class="btn btn-primary btn-xs">Download Excel</button>
                         </a>
                         <a href="#">
                         <button class="btn btn-default btn-xs">Download PDF</button>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -177,7 +177,7 @@
                 {
                     text:'Download PDF Document',
                     extend: 'pdfHtml5',
-                    title:'Ranking Siswa Berdasarkan Profile Matching',
+                    title:'Ranking Siswa',
                     download: 'open',
                     pageSize: 'A4',
                     alignment: "center",

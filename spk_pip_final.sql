@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Oct 26, 2021 at 12:45 PM
+-- Generation Time: Oct 27, 2021 at 04:07 PM
 -- Server version: 5.7.32
 -- PHP Version: 8.0.3
 
@@ -78,10 +78,10 @@ INSERT INTO `faktors` (`id_faktor`, `id_aspek`, `faktor`, `nilai_sub`, `kelompok
 (8, 1, 'Tempat Tinggal Panti Asuhan', 4, 'Secondary', 'Tempat Tinggal Peserta Didik', 4, '2021-09-18 03:05:37', NULL, NULL),
 (9, 1, 'Tempat Tinggal Bersama Wali', 3, 'Secondary', 'Tempat Tinggal Peserta Didik', 4, '2021-09-18 03:05:55', NULL, NULL),
 (10, 1, 'Tempat Tinggal Bersama Orang tua', 2, 'Secondary', 'Tempat Tinggal Peserta Didik', 4, '2021-09-18 03:06:10', NULL, NULL),
-(11, 2, 'Berstatus Narapidana', 5, 'Secondary', 'Kondisi Peserta Didik', 5, '2021-09-18 03:08:31', NULL, NULL),
-(12, 2, 'Peserta Didik Korban Bencana Alam', 4, 'Secondary', 'Kondisi Peserta Didik', 5, '2021-09-18 03:08:46', NULL, NULL),
-(13, 2, 'Peserta Didik Korban Konflik', 3, 'Secondary', 'Kondisi Peserta Didik', 5, '2021-09-18 03:09:06', NULL, NULL),
-(14, 2, 'Tidak Dalam Kondisi Apapun', 2, 'Secondary', 'Kondisi Peserta Didik', 5, '2021-09-18 03:09:20', NULL, NULL),
+(11, 2, 'Berstatus Narapidana', 5, 'Secondary', 'Kondisi Peserta Didik', 4, '2021-09-18 03:08:31', NULL, NULL),
+(12, 2, 'Peserta Didik Korban Bencana Alam', 4, 'Secondary', 'Kondisi Peserta Didik', 4, '2021-09-18 03:08:46', NULL, NULL),
+(13, 2, 'Peserta Didik Korban Konflik', 3, 'Secondary', 'Kondisi Peserta Didik', 4, '2021-09-18 03:09:06', NULL, NULL),
+(14, 2, 'Tidak Dalam Kondisi Apapun', 2, 'Secondary', 'Kondisi Peserta Didik', 4, '2021-09-18 03:09:20', NULL, NULL),
 (15, 2, 'Kesopanan Sangat Baik', 4, 'Core', 'Kesopanan', 4, '2021-09-18 03:09:43', NULL, NULL),
 (16, 2, 'Kesopanan Baik', 3, 'Core', 'Kesopanan', 4, '2021-09-18 03:10:00', NULL, NULL),
 (17, 2, 'Kesopanan Cukup', 2, 'Core', 'Kesopanan', 4, '2021-09-18 03:10:18', NULL, NULL),
@@ -165,6 +165,19 @@ CREATE TABLE `nilais` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `nilais`
+--
+
+INSERT INTO `nilais` (`id`, `nis`, `id_aspeks`, `id_faktor`, `nilai`, `created_at`, `updated_at`) VALUES
+(1, 12345567, 1, 3, 4, '2021-10-27 07:36:45', '2021-10-27 07:36:45'),
+(2, 12345567, 1, 1, 4, '2021-10-27 07:37:14', '2021-10-27 07:37:14'),
+(3, 12345567, 1, 7, 2, '2021-10-27 07:37:25', '2021-10-27 07:37:25'),
+(4, 12345567, 1, 9, 3, '2021-10-27 07:37:38', '2021-10-27 07:37:38'),
+(5, 12345567, 2, 16, 3, '2021-10-27 07:37:48', '2021-10-27 07:37:48'),
+(6, 12345567, 2, 12, 4, '2021-10-27 07:37:57', '2021-10-27 07:37:57'),
+(7, 12345567, 2, 20, 3, '2021-10-27 07:38:06', '2021-10-27 07:38:06');
+
 -- --------------------------------------------------------
 
 --
@@ -214,9 +227,10 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id`, `nis`, `nama`, `tempat_lahir`, `tgl_lahir`, `kelamin`, `agama`, `phone`, `periode`, `status_penilaian`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (2, 12345567, 'Imong', 'Bandung', '1999-12-12', 'Pria', 'Islam', '085721874884', '2021', 0, '2021-09-14 21:41:14', '2021-09-16 21:13:48', NULL),
-(3, 77783782, 'Tina', 'Jakarta', '2000-12-12', 'Pria', 'Kristen', '085721874884', '2021', 0, '2021-09-14 21:41:51', '2021-09-14 21:41:51', NULL),
+(3, 77783782, 'Tina', 'Jakarta', '2000-12-12', 'Pria', 'Islam', '085721874884', '2021', 0, '2021-09-14 21:41:51', '2021-10-27 07:54:03', NULL),
 (4, 10119479, 'Imam', 'Sukabumi', '1999-12-12', 'Wanita', 'Islam', '085721874884', '2021', 0, '2021-09-16 21:11:54', '2021-09-16 21:11:54', NULL),
-(5, 34349999, 'sdsfd', 'fdfs', '1999-12-12', 'Pria', 'Islam', '085798970901', '2021', 0, '2021-09-17 02:02:32', '2021-09-17 02:02:32', NULL);
+(5, 34349999, 'Ganjar', 'Garut', '1999-12-12', 'Pria', 'Islam', '085798970901', '2020', 0, '2021-09-17 02:02:32', '2021-10-27 07:52:29', NULL),
+(6, 89283232, 'Ria', 'Medan', '2002-05-07', 'Wanita', 'Islam', '0876564355688', '2020', 0, '2021-10-27 07:51:49', '2021-10-27 07:51:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -240,7 +254,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `id_role`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', '$2y$10$pdmJpEwICkAaTokxRA.DfuIqCbsUTYHqjE/Q4E/YipnuQICeR9VLi', 'AoO4uQE6KI28tyPUzSytbnybHXd4iCJMgS0xPslyapUbdLwm6yQ3SuUYk7Bs', 1, '2021-08-14 03:29:30', '2021-10-09 00:51:50'),
+(1, 'Admin', 'admin@gmail.com', '$2y$10$pdmJpEwICkAaTokxRA.DfuIqCbsUTYHqjE/Q4E/YipnuQICeR9VLi', '7dVLwLdvVELZLNrKcZd9kFpMZl30ec5Tv37ElDfP21ezXwnbZNfDx01wqMOH', 1, '2021-08-14 03:29:30', '2021-10-27 08:52:06'),
 (2, 'Kepala Sekolah', 'kepsek@gmail.com', '$2y$10$kiHhGKz57bLhA4dDIjo6U.GCBtZFDYPkOuo67qdx17APhBiBF21M.', 'Tmv5fFsFf2kVbht1Fj9FlnxCKdVCp2G4kZl2hH35eoiBzVhkuMb75Qq4kWJx', 2, '2021-09-29 11:56:47', '2021-10-01 21:25:14');
 
 --
@@ -322,13 +336,13 @@ ALTER TABLE `gaps`
 -- AUTO_INCREMENT for table `nilais`
 --
 ALTER TABLE `nilais`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`

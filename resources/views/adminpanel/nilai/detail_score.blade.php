@@ -106,7 +106,7 @@
                         </div>
 
 
-                        <div class="form-group{!! $errors->has('nilai') ? ' has-error' : '' !!}">
+                        <div class="form-group{!! $errors->has('nilai') ? ' has-error' : '' !!}" style="display:none">
                             {{ Form::label('nilai', 'Nilai') }}
                             {{ Form::select('nilai', array('1'=>'1', '2'=>'2', '3'=>'3', '4'=>'4', '5'=>'5'), null, ['class'=>'form-control', 'placeholder'=>'Pilih Nilai']) }}
                             {!! $errors->first('nilai', '<p class="help-block">:message</p>') !!}
@@ -147,7 +147,7 @@
                                 <td>Jenis Kriteria</td>
                                 <td>Sub Kriteria</td>
                                 <td>Nilai</td>
-                                <th class="nosort" width="1%">Action</th>
+                                <!-- <th class="nosort" width="1%">Action</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -162,9 +162,9 @@
                                 <td>{{ $nilai->aspek}}</td>
                                 <td>{{ $nilai->faktor }}</td>
                                 <td>{{ $nilai->nilai }}</td>
-                                <td class="center" align="center">
-                                    {{ Html::linkRoute('nilai.edit', '', array($nilai->id), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) }}
-                                </td>
+                                <!-- <td class="center" align="center">
+                                    {{-- Html::linkRoute('nilai.edit', '', array($nilai->id), array('class'=>'btn btn-xs btn-info glyphicon glyphicon-edit')) --}}
+                                </td> -->
                             </tr>
                             @endforeach
                         </tbody>
@@ -173,7 +173,7 @@
                                 <td align="center">
                                     {{ Form::button('<i class="glyphicon glyphicon-remove"></i>', array('class'=>'btn btn-danger btn-xs btn-del', 'type'=>'submit')) }}
                                 </td>
-                                <td colspan="6"></td>
+                                <td colspan="5"></td>
                                 <!-- <td align="center">
                                     {{-- Html::linkRoute('nilai.create', '', array(), array('class' => 'btn btn-xs btn-primary glyphicon glyphicon-plus')) --}}
                                 </td> -->

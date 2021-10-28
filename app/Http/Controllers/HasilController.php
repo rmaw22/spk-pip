@@ -146,7 +146,7 @@ class HasilController extends Controller
                           c.prosentase/100 AS persen,
                           (
                           SUM(IF(d.kelompok="core",e.bobot,0))/SUM(IF(d.kelompok="core",1,0))*0.6+
-                          SUM(IF(d.kelompok="secondary",e.bobot,0))/SUM(IF(d.kelompok="secondary",1,0))*0.4) AS nilai  
+                          SUM(IF(d.kelompok="secondary",e.bobot,0))/SUM(IF(d.kelompok="secondary",1,0))*0.4)/2 AS nilai  
                         FROM
                           nilais a
                           JOIN students b USING(nis)
@@ -163,8 +163,8 @@ class HasilController extends Controller
                         b.nama,
                         c.id_aspek,
                         c.prosentase/100 AS persen,
-                        SUM(IF(d.kelompok="core",e.bobot,0))/SUM(IF(d.kelompok="core",1,0)) as NCF,
-                        SUM(IF(d.kelompok="secondary",e.bobot,0))/SUM(IF(d.kelompok="secondary",1,0)) as NSF                       
+                        SUM(IF(d.kelompok="core",e.bobot,0))/SUM(IF(d.kelompok="core",1,0))*0.6 as NCF,
+                        SUM(IF(d.kelompok="secondary",e.bobot,0))/SUM(IF(d.kelompok="secondary",1,0))*0.4 as NSF                       
                       FROM
                         nilais a
                         JOIN students b USING(nis)
@@ -186,8 +186,8 @@ class HasilController extends Controller
                         c.id_aspek,
                         c.aspek,
                         c.prosentase/100 AS persen,
-                        SUM(IF(d.kelompok="core",e.bobot,0))/SUM(IF(d.kelompok="core",1,0)) as NCF,
-                        SUM(IF(d.kelompok="secondary",e.bobot,0))/SUM(IF(d.kelompok="secondary",1,0)) as NSF                      
+                        (SUM(IF(d.kelompok="Core",e.bobot,0))/SUM(IF(d.kelompok="Core",1,0))*0.6 )as NCF,
+                        (SUM(IF(d.kelompok="Secondary",e.bobot,0))/SUM(IF(d.kelompok="Secondary",1,0))*0.4) as NSF                      
                       FROM
                         nilais a
                         JOIN students b USING(nis)

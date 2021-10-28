@@ -27,6 +27,7 @@ Route::get('/pengumuman', 'HomeController@index');
 Route::get('/nilai/edit/{id}', 'NilaiController@FaktorAjax');
 Route::get('/nilai/category/{id}', 'NilaiController@Faktorcategory');
 Route::get('/nilai/getCategory/{id}', 'FaktorController@getCategory');
+Route::get('/nilai/getFaktorScore/{id}', 'NilaiController@getFaktorScore');
 
 Route::get('siswa/markComplete', ['as'=>'siswa.completed', 'uses'=>'SiswaController@markComplete']);
 Route::post('siswa/markUncomplete', ['as'=>'siswa.uncompleted', 'uses'=>'SiswaController@markUncomplete']);

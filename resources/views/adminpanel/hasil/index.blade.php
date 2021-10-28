@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('css')
 <style>
-    #table-ranking td{
-        padding:10px;
+    #table-ranking td {
+        padding: 10px;
     }
 </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -14,23 +15,21 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Result</div>
                 <div class="panel-body table-responsive">
-                {{ Form::open(['route' => 'hasil.search','method'=>'GET']) }}
-                      
-                        <div class="form-group{!! $errors->has('periode') ? ' has-error' : '' !!}">
-                            {{ Form::label('periode', 'Tahun Periode') }}
-                            <!-- <div class="input-group date"> -->
-                            <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
-                                {{ Form::selectYear('periode', $get_tahun[0]->year_start, $get_tahun[0]->year_end,  date('Y'),['class' => 'form-control', '']) }}
-                              
-                            <!-- </div> -->
-                            {!! $errors->first('periode', '<p class="help-block">:message</p>') !!}
-                        </div>
-                        
-                        <div class="form-group">
-                            {{ Form::submit('Cari', ['class'=>'btn btn-primary  btn-xs']) }}
-                        </div>
+                    {{ Form::open(['route' => 'hasil.search','method'=>'GET']) }}
+                    <div class="form-group{!! $errors->has('periode') ? ' has-error' : '' !!}">
+                        {{ Form::label('periode', 'Tahun Periode') }}
+                        <!-- <div class="input-group date"> -->
+                        <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
+                        {{-- Form::selectYear('periode', $get_tahun[0]->year_start, $get_tahun[0]->year_end,  date('Y'),['class' => 'form-control', '']) --}}
+                        <input type="text" class="form-control allownumericwithoutdecimal" name="periode" id="datepicker" value="{{date('Y')}}" />
+                        <!-- </div> -->
+                        {!! $errors->first('periode', '<p class="help-block">:message</p>') !!}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::submit('Cari', ['class'=>'btn btn-primary  btn-xs']) }}
+                    </div>
                     {{ Form::close() }}
-                    <hr/>
+                    <hr />
                     <!-- <center><h4><b><br>Skala<br><br></b></h1></center>
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -43,7 +42,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             @foreach ($result1 as $hsl)
                             <tr>
                                 <td>{{ $no++ }}</td>
@@ -55,7 +54,9 @@
                             @endforeach
                         </tbody>
                     </table> -->
-                    <center><h4><b><br>Hasil<br><br></b></h1></center>
+                    <center>
+                        <h4><b><br>Hasil<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -69,7 +70,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             @foreach ($result as $hsl)
                             <tr>
                                 <td>{{ $no++ }}</td>
@@ -82,7 +83,10 @@
                             </tr>
                             @endforeach
                         </tbody>
-                    </table><center><h4><b><br>Nilai Bobot<br><br></b></h1></center>
+                    </table>
+                    <center>
+                        <h4><b><br>Nilai Bobot<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -96,7 +100,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             @foreach ($result as $hsl1)
                             <tr>
                                 <td>{{ $no++ }}</td>
@@ -109,7 +113,10 @@
                             </tr>
                             @endforeach
                         </tbody>
-                    </table><center><h4><b><br>Nilai Core Secondary<br><br></b></h1></center>
+                    </table>
+                    <center>
+                        <h4><b><br>Nilai Core Secondary<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -120,7 +127,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             @foreach ($result2 as $hsl2)
                             <tr>
                                 <td>{{ $no++ }}</td>
@@ -131,7 +138,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <center><h4><b><br>Nilai Total<br><br></b></h1></center>
+                    <center>
+                        <h4><b><br>Nilai Total<br><br></b></h1>
+                    </center>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -145,7 +154,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             @foreach ($Nilai_total as $total)
                             <tr>
                                 <td>{{ $no++ }}</td>
@@ -159,11 +168,13 @@
                             @endforeach
                         </tbody>
                     </table><br>
-                    <center><h4><b><br>Ranking<br><br></b></h1></center>
-                    <table class="table-bordered table-striped" id="table-ranking" width="100%" >
+                    <center>
+                        <h4><b><br>Ranking<br><br></b></h1>
+                    </center>
+                    <table class="table-bordered table-striped" id="table-ranking" width="100%">
                         <thead>
                             <tr>
-                                <td>#</td>
+                                <td>Rangking</td>
                                 <td>Nama Siswa</td>
                                 <td>Nilai Kapasitas (NK)</td>
                                 <td>Nilai Sikap (NS)</td>
@@ -172,7 +183,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $no=1; ?>
+                            <?php $no = 1; ?>
                             @foreach ($result3 as $hsl3)
                             <tr>
                                 <td>{{ $no++ }}</td>
@@ -191,14 +202,14 @@
                         <h4><u>{{-- $managers->nama --}}</u></h4>
                         <h4>{{-- $managers->nip --}}</h4>
                     </div><br> -->
-                    <div class="text-center">
-                        {{-- <a href="{{ route('export.excel') }}">
+                    {{-- <div class="text-center">
+                        <a href="{{ route('export.excel') }}">
                         <button class="btn btn-primary btn-xs">Download Excel</button>
-                        </a> --}}
-                        {{-- <a href="#">
+                        </a>
+                        <a href="#">
                         <button class="btn btn-default btn-xs">Download PDF</button>
-                        </a> --}}
-                    </div>
+                        </a>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -206,36 +217,42 @@
 </div>
 @endsection
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript">
-        $(function() {
-        $('#table-ranking').dataTable( {
+    $(function() {
+        $("#datepicker").datepicker({
+            format: "yyyy",
+            viewMode: "years",
+            minViewMode: "years",
+            autoclose: true
+        });
+        $('#table-ranking').dataTable({
             dom: 'Bfrtip',
-            buttons: [
-                {
-                    text:'Download PDF',
-                    extend: 'pdfHtml5',
-                    title:'Ranking Siswa',
-                    download: 'open',
-                    pageSize: 'A4',
-                    alignment: "center",
-                    customize: function (doc) {
-                        doc.defaultStyle.fontSize = 11; //2, 3, 4,etc
-                        doc.styles.tableHeader.alignment = 'center';
-                        doc.styles.tableBodyEven.padding = [10, 10, 10, 10];
-                        // doc.defaultStyle.alignment = 'center';
-                           doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
-                           doc.content[1].table.widths = [ '15%',  '25%', '20%', '20%', 
-                                                           '20%', '14%', '14%', '14%'];
-                        //    doc.styles.td.padding = 10;
-                          }
+            buttons: [{
+                text: 'Download PDF Document',
+                extend: 'pdfHtml5',
+                title: 'Ranking Siswa',
+                download: 'open',
+                pageSize: 'A4',
+                alignment: "center",
+                customize: function(doc) {
+                    doc.defaultStyle.fontSize = 11; //2, 3, 4,etc
+                    doc.styles.tableHeader.alignment = 'center';
+                    doc.styles.tableBodyEven.padding = [10, 10, 10, 10];
+                    // doc.defaultStyle.alignment = 'center';
+                    doc.styles.tableHeader.fontSize = 12; //2, 3, 4, etc
+                    doc.content[1].table.widths = ['15%', '25%', '20%', '20%',
+                        '20%', '14%', '14%', '14%'
+                    ];
                 }
-            ],
+            }],
             "order": [],
-            "columnDefs": [ {
-                "targets"  : 'nosort',
+            "columnDefs": [{
+                "targets": 'nosort',
                 "orderable": false,
             }]
-        } );
         });
-    </script>
+        
+    });
+</script>
 @endsection
