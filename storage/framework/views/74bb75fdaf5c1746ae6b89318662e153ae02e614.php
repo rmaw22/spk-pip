@@ -20,9 +20,9 @@
 
                             <!-- <div class="input-group date"> -->
                             <!-- <span class="input-group-addon glyphicon glyphicon-calendar"></span> -->
-                                <?php echo e(Form::selectYear('periode', date("Y", strtotime('-50 years')), date("Y", strtotime('+3 years')),  $siswas->periode,['class' => 'form-control', 'placeholder' => 'Masukkan Tahun Periode', ''])); ?>
+                                <?php /* Form::selectYear('periode', date("Y", strtotime('-50 years')), date("Y", strtotime('+3 years')),  $siswas->periode,['class' => 'form-control', 'placeholder' => 'Masukkan Tahun Periode', '']) */ ?>
+                                <input type="text" class="form-control allownumericwithoutdecimal" name="periode" id="datepicker" placeholder="Masukkan Tahun Periode" value="<?php echo e($siswas->periode); ?>"/>
 
-                              
                             <!-- </div> -->
                             <?php echo $errors->first('periode', '<p class="help-block">:message</p>'); ?>
 
@@ -130,5 +130,16 @@
     </div>
 </div>
 <?php $__env->stopSection(); ?>
-
+<?php $__env->startSection('js'); ?>
+<script type="text/javascript">
+    $(function() {
+        $("#datepicker").datepicker({
+            format: "yyyy",
+            viewMode: "years",
+            minViewMode: "years",
+            autoclose: true
+        });
+    });
+</script>
+<?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
