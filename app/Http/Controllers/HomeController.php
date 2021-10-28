@@ -144,8 +144,8 @@ f.nama,
 f.NCF,
 f.NSF,
 f.aspek,
-(CASE WHEN f.id_aspek=1 THEN (((0.6*f.NCF)+(0.4*f.NSF))/2) END) as N_K,
-(CASE WHEN f.id_aspek=2 THEN (((0.6*f.NCF)+(0.4*f.NSF))/2) END) as N_S                                              
+(CASE WHEN f.id_aspek=1 THEN (((0.6*f.NCF)+(0.4*f.NSF))) END) as N_K,
+(CASE WHEN f.id_aspek=2 THEN (((0.6*f.NCF)+(0.4*f.NSF))) END) as N_S                                              
 FROM
 (SELECT 
     b.nis,
@@ -180,8 +180,8 @@ $nilai_rangking = DB::SELECT('SELECT
               f.aspek,
         f.id_aspek,
         f.persen,
-              (CASE WHEN f.id_aspek=1 THEN (((0.6*f.NCF)+(0.4*f.NSF))/2) END) as N_K,
-              (CASE WHEN f.id_aspek=2 THEN (((0.6*f.NCF)+(0.4*f.NSF))/2) END) as N_S                                              
+              (CASE WHEN f.id_aspek=1 THEN (((0.6*f.NCF)+(0.4*f.NSF))) END) as N_K,
+              (CASE WHEN f.id_aspek=2 THEN (((0.6*f.NCF)+(0.4*f.NSF))) END) as N_S                                              
             FROM
             (SELECT 
                   b.nis,
