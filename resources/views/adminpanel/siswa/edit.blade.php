@@ -36,10 +36,10 @@
                         </div>
                         <div class="form-group{!! $errors->has('tgl_lahir') ? ' has-error' : '' !!}">
                             {{ Form::label('tgl_lahir','Tanggal Lahir' , ['class' => 'control-label']) }}
-                            <div class="input-group date">
-                              <span class="input-group-addon glyphicon glyphicon-calendar"></span>
-                              {{ Form::date('tgl_lahir', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Tanggal Lahir', 'readonly']) }}
-                            </div>
+                            {{-- <div class="input-group date"> --}}
+                            <span class="input-group-addon glyphicon glyphicon-calendar"></span>
+                            {{ Form::date('tgl_lahir', null, ['class' => 'form-control', 'placeholder' => 'Masukkan Tanggal Lahir']) }}
+                            {{-- </div> --}}
                             {!! $errors->first('tgl_lahir', '<p class="help-block">:message</p>') !!}
                         </div>
                         <div class="form-group{!! $errors->has('kelamin') ? ' has-error' : '' !!}">
