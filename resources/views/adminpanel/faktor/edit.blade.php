@@ -15,8 +15,12 @@
                         // console.log(data);
                         $('select[name="category"]').empty();
                         $.each(data, function(aspek, value) {
-                            
-                            $('select[name="category"]').append('<option value="'+ value +'">'+ value +'</option>');
+                            if (value.category === '{{ $faktors->category }}') {
+                                $('select[name="category"]').append('<option value="'+ value.category +'"  selected="selected">'+ value.category +'</option>');
+                            }else{
+
+                                $('select[name="category"]').append('<option value="'+ value.category +'">'+ value.category +'</option>');
+                            }
                         });
                     },error: function(data){
                         console.log(data);
