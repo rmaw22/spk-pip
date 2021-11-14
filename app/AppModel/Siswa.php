@@ -6,15 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Siswa extends Model
 {   
-   
     protected $table = 'students';
     protected $guarded = ['nis','created_at', 'updated_at'];
-    protected $primaryKey = 'nis';
+    protected $primaryKey = 'id';
     
     public $incrementing = false;
     
     public function hasils()
     {
-    	return $this->hasMany('App\AppModel\Hasil');
+        return $this->hasMany('App\AppModel\Hasil');
     }
 }

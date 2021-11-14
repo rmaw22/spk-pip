@@ -144,6 +144,61 @@
                 $('#nilai').empty();
             }
         });
+        $('.btn-del').on('click', function() {
+            // body...
+            let id = $(this).val();
+            const checkItem = $('#checkItem:checked').serializeArray()
+            const IDs = []
+            for (let i = 0; i < checkItem.length; i++) {
+                const element = checkItem[i];
+                IDs.push(parseInt(element.value))
+            }
+            if (checkItem.length > 0) {
+                Swal.fire({
+                    title: 'Anda yakin ingin menghapus data?',
+                    text: 'Data yang dihapus tidak bisa di kembalikan!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'delete',
+                            url: '{{ URL::route('aspek.destroy') }}',
+                            data: {
+                                'id': IDs
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function(data) {
+                                Swal.fire(
+                                    'Hapus Nilai',
+                                    'Data nilai berhasil di hapus!',
+                                    'success'
+                                ).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.reload()
+                                    }
+                                })
+                                for (let i = 0; i < checkItem.length; i++) {
+                                    const element = checkItem[i];
+                                    $('#nilai' + element.value).remove();
+                                }
+                            }
+                        })
+                    }
+                })
+            } else {
+                Swal.fire(
+                    'Hapus  nilai?',
+                    'Silahkan pilih data untuk menghapus!',
+                    'question'
+                )
+            }
+        })
     });
 </script>
 @endsection

@@ -119,7 +119,6 @@ class FaktorController extends Controller
         $faktors->nilai_ideal =  $nilai_ideal;
         if ($faktors->save()) {
             return redirect()->route('faktor.index')->with('alert-success', 'Input Success');
-           
         }else{
             return redirect()->route('faktor.index')->with('alert-danger', 'Input Error');
 
@@ -185,8 +184,14 @@ class FaktorController extends Controller
      */
     public function destroy(Request $request)
     {
-        Faktor::destroy($request->checkItem);
-        return back();
+        // Faktor::destroy($request->checkItem);
+        // return back();
+        $ids = $request->id;
+        DB::table('faktors')->whereIn('id_faktor', $ids)->delete();
+        return response()->json([
+            'status' => true,
+            'message' => 'OK',
+        ]);
     }
 
     public function postImport()

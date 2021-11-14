@@ -7,6 +7,7 @@ use App\AppModel\Aspek;
 use App\Http\Requests;
 use App\Http\Requests\Aspek\StoreRequest;
 use App\Http\Requests\Aspek\UpdateRequest;
+use DB;
 
 class AspekController extends Controller
 {
@@ -48,11 +49,17 @@ class AspekController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $aspeks = new Aspek();
-        $aspeks->aspek =  $request->aspek;
-        $aspeks->prosentase = $request->prosentase;
-        $aspeks->save();
-        return redirect()->route('aspek.index')->with('alert-success', 'Berhasil Menambah Data');
+        $check = DB::table('aspeks')->sum('prosentase');
+        // echo $check;die;
+        if ($check >= 100) {
+            return redirect()->route('aspek.create')->with('alert-danger', 'Mohon maaf jumlah prosentase telah maximum 100%');
+        } else {
+            $aspeks = new Aspek();
+            $aspeks->aspek =  $request->aspek;
+            $aspeks->prosentase = $request->prosentase;
+            $aspeks->save();
+            return redirect()->route('aspek.index')->with('alert-success', 'Berhasil Menambah Data');
+        }
     }
 
     /**
@@ -102,8 +109,15 @@ class AspekController extends Controller
      */
     public function destroy(Request $request)
     {
-        Aspek::destroy($request->checkItem); 
-    return back();
+        $ids = $request->id;
+        // Aspek::destroy($request->ids); 
+        // return back();
+        DB::table('aspeks')->whereIn('id_aspek', $ids)->delete();
+        // return back();
+        return response()->json([
+            'status' => true,
+            'message' => 'OK',
+        ]);
     }
 
     public function postImport()

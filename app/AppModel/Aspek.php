@@ -12,6 +12,6 @@ class Aspek extends Model
 
     public function Faktor()
     {
-    	return $this->hasMany('App\AppModel\Faktor');
+        return $this->hasMany('App\AppModel\Faktor');
     }
 }

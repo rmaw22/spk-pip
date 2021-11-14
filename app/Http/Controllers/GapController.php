@@ -7,6 +7,7 @@ use App\AppModel\Gap;
 use App\Http\Requests;
 use App\Http\Requests\Gap\StoreRequest;
 use App\Http\Requests\Gap\UpdateRequest;
+use DB;
 
 class GapController extends Controller
 {
@@ -104,8 +105,14 @@ class GapController extends Controller
      */
     public function destroy(Request $request)
     {
-        Gap::destroy($request->checkItem); 
-    return back();
+        // Gap::destroy($request->checkItem); 
+        // return back();
+        $ids = $request->id;
+        DB::table('gaps')->whereIn('id_gap',$ids)->delete();
+        return response()->json([
+            'status' => true,
+            'message' => 'OK',
+        ]);
     }
 
     public function postImport()

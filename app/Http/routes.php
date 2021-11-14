@@ -32,7 +32,7 @@ Route::get('/nilai/getFaktorScore/{id}', 'NilaiController@getFaktorScore');
 Route::get('siswa/markComplete', ['as'=>'siswa.completed', 'uses'=>'SiswaController@markComplete']);
 Route::post('siswa/markUncomplete', ['as'=>'siswa.uncompleted', 'uses'=>'SiswaController@markUncomplete']);
 Route::resource('siswa', 'SiswaController');
-Route::delete('categories', ['as'=>'siswa.destroy', 'uses'=>'SiswaController@destroy']);
+Route::delete('siswa', ['as'=>'siswa.destroy', 'uses'=>'SiswaController@destroy']);
 Route::resource('aspek', 'AspekController');
 Route::delete('aspek', ['as'=>'aspek.destroy', 'uses'=>'AspekController@destroy']);
 Route::resource('faktor', 'FaktorController');

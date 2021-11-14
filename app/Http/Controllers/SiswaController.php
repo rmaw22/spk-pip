@@ -11,6 +11,7 @@ use App\AppModel\Aspek;
 use Excel;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
+use DB;
 
 class SiswaController extends Controller
 {
@@ -120,8 +121,14 @@ class SiswaController extends Controller
      */
     public function destroy(Request $request)
     {
-        Siswa::destroy($request->checkItem); 
-    return back();
+        $ids = $request->id;
+        DB::table('students')->whereIn('id',$ids)->delete();
+        // Siswa::destroy($request->id); 
+        // return back();
+        return response()->json([
+            'status' => true,
+            'message' => 'OK',
+        ]);
     }
 
     public function postImport()
